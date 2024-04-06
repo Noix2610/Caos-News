@@ -26,7 +26,7 @@ La problemática que se aborda es la falta de una plataforma centralizada para l
 
 ## 3. Diagrama de arquitectura:
 
-
+--POR DEFINIR--
 
 
 ## 4. Propuesta de solución:
