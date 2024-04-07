@@ -1,0 +1,46 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+}
+
+.menu {
+    background-color: #f0c0e0;
+    /* Color de fondo del menú */
+    color: #fff;
+    /* Color del texto del menú */
+    padding: 10px;
+    /* Espaciado interno del menú */
+    float: left;
+    border-bottom: solid rgb(201, 41, 174);
+    border-top: solid rgb(201, 41, 174);
+    border-left: solid rgb(201, 41, 174);;
+    border-right: solid rgb(201, 41, 174);;
+    border-width: 5px;
+    border-style: double;
+    border-radius: 10px;
+}
+
+.carousel-item img {
+    width: 20%; /* Ancho de los objetos del carrusel */
+    margin: 0 auto; /* Margen de los objetos del carrusel */
+}
+
+.carousel-container {
+    margin-top: 20px;
+    margin-left: 10%;
+    /* Espaciado entre el menú y el carrusel */
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    color: black; /* Color del texto */
+    padding: 10px; /* Espaciado interno */
+    top: 0; /* Coloca la caja de la leyenda en la parte inferior */
+    width: 70%; /* Ancho completo */
+    height: 20%;
+    
+}
+li a:hover{
+    opacity: 0.5;
+}

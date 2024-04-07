@@ -1,0 +1,99 @@
+<!DOCTYPE html> <!-- Declaración del tipo de documento HTML -->
+<html lang="es"> <!-- Inicio del elemento HTML con el atributo lang que define el idioma (español) -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Especifica la codificación de caracteres UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración de la vista adaptable -->
+    <title>Colectivo de Noticias</title> <!-- Título de la página -->
+    <link rel="stylesheet" href="styleSheet.css"> <!-- Enlace a una hoja de estilos personalizada -->
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- Menú de navegación -->
+    <div class="menu">
+        <!-- Logo del colectivo de noticias -->
+        <img src="resources/logo.png" alt="logo"> <!-- Elemento de imagen con la ruta del logo -->
+        <!-- Navegación -->
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li><!--Elementos del Menú-->
+                <li><a href="#">Acerca</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Contenedor del carrusel -->
+    <div class="carousel-container">
+        <!-- Carrusel -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <!-- Indicadores del carrusel -->
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <!-- Indicador de la primera imagen -->
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <!-- Indicador de la segunda imagen -->
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <!-- Indicador de la tercera imagen -->
+            </ol>
+            <!-- Imágenes del carrusel -->
+            <div class="carousel-inner">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="10000">
+                    <!-- Primera imagen del carrusel -->
+                    <div class="carousel-item active">
+                        <a href="#"><!-- Imagen se convierte a enlace -->
+                            <img class="d-block img-fluid" src="resources\apoyo_estudiante.jpg" alt="Primera imagen">
+                            <!-- Imagen con clase para Bootstrap y atributos de tamaño y alt -->
+                            <!-- Título de la primera imagen -->
+                            <div class="carousel-caption">
+                                <h3>Primera Imagen</h3> <!-- Título de la primera imagen -->
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Segunda imagen del carrusel -->
+                    <div class="carousel-item">
+                        <img class="d-block img-fluid" src="resources\mapa_viaje.jpg" alt="Segunda imagen">
+                        <!-- Imagen con clase para Bootstrap y atributos de tamaño y alt -->
+                        <!-- Título de la segunda imagen -->
+                        <div class="carousel-caption">
+                            <h3>Segunda Imagen</h3> <!-- Título de la segunda imagen -->
+                        </div>
+                    </div>
+                    <!-- Tercera imagen del carrusel -->
+                    <div class="carousel-item">
+                        <img class="d-block img-fluid" src="resources\personas.jpg" alt="Tercera imagen">
+                        <!-- Imagen con clase para Bootstrap y atributos de tamaño y alt -->
+                        <!-- Título de la tercera imagen -->
+                        <div class="carousel-caption">
+                            <h3>Tercera Imagen</h3> <!-- Título de la tercera imagen -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles del carrusel -->
+            <a class="carousel-control-prev btn btn-primary" href="#carouselExampleIndicators" role="button"
+                data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span> <!-- Icono de flecha izquierda -->
+                <span class="sr-only">Anterior</span> <!-- Texto para accesibilidad -->
+            </a>
+            <a class="carousel-control-next btn btn-danger" href="#carouselExampleIndicators" role="button"
+                data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span> <!-- Icono de flecha derecha -->
+                <span class="sr-only">Siguiente</span> <!-- Texto para accesibilidad -->
+            </a>
+        </div>
+    </div>
+
+
+    <!-- Incluye los archivos JavaScript de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> <!-- Biblioteca jQuery para Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <!-- Biblioteca Popper.js para Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+</body>
+
+</html>
