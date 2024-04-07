@@ -35,7 +35,7 @@ La problemática que se aborda es la falta de una plataforma centralizada para l
 - Página principal con noticias destacadas en un carrusel de imágenes.
 - Detalle de noticias individuales con galería de fotos y detalles completos.
 - Formulario de contacto general.
-- Autenticación de usuarios con registro y inicio de sesión.
+- Autenticación de usuarios con registro e inicio de sesión.
 - Diseño responsivo para adaptarse a diferentes dispositivos.
 
 
