@@ -111,8 +111,10 @@
                 <h5 class="card-title">Suscripcion semanal</h5>
                 <p class="card-text">Por una semana recibe contenido de noticias de la categoria que desees</p>
                 <p class="card-text">Precio: $10.00</p>
-                <a href="#" class="btn btn-primary">
-                    <img src="resources/iconoBasket.png" alt="basket" id="imagen-logo"></a>
+                <a href="#" class="btn"  >
+                    <img src="resources/iconoBasket.png" alt="basket" id="imagen-logo">
+                    </a>
+                    <h6>Agregar al Carrito</h6>
               </div>
             </div>
             <div class="card">
@@ -134,7 +136,30 @@
               <li class="list-group-item">Producto 2 - $15.00</li>
               <li class="list-group-item">Total: $25.00</li>
             </ul>
-            <a href="#" class="btn btn-success mt-3">Pagar</a>
+            
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Pagar
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Plataforma de pagos</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Se redirigira hacia la plataforma de pagos. ¿Está seguro/a?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <a href="#"><button type="button" class="btn btn-primary">Aceptar</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
           </div>
         </div>
       </div>
