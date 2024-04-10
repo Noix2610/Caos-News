@@ -4,23 +4,6 @@ body {
 
 }
 
-.menu {
-    background-color: #f0c0e0;
-    /* Color de fondo del menú */
-    color: #fff;
-    /* Color del texto del menú */
-    padding: 10px;
-    /* Espaciado interno del menú */
-    float: left;
-    border-bottom: solid rgb(201, 41, 174);
-    border-top: solid rgb(201, 41, 174);
-    border-left: solid rgb(201, 41, 174);;
-    border-right: solid rgb(201, 41, 174);;
-    border-width: 5px;
-    border-style: double;
-    border-radius: 10px;
-}
-
 .carousel-item img {
     width: 20%; /* Ancho de los objetos del carrusel */
     margin: 0 auto; /* Margen de los objetos del carrusel */
@@ -44,3 +27,56 @@ body {
 li a:hover{
     opacity: 0.5;
 }
+
+p {
+    font-size: 16px;
+    /* Tamaño de fuente */
+    line-height: 1.2;
+    /* Espaciado entre líneas */
+    text-align: justify;
+    /* Alineación justificada del texto */
+    margin: 0 auto;
+    /* Margen automático en los lados para centrar el párrafo */
+    max-width: 800px;
+    /* Ancho máximo del párrafo para que no se extienda demasiado */
+    padding: 20px;
+    /* Espaciado interior para mejorar la legibilidad */
+    border: 2px solid #ccc;
+    /* Borde para resaltar el párrafo */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    background-color: #f9f9f9;
+    /* Color de fondo */
+}
+
+h1 {
+    font-size: 24px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    text-align: center; /* Alineación centrada */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+
+h2 {
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    margin-top: 20px; /* Espacio superior */
+    margin-bottom: 10px; /* Espacio inferior */
+}
+
+h5 {
+    font-size: 14px; /* Tamaño de fuente */
+    font-style: italic; /* Texto en cursiva */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+
+h6{
+    font-size: 12px;
+    font-style: italic; /* Texto en cursiva */
+    font-weight: bold;
+    
+}
+
+
+
+
+
