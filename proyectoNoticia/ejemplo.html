@@ -80,7 +80,7 @@
               <!-- Fin search 2 -->
               
               <!-- Menu 2-->
-              <button type="button" class="btn btn-md btn-danger" data-bs-toggle="popover" title="Quieres Suscribirte" data-bs-content="Ingresa a ...?">Suscribete con 44%</button>
+              <button type="button" class="btn btn-md btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Suscribete</button>
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
 
@@ -143,31 +143,40 @@
       </div>
     </div>
 
-    <!-- Botones -->
-
-    <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <!-- ICONO FECHA BOTON CARUCEL -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="btn-primary"
-        class="bi bi-arrow-left-circle-fill " viewBox="0 0 16 16">
-        <path
-          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
-      </svg>
-      <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-      <span class="visually"></span>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="http://www.w3.org/2000/svg" class="d-block w-100" alt="">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
     </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="btn-danger"
-        class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-        <path
-          d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-      </svg>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+  </div>
 
+ 
   </div>
 
 </body>
 
 </html>
+
+
+
+
