@@ -13,25 +13,6 @@ body {
 
 }
 
-.menu {
-    background-color: #f0c0e0;
-    /* Color de fondo del menú */
-    color: #fff;
-    /* Color del texto del menú */
-    padding: 10px;
-    /* Espaciado interno del menú */
-    float: left;
-    border-bottom: solid rgb(201, 41, 174);
-    border-top: solid rgb(201, 41, 174);
-    border-left: solid rgb(201, 41, 174);
-    ;
-    border-right: solid rgb(201, 41, 174);
-    ;
-    border-width: 5px;
-    border-style: double;
-    border-radius: 10px;
-}
-
 .carousel-item img {
     width: 20%;
     /* Ancho de los objetos del carrusel */
@@ -78,13 +59,10 @@ li a:hover {
 
 }
 
-
-
 .carousel-control-prev {
     width: 5%;
     height: 15%;
     margin-top: 45%;
-    
     margin-right: 10%;
    
 }
@@ -102,5 +80,12 @@ li a:hover {
     height: 70%;
     margin: auto;
     margin-top: 10%;
+
+}
+
+.d-block{
+    width: 850px;
+    height: 450px;
+    margin: auto;
 
 }

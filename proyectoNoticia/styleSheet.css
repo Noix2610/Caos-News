@@ -1,35 +1,6 @@
-body {
-
-    font-family: Arial, sans-serif;
-
-}
-
-.carousel-item img {
-    width: 20%; /* Ancho de los objetos del carrusel */
-    margin: 0 auto; /* Margen de los objetos del carrusel */
-}
-
-.carousel-container {
-    margin-top: 20px;
-    margin-left: 10%;
-    /* Espaciado entre el menú y el carrusel */
-}
-
-.carousel-caption {
-    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-    color: black; /* Color del texto */
-    padding: 10px; /* Espaciado interno */
-    top: 0; /* Coloca la caja de la leyenda en la parte inferior */
-    width: 70%; /* Ancho completo */
-    height: 20%;
-    
-}
-li a:hover{
-    opacity: 0.5;
-}
 
 p {
-    font-size: 16px;
+    font-size: 18px;
     /* Tamaño de fuente */
     line-height: 1.2;
     /* Espaciado entre líneas */
@@ -47,6 +18,7 @@ p {
     /* Bordes redondeados */
     background-color: #f9f9f9;
     /* Color de fondo */
+    font-style:oblique;
 }
 
 h1 {
@@ -72,11 +44,7 @@ h5 {
 h6{
     font-size: 12px;
     font-style: italic; /* Texto en cursiva */
-    font-weight: bold;
+    font-weight: bold; /* Texto en negrita */
     
 }
-
-
-
-
 
