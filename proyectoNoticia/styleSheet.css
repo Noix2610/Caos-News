@@ -4,6 +4,10 @@ body {
 
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 .carousel-item img {
     width: 20%; /* Ancho de los objetos del carrusel */
     margin: 0 auto; /* Margen de los objetos del carrusel */
@@ -28,6 +32,7 @@ li a:hover{
     opacity: 0.5;
 }
 
+<<<<<<< Updated upstream
 p {
     font-size: 16px;
     /* Tamaño de fuente */
@@ -80,3 +85,20 @@ h6{
 
 
 
+=======
+#imagen-logo{
+    margin: auto;
+    width: auto;
+    height: auto;
+
+}
+
+p{
+    font-size: 16px;
+    border-radius: 8px;
+    border-color:solid 4px rgb(27, 27, 26);
+    background-color: beige;
+    padding: 8px;
+
+}
+>>>>>>> Stashed changes
