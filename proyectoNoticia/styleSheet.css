@@ -5,40 +5,15 @@ body {
 
 }
 
-.carousel-item img {
-    width: 20%; /* Ancho de los objetos del carrusel */
-    margin: 0 auto; /* Margen de los objetos del carrusel */
-}
-
-.carousel-container {
-    margin-top: 20px;
-    margin-left: 10%;
-    /* Espaciado entre el menú y el carrusel */
-}
-
-.carousel-caption {
-    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-    color: black; /* Color del texto */
-    padding: 10px; /* Espaciado interno */
-    top: 0; /* Coloca la caja de la leyenda en la parte inferior */
-    width: 70%; /* Ancho completo */
-    height: 20%;
-    
-}
-li a:hover{
-    opacity: 0.5;
-}
-
 p {
-    font-size: 18px;
+    font-size: 25px;
     /* Tamaño de fuente */
     line-height: 1.2;
     /* Espaciado entre líneas */
     text-align: justify;
     /* Alineación justificada del texto */
-    margin: 0 auto;
-    /* Margen automático en los lados para centrar el párrafo */
     max-width: 800px;
+    /* Margen automático en los lados para centrar el párrafo */
     /* Ancho máximo del párrafo para que no se extienda demasiado */
     padding: 20px;
     /* Espaciado interior para mejorar la legibilidad */
@@ -56,18 +31,6 @@ h1 {
     font-weight: bold; /* Texto en negrita */
     text-align: center; /* Alineación centrada */
     margin-bottom: 20px; /* Espacio inferior */
-}
-#h1-especial{
-    font-size: 24px;
-    /* Tamaño de fuente */
-    font-weight: bold;
-    /* Texto en negrita */
-    /* Alineación centrada */
-    margin-right: 200px;
-    padding-top: 20px;
-    margin-bottom: 20px;
-    /* Espacio inferior */
-
 }
 
 h2 {
@@ -90,23 +53,13 @@ h6{
     
 }
 
-<<<<<<< Updated upstream
 #imagen-logo{
     margin: auto;
-=======
-#imagen-logo {
-    /* Anula los estilos que no se desean aplicar */
->>>>>>> Stashed changes
     width: auto;
     height: auto;
 
 }
 
-p{
-    font-size: 16px;
-    border-radius: 8px;
-    border-color:solid 4px rgb(27, 27, 26);
-    background-color: beige;
-    padding: 8px;
 
-}
+
+
