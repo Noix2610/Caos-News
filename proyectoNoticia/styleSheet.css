@@ -57,6 +57,18 @@ h1 {
     text-align: center; /* Alineación centrada */
     margin-bottom: 20px; /* Espacio inferior */
 }
+#h1-especial{
+    font-size: 24px;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Texto en negrita */
+    /* Alineación centrada */
+    margin-right: 200px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    /* Espacio inferior */
+
+}
 
 h2 {
     font-size: 20px; /* Tamaño de fuente */
@@ -78,8 +90,13 @@ h6{
     
 }
 
+<<<<<<< Updated upstream
 #imagen-logo{
     margin: auto;
+=======
+#imagen-logo {
+    /* Anula los estilos que no se desean aplicar */
+>>>>>>> Stashed changes
     width: auto;
     height: auto;
 
