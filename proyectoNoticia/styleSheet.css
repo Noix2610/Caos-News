@@ -1,14 +1,19 @@
 
+body {
+
+    font-family: Arial, sans-serif;
+
+}
+
 p {
-    font-size: 18px;
+    font-size: 25px;
     /* Tamaño de fuente */
     line-height: 1.2;
     /* Espaciado entre líneas */
     text-align: justify;
     /* Alineación justificada del texto */
-    margin: 0 auto;
-    /* Margen automático en los lados para centrar el párrafo */
     max-width: 800px;
+    /* Margen automático en los lados para centrar el párrafo */
     /* Ancho máximo del párrafo para que no se extienda demasiado */
     padding: 20px;
     /* Espaciado interior para mejorar la legibilidad */
@@ -47,4 +52,14 @@ h6{
     font-weight: bold; /* Texto en negrita */
     
 }
+
+#imagen-logo{
+    margin: auto;
+    width: auto;
+    height: auto;
+
+}
+
+
+
 
