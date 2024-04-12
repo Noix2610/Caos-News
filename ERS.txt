@@ -2,11 +2,11 @@
 
 ## 1. Definición de problemática:
 
-El objetivo de este proyecto es crear o desarrollar una plataforma web para un colectivo de noticias,
- la idea es que permita a todos los usuarios acceder a noticias destacadas, 
- que puedan ver detalles de noticias individuales o realizar búsquedas, tambien que puedan autenticarse, registrar nuevas noticias, etc... 
+El objetivo de este proyecto es crear y desarrollar una plataforma web para un colectivo de noticias,
+la idea es que permita a todos los usuarios acceder a noticias destacadas, 
+que puedan ver detalles de noticias individuales o realizar búsquedas, tambien que puedan autenticarse, registrar nuevas noticias, etc... 
 La problemática que se aborda es la falta de una plataforma centralizada para la gestión de noticias y así fomentar 
- la participación de periodistas y usuarios en la creación y visualización de más contenido informativo.
+la participación de periodistas y usuarios en la creación y visualización de más contenido informativo.
 
 ## 2. Funciones del producto:
 
@@ -25,6 +25,9 @@ La problemática que se aborda es la falta de una plataforma centralizada para l
 *** Asociación de cada noticia con una categoría.
 
 ## 3. Diagrama de arquitectura:
+-todo lo que se compone el sitio web (on premise)
+
+
 
 --POR DEFINIR--
 
