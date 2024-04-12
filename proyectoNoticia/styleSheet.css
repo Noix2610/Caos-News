@@ -6,7 +6,7 @@ body {
 }
 
 p {
-    font-size: 25px;
+    font-size: auto;
     /* Tamaño de fuente */
     line-height: 1.2;
     /* Espaciado entre líneas */
