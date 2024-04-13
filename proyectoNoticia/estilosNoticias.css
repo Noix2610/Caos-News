@@ -19,9 +19,16 @@ body {
 
 .carousel-inner {
     margin-top: 2%;
+<<<<<<< HEAD
+    
+    margin: auto;
+    margin-top: 2px;
+    height: 400px;
+=======
     margin: auto;
     height: auto;
     max-height: 450px;
+>>>>>>> a1936e6c10be652125ca2ef13bd9a87545da977f
 
 }
 .carousel-item-2 {
@@ -54,5 +61,16 @@ body {
     margin: auto;
     margin-top: 10%;
 
+}
+.card-body {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-img{
+    width: auto;
+    height: 250px;
 }
 
