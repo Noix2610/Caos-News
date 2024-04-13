@@ -1,12 +1,3 @@
-.cont {
-    width: 50%;
-    align-self: auto;
-    margin: auto;
-    margin-top: 5%;
-}
-
-/* Aca viene JOOOSEEEEEE  */
-
 body {
 
     font-family: Arial, sans-serif;
@@ -14,10 +5,10 @@ body {
 }
 
 .carousel-item img {
-    width: 20%;
     /* Ancho de los objetos del carrusel */
-    margin: 0 auto;
-    /* Margen de los objetos del carrusel */
+    width: 100%; /* Hacer que la imagen ocupe todo el ancho del contenedor */
+    max-width: 850px;/* Evitar que la imagen se estire más allá de su tamaño original */
+    height: auto; /* Permitir que la altura se ajuste automáticamente para mantener la proporción */
 }
 
 .carousel-container {
@@ -26,30 +17,18 @@ body {
     /* Espaciado entre el menú y el carrusel */
 }
 
-.carousel-caption {
-    background: rgba(0, 0, 0, 0.301);
-    /* Fondo semi-transparente */
-    color: black;
-    /* Color del texto */
-    padding: 20px;
-    /* Espaciado interno */
-    top: 80%;
-    /* Coloca la caja de la leyenda en la parte inferior */
-    width: 70%;
-    /* Ancho completo */
-    height: 20%;
-}
-
-li a:hover {
-    opacity: 0.5;
-}
-
 .carousel-inner {
     margin-top: 2%;
+<<<<<<< HEAD
     
     margin: auto;
     margin-top: 2px;
     height: 400px;
+=======
+    margin: auto;
+    height: auto;
+    max-height: 450px;
+>>>>>>> a1936e6c10be652125ca2ef13bd9a87545da977f
 
 }
 .carousel-item-2 {
@@ -84,9 +63,3 @@ li a:hover {
 
 }
 
-.d-block{
-    width: 850px;
-    height: 450px;
-    margin: auto;
-
-}
