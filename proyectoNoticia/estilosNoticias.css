@@ -55,4 +55,15 @@ body {
     margin-top: 10%;
 
 }
+.card-body {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-img{
+    width: auto;
+    height: 250px;
+}
 
