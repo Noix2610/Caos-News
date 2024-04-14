@@ -2,52 +2,40 @@
 <html lang="en">
 
 <head>
+    <!-- Etiquetas meta -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <!-- Título -->
+    <title>Documento</title>
 
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- CSS personalizado -->
     <link rel="stylesheet" href="styleSheet.css">
+    <!-- CSS interno -->
     <style>
-
-        img {
-            width: 200px;
-            height: 150px;
-
-        }
-
+        /* Estilo CSS para el cuerpo de las tarjetas */
         .card-body {
             text-align: center;
-            /* Alinea horizontalmente el contenido */
             display: flex;
-            /* Utiliza flexbox para alinear verticalmente los elementos hijos */
             flex-direction: column;
-            /* Apila los elementos hijos verticalmente */
             justify-content: center;
-            /* Centra verticalmente los elementos hijos */
             align-items: center;
-            /* Centra horizontalmente los elementos hijos */
         }
-
-        #imagen-logo {
-            width: auto;
-            height: auto;
-
-        }
-
-
     </style>
 </head>
 
 <body>
+    <!-- JS BootsTrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <!-- JS Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
-
+    <!-- Script PopOver -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
@@ -56,21 +44,19 @@
             });
         });
     </script>
-
+    <!-- Barra de Navegacion -->
     <div class="container-fluid" style="border-bottom: solid 2px #585656;">
         <div class="row">
             <div class="col">
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        <!-- INICO FLECHAS ARRIBA ABAJO -->
-                        <a href="inicio.html"><img src="resources/logoFlechas.png" alt="..."
+                        <a href="inicio.html"><img src="resources/logoFlechas.png" alt="logo"
                                 style="width: 50px; height: 40px;">
-
                         </a>
 
                         <h2 style="margin-left: 20px;">Caos News<button type="button" data-bs-toggle="popover"
                                 data-bs-trigger="hover" data-bs-content="Creado por estudiantes DuocUC."
-                                style="border: none; background-color: transparent;" data-bs-placement="left">
+                                style="border: none; background-color: transparent;" data-bs-placement="right">
                                 <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
                             </button></h2>
 
@@ -87,6 +73,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="inicio.html">Inicio</a>
                                 </li>
+                                <li><a class="nav-link" href="carrito.html">Patrocinanos</a></li>
                                 <!-- Boton dropdown -->
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -134,30 +121,33 @@
 
         </div>
     </div>
+
+    <!-- Contenedor principal -->
     <div class="container">
-        <h1 style="margin-right: 350px;">Carrito de Compras</h1>
+
         <div class="row">
-            <div class="col-md-8" >
+            <div class="col-md-8">
                 <h2>Productos</h2>
                 <!-- Aquí van los productos -->
                 <div class="card">
                     <div class="card-body">
-                        <img src="resources/TapaNoticias.jpg" alt="revista">
-                        <h5 class="card-title">Suscripcion semanal</h5>
-                        <p class="card-text">Por una semana recibe contenido de noticias de la categoria que desees</p>
+                        <h1>Carrito de Compras</h1>
+                        <h5 class="card-title">Suscripción semanal</h5>
+                        <img src="resources/revista.jfif" alt="revista">
+                        <p class="card-text">Por una semana recibe contenido de noticias de la categoría que desees</p>
                         <p class="card-text">Precio: $10.00</p>
                         <a href="#" class="btn">
-                            <img src="resources/iconoBasket.png" alt="basket" id="imagen-logo">
+                            <img src="resources/iconoBasket.png" alt="basket">
                         </a>
                         <h6>Agregar al Carrito</h6>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Suscripcion mensual</h5>
-                        <p class="card-text">Por un mes recibe contenido de noticias de las categorias que desees
-                            con un máximo de 6 categorias
-                        </p>
+                        <h5 class="card-title">Suscripción mensual</h5>
+                        <img src="resources/TapaNoticias.jpg" alt="revista2">
+                        <p class="card-text">Por un mes recibe contenido de noticias de las categorías que desees
+                            con un máximo de 6 categorías</p>
                         <p class="card-text">Precio: $15.00</p>
                         <a href="#" class="btn btn-primary">Agregar al Carrito</a>
                     </div>
@@ -174,7 +164,7 @@
                     <li class="list-group-item">Total: $25.00</li>
                 </ul>
 
-                <!-- Button trigger modal -->
+                <!-- Botón para abrir el modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Pagar
                 </button>
@@ -190,7 +180,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Se redirigira hacia la plataforma de pagos. ¿Está seguro/a?
+                                Se redirigirá hacia la plataforma de pagos. ¿Está seguro/a?
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"

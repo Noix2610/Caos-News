@@ -1,10 +1,3 @@
-.cont {
-    width: 50%;
-    align-self: auto;
-    margin: auto;
-    margin-top: 5%;
-}
-
 body {
 
     font-family: Arial, sans-serif;
@@ -22,10 +15,6 @@ body {
     margin-top: 20px;
     margin-left: 10%;
     /* Espaciado entre el menú y el carrusel */
-}
-
-li a:hover {
-    opacity: 0.5;
 }
 
 .carousel-inner {
@@ -65,5 +54,16 @@ li a:hover {
     margin: auto;
     margin-top: 10%;
 
+}
+.card-body {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-img{
+    width: auto;
+    height: 250px;
 }
 

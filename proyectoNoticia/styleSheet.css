@@ -14,6 +14,7 @@ p {
     /* Alineación justificada del texto */
     max-width: 800px;
     /* Margen automático en los lados para centrar el párrafo */
+    margin: auto;
     /* Ancho máximo del párrafo para que no se extienda demasiado */
     padding: 20px;
     /* Espaciado interior para mejorar la legibilidad */
@@ -24,6 +25,8 @@ p {
     background-color: #f9f9f9;
     /* Color de fondo */
     font-style:oblique;
+    /* Margen Superior */
+    margin-top: 10px;
 }
 
 h1 {

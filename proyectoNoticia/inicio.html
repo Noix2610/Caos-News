@@ -8,6 +8,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="estilosNoticias.css">
+
+  <style>
+    h2 {
+      font-size: 20px;
+      /* Tamaño de fuente */
+      font-weight: bold;
+      /* Texto en negrita */
+      margin-top: 20px;
+      /* Espacio superior */
+      margin-bottom: 10px;
+      /* Espacio inferior */
+    }
+  </style>
 </head>
 
 <body>
@@ -17,7 +30,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
-
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
@@ -26,18 +38,21 @@
       });
     });
   </script>
+  <!--Espera a que todo el contenido HTML de la página esté listo para ser usado.
+      Una vez que todo está listo, entonces se ejecuta una función que puede realizar 
+      diferentes acciones en la página, como cambiar el texto, agregar elementos nuevos o cualquier 
+      otra cosa que se quiera hacer con JavaScript. -->
+
 
   <div class="container-fluid" style="border-bottom: solid 2px #585656;">
     <div class="row">
       <div class="col">
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
-            <!-- INICO FLECHAS ARRIBA ABAJO -->
             <a href="inicio.html"><img src="resources/logoFlechas.png" alt="..." style="width: 50px; height: 40px;">
-
             </a>
 
-            <h2 style="margin-left: 20px;font-weight: bold;">Caos News<button type="button" data-bs-toggle="popover"
+            <h2 style="margin-left: 20px;">Caos News<button type="button" data-bs-toggle="popover"
                 data-bs-trigger="hover" data-bs-content="Creado por estudiantes DuocUC."
                 style="border: none; background-color: transparent;" data-bs-placement="right">
                 <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
@@ -57,12 +72,14 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="inicio.html">Inicio</a>
                 </li>
+                <li><a class="nav-link" href="carrito.html">Patrocinanos</a></li>
                 <!-- Boton dropdown -->
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     Noticias
                   </a>
+
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Nacional</a></li>
                     <li><a class="dropdown-item" href="#">Internacional</a></li>
@@ -109,8 +126,7 @@
   <div class="container-fluid">
     <div class="row" style="border: 2px solid #585656; padding-bottom: 20px; padding-top: 20px;margin-top: 50px;">
       <div class="col-lg-3 col-md-12 col-sm-12">
-
-        hola
+        Texto Descriptivo adicional
       </div>
       <div class="col-lg-6 col-md-12 col-sm-12">
         <!-- Contenedor del carrusel -->
@@ -143,7 +159,7 @@
           <!-- Botones -->
           <button class="carousel-control-prev mt-auto" type="button" data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev" style="margin: auto;">
-            <!-- ICONO FECHA BOTON CARUCEL -->
+            <!-- ICONO FECHA BOTON CARRUSEL -->
             <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="btn-primary"
               class="bi bi-arrow-left-circle-fill " viewBox="0 0 16 16">
               <path
@@ -153,7 +169,7 @@
             <span class="visually"></span>
           </button>
           <button class="carousel-control-next mt-auto" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next" style="margin: auto;">
+            data-bs-slide="next" style="margin: auto; margin-right: 70px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" fill="btn-danger"
               class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
               <path
@@ -166,8 +182,7 @@
 
       </div>
       <div class="col-lg-3 col-md-12 col-sm-12">
-
-        hola
+        Texto Descriptivo adicional
       </div>
 
     </div>
@@ -179,7 +194,7 @@
     <!-- noticias recuedro noticia 1 -->
     <div class="col-md-3">
       <div class="card ">
-        <img src="resources/apoyo_estudiante.jpg" class="card-img-top" alt="...">
+        <img src="resources/NOTICIA1.PNG" class="card-img-top" alt="..." style="height: 250px; width: auto;">
         <div class="card-body">
           <h5 class="card-title">Noticia 1</h5>
           <p class="card-text">Ingrese texto noticia 1</p>
@@ -191,7 +206,7 @@
     <!-- noticias recuedro noticia 2 -->
     <div class="col-md-3">
       <div class="card ">
-        <img src="resources/apoyo_estudiante.jpg" class="card-img-top" alt="...">
+        <img src="resources/NOTICIA2.PNG" class="card-img-top" alt="..." style="height: 250px; width: auto;">
         <div class="card-body">
           <h5 class="card-title">Noticia 2</h5>
           <p class="card-text">Ingrese texto noticia 2</p>
@@ -202,7 +217,7 @@
     <!-- noticias recuedro noticia 3 -->
     <div class="col-md-3">
       <div class="card ">
-        <img src="resources/apoyo_estudiante.jpg" class="card-img-top" alt="...">
+        <img src="resources/noticia3.png" class="card-img-top" alt="..." style="height: 250px; width: auto;">
         <div class="card-body">
           <h5 class="card-title">Noticia 3</h5>
           <p class="card-text">Ingrese texto noticia 3</p>
@@ -213,7 +228,7 @@
     <!-- noticias recuedro noticia 4 -->
     <div class="col-md-3">
       <div class="card ">
-        <img src="resources/apoyo_estudiante.jpg" class="card-img-top" alt="...">
+        <img src="resources/NOTICIAS4.PNG" class="card-img-top" alt="..." style="height: 250px; width: auto;">
         <div class="card-body">
           <h5 class="card-title">Noticia 4</h5>
           <p class="card-text">Ingrese texto noticia 4</p>
@@ -231,7 +246,7 @@
     <div class="row">
       <!-- Columna logo duoc -->
       <div class="col-lg-3 p-5 bg-dark padding" style="color: rgb(255, 255, 255);">
-        <img src="resources/DUOC2.jpg" alt="logoduoc" style="height: 100px; width: 100px; margin-left: 30px;">
+        <img src="resources/DUOC.jpg" alt="logoduoc" style="height: 100px; width: 100px; margin-left: 30px;">
       </div>
       <!-- coluna con datos de contacto -->
       <div class="col-lg-9 p-5 bg-dark padding" style="color: rgb(255, 255, 255);">
@@ -288,16 +303,11 @@
                 <path
                   d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z" />
               </svg>
-              Vianna #123, of 1001
+              Viana #123, Of. 1001
             </td>
           </tr>
         </table>
       </div>
-
-
-
-
-
     </div>
   </div>
 
