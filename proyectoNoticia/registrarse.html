@@ -9,6 +9,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="estilosNoticias.css">
 
+
   <style>
     h2 {
       font-size: 20px;
@@ -20,7 +21,6 @@
       margin-bottom: 10px;
       /* Espacio inferior */
     }
-
   </style>
 </head>
 
@@ -125,39 +125,53 @@
     style="margin-top: 50px;padding: 20px; border-top: solid 2px #585656;">
     <div class="col-md-4">
       <label for="validationCustom01" class="form-label">Nombres</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-      <div class="valid-feedback">
-        Looks good!
+      <input type="text" class="form-control" id="nombres">
+      <div class="valNombres">
       </div>
     </div>
     <div class="col-md-4">
       <label for="validationCustom02" class="form-label">Apellidos</label>
-      <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-      <div class="valid-feedback">
-        Looks good!
+      <input type="text" class="form-control" id="apellidos">
+      <div class="valApellidos">
       </div>
     </div>
     <div class="col-md-4">
       <label for="validationCustomUsername" class="form-label">Nombre de Usuario</label>
       <div class="input-group has-validation">
         <span class="input-group-text" id="inputGroupPrepend">@</span>
-        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
-          required>
-        <div class="invalid-feedback">
-          Please choose a username.
-        </div>
+        <input type="text" class="form-control" id="UserName">
       </div>
+      <div class="valUsuario"></div>
+    </div>
     </div>
     <div class="col-md-6">
-      <label for="validationCustom03" class="form-label">Ciudad</label>
-      <input type="text" class="form-control" id="validationCustom03" required>
+      <label for="validationCustom03" class="form-label">Región</label>
+      <select class="form-select" id="validationCustom04" validate>
+        <option selected disabled value="">Elige...</option>
+        <option>Arica y Parinacota</option>
+        <option>Tarapaca</option>
+        <option>Antofagasta</option>
+        <option>Atacama</option>
+        <option>Coquimbo</option>
+        <option>Valparaíso</option>
+        <option>O'Higgins</option>
+        <option>Maule</option>
+        <option>Ñuble</option>
+        <option>Bío Bío</option>
+        <option>La Araucanía</option>
+        <option>Los Ríos</option>
+        <option>Los Lagos</option>
+        <option>Aysen</option>
+        <option>Magallanes</option>
+        <option>Metropolitana</option>
+      </select>
       <div class="invalid-feedback">
         Please provide a valid city.
       </div>
     </div>
     <div class="col-md-3">
-      <label for="validationCustom04" class="form-label">Provincia</label>
-      <select class="form-select" id="validationCustom04" required>
+      <label for="validationCustom04" class="form-label">Ciudad</label>
+      <select class="form-select" id="validationCustom04" validate>
         <option selected disabled value="">Elige...</option>
         <option>Valparaiso</option>
         <option>Marga Marga</option>
@@ -168,14 +182,14 @@
     </div>
     <div class="col-md-3">
       <label for="validationCustom05" class="form-label">Codigo Postal</label>
-      <input type="text" class="form-control" id="validationCustom05" required>
+      <input type="text" class="form-control" id="validationCustom05">
       <div class="invalid-feedback">
         Please provide a valid zip.
       </div>
     </div>
     <div class="col-12">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck">
         <label class="form-check-label" for="invalidCheck">
           Acepto los Terminos y Condiciones
         </label>
@@ -188,6 +202,8 @@
       <button class="btn btn-primary" type="submit">Registrarse</button>
     </div>
   </form>
+
+  <script src="validaciones.js"></script>
 </body>
 
 </html>
