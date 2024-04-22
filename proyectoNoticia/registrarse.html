@@ -155,56 +155,104 @@
 
     </div>
     <div class="registroCont">
-        <!-- Modal -->
-        <form class="row">
-            <div class="col-md-4 registro">
-                <label for="validationCustom01" class="form-label">Nombres <button type="button"
-                        data-bs-toggle="popover" data-bs-trigger="hover"
-                        data-bs-content="El campo debe contener entre 3 y 20 caracteres sin números."
-                        style="border: none; background-color: transparent;" data-bs-placement="right">
-                        <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
-                    </button></label>
-                <input type="text" class="form-control" id="nombres">
+        <h1>Formulario de Registro</h1>
+        <form class="row g-3 needs-validation" validate>
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustom01" class="form-label">Nombres</label>
+                <button type="button" data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="El campo debe contener entre 3 y 20 caracteres sin números."
+                    style="border: none; background-color: transparent;" data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
+                <input type="text" class="form-control" id="nombres" required>
                 <div class="valNombres">
                 </div>
             </div>
-            <div class="col-md-4 registro">
-                <label for="validationCustom02" class="form-label">Apellidos<button class="buttonImg" type="button"
-                        data-bs-toggle="popover" data-bs-trigger="hover"
-                        data-bs-content="El campo debe contener entre 3 y 20 caracteres sin números."
-                        data-bs-placement="right">
-                        <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
-                    </button></label>
-                <input type="text" class="form-control" id="apellidos">
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustom02" class="form-label">Apellidos</label>
+                <button class="buttonImg" type="button" data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="El campo debe contener entre 3 y 20 caracteres sin números."
+                    data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
+                <input type="text" class="form-control" id="apellidos" required>
                 <div class="valApellidos">
                 </div>
             </div>
-            <div class="col-md-4 registro">
-                <label for="validationCustomUsername" class="form-label">Nombre de Usuario <button class="buttonImg"
-                        type="button " data-bs-toggle="popover" data-bs-trigger="hover"
-                        data-bs-content="El campo debe contener entre 4 y 15 caracteres." data-bs-placement="right">
-                        <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
-                    </button></label>
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustomUsername" class="form-label">Nombre de Usuario</label>
+                <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="El campo debe contener entre 4 y 15 caracteres." data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
                 <div class="input-group has-validation">
-                    <input type="text" class="form-control" id="UserName">
+                    <input type="text" class="form-control" id="UserName" required>
                 </div>
                 <div class="valUsuario"></div>
             </div>
-            <div class="col-md-4 registro">
-                <label for="validationCustomUsername" class="form-label">Telefono <button class="buttonImg"
-                        type="button " data-bs-toggle="popover" data-bs-trigger="hover"
-                        data-bs-content="El campo debe contener entre 4 y 15 caracteres." data-bs-placement="right">
-                        <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
-                    </button></label>
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustomUsername" class="form-label">Telefono</label>
+                <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="El Teléfono se usará para recuperar los datos de ingreso."
+                    data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
                 <div class="input-group has-validation">
-                    <input type="number" class="form-control" id="UserName" value="+56">
+                    <input type="number" class="form-control" id="Telefono" required>
                 </div>
-                <div class="valUsuario"></div>
+                <div class="valTelefono"></div>
+            </div>
+
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustomUsername" class="form-label">Correo</label>
+                <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="Debe ser @gmail.com, @hotmail.com/es, @yahoo.es." data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="Correo" required>
+                </div>
+                <div class="valCorreo"></div>
+            </div>
+
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustomUsername" class="form-label">Contraseña</label>
+                <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="Debe contener al menos una letra, un número y al menos 8 caracteres." data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="Password" required>
+                </div>
+                <div class="valPassword"></div>
+            </div>
+
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustomUsername" class="form-label">Repetir Contraseña</label>
+                <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="Debe ser igual a la contraseña ingresada." data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="Password2" required>
+                </div>
+                <div class="valPassword2"></div>
+            </div>
+
+            <div class="col-lg-md-4 registro">
+                <label for="validationCustomUsername" class="form-label">Fecha de Nacimiento</label>
+                <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
+                    data-bs-content="Seleccionar una fecha válida." data-bs-placement="right">
+                    <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                </button>
+                <div class="input-group has-validation">
+                    <input type="date" class="form-control" id="FNac" required>
+                </div>
             </div>
 
             <div class="col-lg-6-md-6 registro">
                 <label for="validationCustom03" class="form-label">Región</label>
-                <select class="form-select" id="validationCustom04" validate>
+                <select class="form-select" id="validationCustom04" required>
                     <option selected disabled value="">Elige...</option>
                     <option>Arica y Parinacota</option>
                     <option>Tarapaca</option>
@@ -223,36 +271,27 @@
                     <option>Magallanes</option>
                     <option>Metropolitana</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please provide a valid city.
-                </div>
             </div>
             <div class="col-lg-6-md-3 registro">
                 <label for="validationCustom04" class="form-label">Ciudad</label>
-                <select class="form-select" id="validationCustom04" validate>
+                <select class="form-select" id="validationCustom04" required>
                     <option selected disabled value="">Elige...</option>
                     <option>Valparaiso</option>
-                    <option>Marga Marga</option>
+                    <option>Viña del Mar</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a valid state.
-                </div>
             </div>
             <div class="col-md-3 registro">
                 <label for="validationCustom05" class="form-label">Codigo Postal</label>
-                <input type="number" class="form-control" id="validationCustom05" style="width: auto;">
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
+                <input type="number" class="form-control" id="validationCustom05" required>
             </div>
             <div class="col-12 registro">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
                     <label class="form-check-label" for="invalidCheck">
                         Acepto los Terminos y Condiciones
                     </label>
                     <div class="invalid-feedback">
-                        You must agree before submitting.
+                        Debes aceptar los terminos antes de terminar el formulario.
                     </div>
                 </div>
             </div>

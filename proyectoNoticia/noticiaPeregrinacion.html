@@ -42,10 +42,10 @@
                         </a>
 
                         <h2 style="margin-left: 20px;">Caos News<button type="button" data-bs-toggle="popover"
-                            data-bs-trigger="hover" data-bs-content="Creado por estudiantes DuocUC."
-                            style="border: none; background-color: transparent;" data-bs-placement="right">
-                            <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
-                        </button></h2>
+                                data-bs-trigger="hover" data-bs-content="Creado por estudiantes DuocUC."
+                                style="border: none; background-color: transparent;" data-bs-placement="right">
+                                <img src="resources/exclamacion.png" alt="exc" style="width: 8px;height:8px">
+                            </button></h2>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -89,13 +89,60 @@
 
                             <!-- Menu 2-->
                             <ul class="navbar-nav ms-auto">
-                                <li class="nav-item">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalInicioSesion">
+                                        Iniciar Sesión</a>
 
-                                    <a class="nav-link" href="iSesion.html">Iniciar Sesión</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalInicioSesion" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ingresar</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body"
+                                                    style="background-image: url('resources/avesMigrando.jpg');">
+                                                    <div class="row">
+                                                        <div class="col align-self-center">
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <form>
+                                                                <div class="mb-3" style="padding: 10px;">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-label">Ingrese mail</label>
+                                                                    <input type="email" class="form-control"
+                                                                        id="exampleInputEmail1"
+                                                                        aria-describedby="emailHelp">
+                                                                    <div id="emailHelp" class="form-text">Nunca
+                                                                        compartiremos tu correo con nadie.</div>
+                                                                </div>
+                                                                <div class="mb-3" style="padding: 10px;">
+                                                                    <label for="exampleInputPassword1"
+                                                                        class="form-label">Contraseña</label>
+                                                                    <input type="password" class="form-control"
+                                                                        id="exampleInputPassword1">
+                                                                </div>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Ingresar</button>
+                                                            </form>
+
+                                                        </div>
+                                                        <!-- Fin col 1 -->
+                                                        <div class="col align-self-center"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </li>
 
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="registrarse.html">Registrarse</a>
+                                    <a href="registrarse.html" class="nav-link">
+                                        Registrarse
+                                    </a>
                                 </li>
                             </ul>
                             <!-- fin menu 2 -->

@@ -70,22 +70,29 @@ h6 {
 
 .registro {
     padding: 30px;
-    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .registroCont {
-    margin: 30%;
+    margin: 20% auto;
     margin-top: 5%;
     border: solid black 2px;
     border-radius: 20px;
-    height: 800px;
-    width: auto;
+    max-width: 800px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     padding: 50px;
+    align-items: center;
+    background-color: rgba(161, 215, 231, 0.3);
 }
 
-.buttonImg{
-    border: none; 
+/* Añadir estilos para el título si es necesario */
+.registroCont h2 {
+    text-align: center;
+    /* Centrar el texto */
+}
+
+.buttonImg {
+    border: none;
     background-color: transparent;
 }
 
