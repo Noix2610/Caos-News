@@ -1,4 +1,3 @@
-
 body {
 
     font-family: Arial, sans-serif;
@@ -24,45 +23,75 @@ p {
     /* Bordes redondeados */
     background-color: #f9f9f9;
     /* Color de fondo */
-    font-style:oblique;
+    font-style: oblique;
     /* Margen Superior */
     margin-top: 10px;
 }
 
 h1 {
-    font-size: 24px; /* Tamaño de fuente */
-    font-weight: bold; /* Texto en negrita */
-    text-align: center; /* Alineación centrada */
-    margin-bottom: 20px; /* Espacio inferior */
+    font-size: 24px;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Texto en negrita */
+    text-align: center;
+    /* Alineación centrada */
+    margin-bottom: 20px;
+    /* Espacio inferior */
 }
 
 h2 {
-    font-size: 20px; /* Tamaño de fuente */
-    font-weight: bold; /* Texto en negrita */
-    margin-top: 20px; /* Espacio superior */
-    margin-bottom: 10px; /* Espacio inferior */
+    font-size: 20px;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Texto en negrita */
+    margin-top: 20px;
+    /* Espacio superior */
+    margin-bottom: 10px;
+    /* Espacio inferior */
 }
 
 h5 {
-    font-size: 14px; /* Tamaño de fuente */
-    font-style: italic; /* Texto en cursiva */
-    margin-bottom: 20px; /* Espacio inferior */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    font-style: italic;
+    /* Texto en cursiva */
+    margin-bottom: 20px;
+    /* Espacio inferior */
 }
 
-h6{
+h6 {
     font-size: 12px;
-    font-style: italic; /* Texto en cursiva */
-    font-weight: bold; /* Texto en negrita */
-    
+    font-style: italic;
+    /* Texto en cursiva */
+    font-weight: bold;
+    /* Texto en negrita */
+
 }
 
-#imagen-logo{
+.registro {
+    padding: 30px;
+    padding-top: 10px;
+}
+
+.registroCont {
+    margin: 30%;
+    margin-top: 5%;
+    border: solid black 2px;
+    border-radius: 20px;
+    height: 800px;
+    width: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 50px;
+}
+
+.buttonImg{
+    border: none; 
+    background-color: transparent;
+}
+
+#imagen-logo {
     margin: auto;
     width: auto;
     height: auto;
 
 }
-
-
-
-
