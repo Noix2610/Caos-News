@@ -25,6 +25,8 @@ body {
     margin: auto;
     height: auto;
     max-height: 450px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); 
+    border-radius: 10px;
 
 }
 
@@ -70,6 +72,7 @@ body {
 
 .card-img {
     border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 
 }
 
