@@ -102,3 +102,22 @@ h6 {
     height: auto;
 
 }
+
+.img-logo{
+    width: 50px; 
+    height: 40px;
+    border-radius: 10px;
+    border-left: 2px solid #585656;
+    border-right: 2px solid #585656;
+    padding: 3px;
+    box-shadow:2cap solid #585656;
+}
+
+.img-p {
+    border-radius: 10px;
+    border-left: 2px solid #585656;
+    border-right: 2px solid #585656;
+    padding: 3px;
+    width: auto;
+    max-width: 600px;
+}
