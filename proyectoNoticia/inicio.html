@@ -9,6 +9,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="estilosNoticias.css">
 
+
   <style>
     h2 {
       font-size: 20px;
@@ -31,6 +32,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
+   
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
@@ -43,6 +45,7 @@
       Una vez que todo está listo, entonces se ejecuta una función que puede realizar 
       diferentes acciones en la página, como cambiar el texto, agregar elementos nuevos o cualquier 
       otra cosa que se quiera hacer con JavaScript. -->
+
   <div class="container-fluid" style="border-bottom: solid 2px #585656;">
     <div class="row">
       <div class="col">
@@ -182,6 +185,7 @@
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
               aria-label="Slide 3"></button>
           </div>
+          
           <!-- imagen 1 -->
           <div class="carousel-inner" style="height: auto;">
             <a href="noticiaPeregrinacion.html">
@@ -224,8 +228,10 @@
         </div>
 
       </div>
-      <div class="col-lg-3 col-md-12 col-sm-12">
-        Texto Descriptivo adicional
+      <div class="col-lg-3 col-md-12 col-sm-12" style="width:400px; height: 400px  ;">
+        <img src="resources/text.descr2.jpg" class="img-fluid" alt="img principal" style="width: 400px; height: auto; padding: 20px;">
+        <a href="" style="color: black;">4 datos que explican la crisis que atraviesa Tesla y que llevó a la compañía a despedir a miles de empleados</a> 
+
       </div>
 
     </div>
@@ -355,6 +361,21 @@
   </div>
 
   <script src="validaciones.js"></script>
+
+  <script src="jQuery/jquery-3.7.1.min.js"></script>
+  <script>
+  
+
+      $(document).ready(function(){
+
+        $(".btn btn-dark").click(function(){
+          $(".card-title").hide(5000);        
+        });
+
+      });
+      
+
+  </script>
 
 </body>
 
