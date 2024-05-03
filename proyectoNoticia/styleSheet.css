@@ -103,14 +103,14 @@ h6 {
 
 }
 
-.img-logo{
-    width: 50px; 
+.img-logo {
+    width: 50px;
     height: 40px;
     border-radius: 10px;
     border-left: 2px solid #585656;
     border-right: 2px solid #585656;
     padding: 3px;
-    
+
 }
 
 .img-p {
@@ -118,6 +118,18 @@ h6 {
     border-left: 2px solid #585656;
     border-right: 2px solid #585656;
     padding: 3px;
-    width: auto;
     max-width: 600px;
+}
+
+.card-img {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+
+}
+
+.rowstyle{
+    border: 2px solid #585656; 
+    padding-bottom: 20px; 
+    padding-top: 20px;
+    margin-top: 50px;
 }
