@@ -128,8 +128,9 @@ h6 {
 }
 
 .rowstyle{
-    border: 2px solid #585656; 
+    border-top: 2px solid #585656; 
+    border-bottom: 2px solid #585656;
     padding-bottom: 20px; 
     padding-top: 20px;
-    margin-top: 50px;
+    margin-top: 20px;
 }

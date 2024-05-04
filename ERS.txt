@@ -15,10 +15,11 @@ la participación de periodistas y usuarios en la creación y visualización de 
 - Autenticación de usuarios mediante e-mail y contraseña.
 - Registro de usuarios con e-mail, nombre y contraseña.
 - Interfaz responsiva para adaptarse a diferentes tamaños de pantalla o plataformas.
+- Formulario de contacto general.
 
 *** Búsqueda de noticias por nombre del periodista, categoría de noticias o palabra clave.
 *** Mostrar la cantidad de noticias ingresadas por un usuario.
-*** Formulario de contacto general.
+ 
 *** Acceso a noticias por categoría o periodista desde la página principal.
 *** Mostrar el estado de inicio de sesión del usuario.
 *** Proceso de aprobación de nuevas noticias por parte del administrador.

@@ -4,14 +4,8 @@ body {
 
 }
 
-.carousel-item img {
-    /* Ancho de los objetos del carrusel */
-    width: 100%;
-    /* Hacer que la imagen ocupe todo el ancho del contenedor */
-    max-width: 850px;
-    /* Evitar que la imagen se estire más allá de su tamaño original */
-    height: auto;
-    /* Permitir que la altura se ajuste automáticamente para mantener la proporción */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .carousel-container {
@@ -25,16 +19,8 @@ body {
     margin: auto;
     height: auto;
     max-height: 450px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     border-radius: 10px;
-
-}
-
-.carousel-item-2 {
-    margin: auto;
-    margin-top: 2%;
-    width: 40%;
-    height: 50%;
 
 }
 
@@ -76,13 +62,14 @@ body {
 
 }
 
-.card{
+.card {
     padding: 30px;
     padding-bottom: 50px;
-    height: 600px;
+    height: 700px;
 }
-.img-logo{
-    width: 50px; 
+
+.img-logo {
+    width: 50px;
     height: 40px;
     border-radius: 10px;
     border-left: 2px solid #585656;
@@ -90,11 +77,12 @@ body {
     padding: 3px;
 }
 
-.rowstyle{
-    border: 2px solid #585656; 
-    padding-bottom: 20px; 
+.rowstyle {
+    border-top: 2px solid #585656;
+    border-bottom: 2px solid #585656;
+    padding-bottom: 20px;
     padding-top: 20px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .img-p {
@@ -102,5 +90,5 @@ body {
     border-left: 2px solid #585656;
     border-right: 2px solid #585656;
     padding: 3px;
-    max-width: 600px;
+
 }
