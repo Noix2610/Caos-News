@@ -1,7 +1,5 @@
 body {
-
     font-family: Arial, sans-serif;
-
 }
 
 p {
@@ -85,7 +83,6 @@ h6 {
     background-color: rgba(161, 215, 231, 0.3);
 }
 
-/* Añadir estilos para el título si es necesario */
 .registroCont h2 {
     text-align: center;
     /* Centrar el texto */
@@ -118,19 +115,22 @@ h6 {
     border-left: 2px solid #585656;
     border-right: 2px solid #585656;
     padding: 3px;
-    max-width: 700px;
+    
 }
 
 .card-img {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-
 }
 
-.rowstyle{
-    border-top: 2px solid #585656; 
+.rowstyle {
+    border-top: 2px solid #585656;
     border-bottom: 2px solid #585656;
-    padding-bottom: 20px; 
+    padding-bottom: 20px;
     padding-top: 20px;
     margin-top: 20px;
+}
+
+.modal-xl {
+    width: 500px;
 }

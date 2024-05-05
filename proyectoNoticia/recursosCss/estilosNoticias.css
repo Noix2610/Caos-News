@@ -1,17 +1,21 @@
-body {
-
-    font-family: Arial, sans-serif;
-
+h2 {
+    font-size: 20px;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Texto en negrita */
+    margin-top: 20px;
+    /* Espacio superior */
+    margin-bottom: 10px;
+    /* Espacio inferior */
 }
 
 .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #0000004d;
     margin-bottom: 5%;
 }
 
 .carousel-container {
     margin-top: 20px;
-    margin-left: 10%;
     /* Espaciado entre el menú y el carrusel */
 }
 
@@ -22,23 +26,16 @@ body {
     max-height: 450px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     border-radius: 10px;
-
 }
 
 .carousel-control-prev {
     width: 5%;
     height: 15%;
-    margin-top: 45%;
-    margin-right: 10%;
-
 }
 
 .carousel-control-next {
     width: 5%;
     height: 15%;
-    margin-top: 45%;
-    margin-left: 10%;
-
 }
 
 .constain-form {
@@ -88,11 +85,12 @@ body {
 
 .img-p {
     border-radius: 10px;
-    border-left: 2px solid #585656;
+    border-left: 2px solid #383737;
     border-right: 2px solid #585656;
     padding: 3px;
 
 }
-.modal-xl{
+
+.modal-xl {
     width: 500px;
 }

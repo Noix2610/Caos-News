@@ -11,23 +11,6 @@
   <link rel="stylesheet" href="recursosCss/header1.css">
   <link rel="stylesheet" href="recursosCss/header2.css">
 
-
-  <style>
-    h2 {
-      font-size: 20px;
-      /* Tamaño de fuente */
-      font-weight: bold;
-      /* Texto en negrita */
-      margin-top: 20px;
-      /* Espacio superior */
-      margin-bottom: 10px;
-      /* Espacio inferior */
-    }
-
-    #img-h {
-      height: 100px;
-    }
-  </style>
 </head>
 
 <body>
@@ -37,7 +20,7 @@
         <div class="col">
           <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-              <a href="inicio.html"><img src="resources/logoFlechas.png" alt="logo_caosNews" class="logo img-p">
+              <a href="inicio.html"><img src="resources/logoFlechas.png" alt="logo_caosNews" class="img-p" >
               </a>
               <h2 style="margin-left: 20px;">Caos News<button type="button" data-bs-toggle="popover"
                   data-bs-trigger="hover" data-bs-content="Creado por estudiantes DuocUC."
@@ -57,13 +40,13 @@
                 <!-- Inicio Menu -->
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                    <a href="inicio.html" class="nav-link active" aria-current="page">Inicio</a>
+                    <a href="inicio.html" class="nav-link active" aria-current="page" id="aTransition">Inicio</a>
                   </li>
-                  <li><a class="nav-link" href="carrito.html">Patrocinanos</a></li>
+                  <li><a class="nav-link" href="carrito.html" id="aTransition">Patrocinanos</a></li>
                   <!-- Boton dropdown -->
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
+                      aria-expanded="false" id="aTransition">
                       Noticias
                     </a>
 
@@ -77,20 +60,20 @@
                     </ul>
                   </li>
                   <!-- Fin boton dropdown -->
-                  <a class="nav-link active" aria-current="page" href="#">Contacto</a>
+                  <a class="nav-link active" aria-current="page" href="#" id="aTransition">Contacto</a>
                 </ul>
                 <!-- Fin Menu 1-->
                 <!-- inicio search1 -->
                 <form class="d-flex ms-auto" role="search">
                   <input class="form-control" type="search" placeholder="Búsqueda" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Buscar</button>
+                  <button class="btn btn-outline-success" type="submit" id="aTransition">Buscar</button>
                 </form>
                 <!-- Fin search 2 -->
 
                 <!-- Menu 2-->
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item dropdown">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalInicioSesion">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalInicioSesion" id="aTransition">
                       Iniciar Sesión</a>
                     <!-- Modal -->
                     <div class="modal fade container-fluid" id="modalInicioSesion" tabindex="-1"
@@ -133,7 +116,7 @@
                     </div>
 
                   </li>
-                  <a href="registrarse.html" class="nav-link">
+                  <a href="registrarse.html" class="nav-link" id="aTransition">
                     Registrarse
                   </a>
                 </ul>
@@ -148,7 +131,6 @@
 
     </div>
   </header>
-
 
   <div class="container-fluid">
     <div class="row rowstyle">
@@ -179,7 +161,7 @@
               <div class="carousel-item active">
                 <img src="resources/peregrinacion.jpg" class="img-fluid card-img img-p" alt="...">
                 <div class="carousel-caption d-none d-md-block ">
-                  <h5>Peregrinacón</h5>
+                  <h5>Peregrinación</h5>
                   <p>Cantidad masiva de personas peregrinando.</p>
                 </div>
               </div>
