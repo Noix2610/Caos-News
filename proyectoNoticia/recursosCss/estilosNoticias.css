@@ -1,0 +1,98 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.3);
+    margin-bottom: 5%;
+}
+
+.carousel-container {
+    margin-top: 20px;
+    margin-left: 10%;
+    /* Espaciado entre el menú y el carrusel */
+}
+
+.carousel-inner {
+    margin-top: 2%;
+    margin: auto;
+    height: auto;
+    max-height: 450px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+
+}
+
+.carousel-control-prev {
+    width: 5%;
+    height: 15%;
+    margin-top: 45%;
+    margin-right: 10%;
+
+}
+
+.carousel-control-next {
+    width: 5%;
+    height: 15%;
+    margin-top: 45%;
+    margin-left: 10%;
+
+}
+
+.constain-form {
+    width: 50%;
+    height: 70%;
+    margin: auto;
+    margin-top: 10%;
+
+}
+
+.card-body {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-img {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+
+}
+
+.card {
+    padding: 30px;
+    padding-bottom: 50px;
+    height: 700px;
+}
+
+.img-logo {
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    border-left: 2px solid #585656;
+    border-right: 2px solid #585656;
+    padding: 3px;
+}
+
+.rowstyle {
+    border-top: 2px solid #585656;
+    border-bottom: 2px solid #585656;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.img-p {
+    border-radius: 10px;
+    border-left: 2px solid #585656;
+    border-right: 2px solid #585656;
+    padding: 3px;
+
+}
+.modal-xl{
+    width: 500px;
+}
