@@ -1,6 +1,14 @@
+document.addEventListener('DOMContentLoaded', function () {
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+    });
+});
+
+
 $(document).ready(function () {
 
-    $("#inner1").hide(0 );
+    $("#inner1").hide(0);
     $("#inner2").hide(0);
     $("#inner3").hide(0);
 
@@ -52,5 +60,15 @@ $(document).ready(function () {
     $("#img3").mouseleave(function () {
         $("#inner3").hide(500);
     });
+
+    $(function () {
+        $("#contenidoHeader").load("header.html");
+    });
+
+    $(function () {
+        $("#contenidoFooter").load("footer.html");
+    });
+
+
 
 });

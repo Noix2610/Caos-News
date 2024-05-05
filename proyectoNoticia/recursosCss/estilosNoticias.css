@@ -10,13 +10,12 @@ h2 {
 }
 
 .carousel-caption {
-    background-color: #0000004d;
+    background-color: #2929294d;
     margin-bottom: 5%;
 }
 
 .carousel-container {
     margin-top: 20px;
-    /* Espaciado entre el menú y el carrusel */
 }
 
 .carousel-inner {
@@ -30,12 +29,12 @@ h2 {
 
 .carousel-control-prev {
     width: 5%;
-    height: 15%;
+    height: 10%;
 }
 
 .carousel-control-next {
     width: 5%;
-    height: 15%;
+    height: 10%;
 }
 
 .constain-form {
