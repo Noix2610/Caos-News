@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+p {
+    font-size: auto;
+    /* Tamaño de fuente */
+    line-height: 1.2;
+    /* Espaciado entre líneas */
+    text-align: justify;
+    /* Alineación justificada del texto */
+    max-width: 800px;
+    /* Margen automático en los lados para centrar el párrafo */
+    margin: auto;
+    /* Ancho máximo del párrafo para que no se extienda demasiado */
+    padding: 20px;
+    /* Espaciado interior para mejorar la legibilidad */
+    border: 2px solid #ccc;
+    /* Borde para resaltar el párrafo */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    background-color: #f9f9f9;
+    /* Color de fondo */
+    font-style: oblique;
+    /* Margen Superior */
+    margin-top: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Texto en negrita */
+    text-align: center;
+    /* Alineación centrada */
+    margin-bottom: 20px;
+    /* Espacio inferior */
+}
+
+h2 {
+    font-size: 20px;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Texto en negrita */
+    margin-top: 20px;
+    /* Espacio superior */
+    margin-bottom: 10px;
+    /* Espacio inferior */
+}
+
+h5 {
+    font-size: 14px;
+    /* Tamaño de fuente */
+    font-style: italic;
+    /* Texto en cursiva */
+    margin-bottom: 20px;
+    /* Espacio inferior */
+}
+
+h6 {
+    font-size: 12px;
+    font-style: italic;
+    /* Texto en cursiva */
+    font-weight: bold;
+    /* Texto en negrita */
+
+}
+
+.registro {
+    padding: 30px;
+    padding-bottom: 5px;
+}
+
+.registroCont {
+    margin: 20% auto;
+    margin-top: 5%;
+    border: solid black 2px;
+    border-radius: 20px;
+    max-width: 800px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 50px;
+    align-items: center;
+    background-color: rgba(161, 215, 231, 0.3);
+}
+
+.registroCont h2 {
+    text-align: center;
+    /* Centrar el texto */
+}
+
+.buttonImg {
+    border: none;
+    background-color: transparent;
+}
+
+#imagen-logo {
+    margin: auto;
+    width: auto;
+    height: auto;
+
+}
+
+.img-logo {
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    border-left: 2px solid #585656;
+    border-right: 2px solid #585656;
+    padding: 3px;
+
+}
+
+.img-p {
+    border-radius: 10px;
+    border-left: 2px solid #585656;
+    border-right: 2px solid #585656;
+    padding: 3px;
+    
+}
+
+.card-img {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.rowstyle {
+    border-top: 2px solid #585656;
+    border-bottom: 2px solid #585656;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.modal-xl {
+    width: 500px;
+}

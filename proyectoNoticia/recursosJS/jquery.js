@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    $("#inner1").hide(0 );
+    $("#inner2").hide(0);
+    $("#inner3").hide(0);
+
     $("#btn1").mouseenter(function () {
         $("#tlt1").hide(500);
     });
@@ -26,6 +30,27 @@ $(document).ready(function () {
     });
     $("#btn4").mouseleave(function () {
         $("#tlt4").show(1000);
+    });
+
+    $("#img1").mouseenter(function () {
+        $("#inner1").show(500);
+    });
+    $("#img1").mouseleave(function () {
+        $("#inner1").hide(500);
+    });
+
+    $("#img2").mouseenter(function () {
+        $("#inner2").show(500);
+    });
+    $("#img2").mouseleave(function () {
+        $("#inner2").hide(500);
+    });
+
+    $("#img3").mouseenter(function () {
+        $("#inner3").show(500);
+    });
+    $("#img3").mouseleave(function () {
+        $("#inner3").hide(500);
     });
 
 });

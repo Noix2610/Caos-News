@@ -7,27 +7,10 @@
   <title>noticiaInicio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="estilosNoticias.css">
-  <link rel="stylesheet" href="header1.css">
-  <link rel="stylesheet" href="header2.css">
+  <link rel="stylesheet" href="recursosCss/estilosNoticias.css">
+  <link rel="stylesheet" href="recursosCss/header1.css">
+  <link rel="stylesheet" href="recursosCss/header2.css">
 
-
-  <style>
-    h2 {
-      font-size: 20px;
-      /* Tamaño de fuente */
-      font-weight: bold;
-      /* Texto en negrita */
-      margin-top: 20px;
-      /* Espacio superior */
-      margin-bottom: 10px;
-      /* Espacio inferior */
-    }
-
-    #img-h {
-      height: 100px;
-    }
-  </style>
 </head>
 
 <body>
@@ -37,7 +20,7 @@
         <div class="col">
           <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-              <a href="inicio.html"><img src="resources/logoFlechas.png" alt="logo_caosNews" class="logo img-p">
+              <a href="inicio.html"><img src="resources/logoFlechas.png" alt="logo_caosNews" class="img-p" >
               </a>
               <h2 style="margin-left: 20px;">Caos News<button type="button" data-bs-toggle="popover"
                   data-bs-trigger="hover" data-bs-content="Creado por estudiantes DuocUC."
@@ -57,13 +40,13 @@
                 <!-- Inicio Menu -->
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="inicio.html">Inicio</a>
+                    <a href="inicio.html" class="nav-link active" aria-current="page" id="aTransition">Inicio</a>
                   </li>
-                  <li><a class="nav-link" href="carrito.html">Patrocinanos</a></li>
+                  <li><a class="nav-link" href="carrito.html" id="aTransition">Patrocinanos</a></li>
                   <!-- Boton dropdown -->
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
+                      aria-expanded="false" id="aTransition">
                       Noticias
                     </a>
 
@@ -77,42 +60,44 @@
                     </ul>
                   </li>
                   <!-- Fin boton dropdown -->
-                  <a class="nav-link active" aria-current="page" href="#">Contacto</a>
+                  <a class="nav-link active" aria-current="page" href="#" id="aTransition">Contacto</a>
                 </ul>
                 <!-- Fin Menu 1-->
                 <!-- inicio search1 -->
                 <form class="d-flex ms-auto" role="search">
                   <input class="form-control" type="search" placeholder="Búsqueda" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Buscar</button>
+                  <button class="btn btn-outline-success" type="submit" id="aTransition">Buscar</button>
                 </form>
                 <!-- Fin search 2 -->
 
                 <!-- Menu 2-->
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item dropdown">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalInicioSesion">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalInicioSesion" id="aTransition">
                       Iniciar Sesión</a>
                     <!-- Modal -->
-                    <div class="modal fade" id="modalInicioSesion" tabindex="-1" aria-labelledby="exampleModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog modal-sm">
+                    <div class="modal fade container-fluid" id="modalInicioSesion" tabindex="-1"
+                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-xl"> <!-- Cambio de modal-sm a modal-xl -->
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ingresar</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Inicia Sesión</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body" style="background-color: gainsboro">
                             <div class="row">
-                              <div class="col align-self-center">
+                              <div class="col-lg-7 align-self-center">
+                                <img src="resources/apoyo_estudiante.jpg" alt="" class="img-fluid img-p"
+                                  style="height: auto;">
                               </div>
-                              <div class="col-lg-12">
+                              <div class="col-lg-5">
                                 <form>
                                   <div class="mb-3" style="padding: 10px;">
-                                    <label for="exampleInputEmail1" class="form-label">Ingrese mail</label>
+                                    <label for="exampleInputEmail1" class="form-label">Ingrese mail o Nombre de
+                                      Usuario</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
                                       aria-describedby="emailHelp">
-                                    <div id="emailHelp" class="form-text">Nunca
-                                      compartiremos tu correo con nadie.</div>
+                                    <div id="emailHelp" class="form-text">Nunca compartiremos tu correo con nadie.</div>
                                   </div>
                                   <div class="mb-3" style="padding: 10px;">
                                     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
@@ -129,8 +114,9 @@
                         </div>
                       </div>
                     </div>
+
                   </li>
-                  <a href="registrarse.html" class="nav-link">
+                  <a href="registrarse.html" class="nav-link" id="aTransition">
                     Registrarse
                   </a>
                 </ul>
@@ -145,7 +131,6 @@
 
     </div>
   </header>
-
 
   <div class="container-fluid">
     <div class="row rowstyle">
@@ -176,7 +161,7 @@
               <div class="carousel-item active">
                 <img src="resources/peregrinacion.jpg" class="img-fluid card-img img-p" alt="...">
                 <div class="carousel-caption d-none d-md-block ">
-                  <h5>Peregrinacón</h5>
+                  <h5>Peregrinación</h5>
                   <p>Cantidad masiva de personas peregrinando.</p>
                 </div>
               </div>
@@ -357,19 +342,8 @@
       });
     </script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="jquery.js"></script>
-    <script>$(document).ready(function () {
-
-        $(window).scroll(function () {
-          if ($(this).scrollTop() > 0) {
-            $('header').addClass('header2');
-          } else {
-            $('header').removeClass('header2');
-          }
-        });
-
-      });
-    </script>
+    <script src="recursosJS/jquery.js"></script>
+    <script src="recursosJS/header.js"></script>
 
 </body>
 

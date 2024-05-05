@@ -4,8 +4,9 @@
     /* Asegura que el encabezado fijo esté pegado en la parte superior */
     left: 0;
     width: 100%;
-    height: 100px;
-    z-index: 3;
+    height: 72px;
+    z-index: 3; /*superposicion*/
+    opacity: 0.9;
 }
 
 @media screen and (max-width: 950px) {
