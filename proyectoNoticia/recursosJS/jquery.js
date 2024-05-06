@@ -61,14 +61,16 @@ $(document).ready(function () {
         $("#inner3").hide(500);
     });
 
+});
+
+$(document).ready(function () {
     $(function () {
         $("#contenidoHeader").load("header.html");
     });
+});
 
+$(document).ready(function () {
     $(function () {
         $("#contenidoFooter").load("footer.html");
     });
-
-
-
-});
+    });
