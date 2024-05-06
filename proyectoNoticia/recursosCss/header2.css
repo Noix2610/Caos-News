@@ -2,7 +2,6 @@
     position: fixed;
     top: 0;
     /* Asegura que el encabezado fijo esté pegado en la parte superior */
-    left: 0;
     width: 100%;
     height: 72px;
     z-index: 4; /*superposicion*/
