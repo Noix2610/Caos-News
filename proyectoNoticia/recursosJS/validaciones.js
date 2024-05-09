@@ -44,8 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     inputPass2.addEventListener("keyup", function () {
-        validarRepetirPass(inputPass,inputPass2,vPassword2);
+        validarRepetirPass(inputPass, inputPass2, vPassword2);
     });
+
+    
 
     function validarUsuario(input, div) {
         var texto = input.value;

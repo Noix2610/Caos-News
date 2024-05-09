@@ -1,52 +1,37 @@
-# Especificación de Requisitos de Software (ERS)
+### Lista de Cotejo - Especificación de Requisitos de Software (ERS)
 
-## 1. Definición de problemática:
+#### 1. Definición de problemática:
+- [x] Identificar el objetivo del proyecto: Crear una plataforma web para un colectivo de noticias.
+- [x] Describir la falta de una plataforma centralizada para la gestión de noticias.
+- [x] Detallar cómo la plataforma abordará la problemática.
 
-El objetivo de este proyecto es crear y desarrollar una plataforma web para un colectivo de noticias,
-la idea es que permita a todos los usuarios acceder a noticias destacadas, 
-que puedan ver detalles de noticias individuales o realizar búsquedas, tambien que puedan autenticarse, registrar nuevas noticias, etc... 
-La problemática que se aborda es la falta de una plataforma centralizada para la gestión de noticias y así fomentar 
-la participación de periodistas y usuarios en la creación y visualización de más contenido informativo.
+#### 2. Funciones del producto:
+- [x] Visualización de noticias destacadas en un carrusel de imágenes.
+- [x] Detalle completo de cada noticia, incluyendo historia, título, autor, fecha, ubicación, categoría y galería de fotos.
+- [x] Autenticación de usuarios mediante e-mail y contraseña.
+- [x] Registro de usuarios con e-mail, nombre y contraseña.
+- [x] Interfaz responsiva para adaptarse a diferentes tamaños de pantalla o plataformas.
+- [x] Formulario de contacto general.
+- [ ] Búsqueda de noticias por nombre del periodista, categoría de noticias o palabra clave.
+- [ ] Mostrar la cantidad de noticias ingresadas por un usuario.
+- [ ] Acceso a noticias por categoría o periodista desde la página principal.
+- [ ] Mostrar el estado de inicio de sesión del usuario.
+- [ ] Proceso de aprobación de nuevas noticias por parte del administrador.
+- [ ] Asociación de cada noticia con una categoría.
 
-## 2. Funciones del producto:
+#### 3. Diagrama de arquitectura:
+- [x] Definir los componentes del sitio web.
+- [x] Especificar la arquitectura en detalle.
 
-- Visualización de noticias destacadas en un carrusel de imágenes con el título de cada noticia.
-- Un detalle completo de cada una de las noticias, incluyendo su historia, su título, su autor, la fecha y ubicación, alguna categoría y galería de fotos.
-- Autenticación de usuarios mediante e-mail y contraseña.
-- Registro de usuarios con e-mail, nombre y contraseña.
-- Interfaz responsiva para adaptarse a diferentes tamaños de pantalla o plataformas.
-
-*** Búsqueda de noticias por nombre del periodista, categoría de noticias o palabra clave.
-*** Mostrar la cantidad de noticias ingresadas por un usuario.
-*** Formulario de contacto general.
-*** Acceso a noticias por categoría o periodista desde la página principal.
-*** Mostrar el estado de inicio de sesión del usuario.
-*** Proceso de aprobación de nuevas noticias por parte del administrador.
-*** Asociación de cada noticia con una categoría.
-
-## 3. Diagrama de arquitectura:
--todo lo que se compone el sitio web (on premise)
-
-
-
---POR DEFINIR--
-
-
-## 4. Propuesta de solución:
-
-- Menú en la parte superior con el logo del colectivo de noticias.
-- Página principal con noticias destacadas en un carrusel de imágenes.
-- Detalle de noticias individuales con galería de fotos y detalles completos.
-- Formulario de contacto general.
-- Autenticación de usuarios con registro e inicio de sesión.
-- Diseño responsivo para adaptarse a diferentes dispositivos.
-
-
-*** Opción de búsqueda por nombre del periodista, categoría de noticias o palabra clave.
-*** Mostrar cantidad de noticias ingresadas por un usuario.
-*** Acceso a noticias por categoría o periodista desde la página principal.
-*** Proceso de aprobación de nuevas noticias por el administrador antes de la publicación.
-*** Asociación de cada noticia con una categoría.
-
--Posibles en este momento
-*Se dejan para otro momento
+#### 4. Propuesta de solución:
+- [x] Incluir un menú con el logo del colectivo de noticias en la parte superior.
+- [x] Diseñar una página principal con noticias destacadas en un carrusel de imágenes.
+- [x] Detallar la visualización de noticias individuales con galería de fotos y detalles completos.
+- [x] Implementar un formulario de contacto general.
+- [x] Desarrollar funcionalidad de autenticación de usuarios con registro e inicio de sesión.
+- [x] Crear un diseño responsivo para adaptarse a diferentes dispositivos.
+- [ ] Implementar opción de búsqueda por nombre del periodista, categoría de noticias o palabra clave.
+- [ ] Mostrar cantidad de noticias ingresadas por un usuario.
+- [ ] Permitir acceso a noticias por categoría o periodista desde la página principal.
+- [ ] Establecer proceso de aprobación de nuevas noticias por el administrador antes de la publicación.
+- [ ] Asociar cada noticia con una categoría.
