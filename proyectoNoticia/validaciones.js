@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
     var vNombres = document.querySelector(".valNombres");
     var vApellidos = document.querySelector(".valApellidos");
@@ -14,6 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var inputTelefono = document.getElementById("Telefono");
     var inputPass = document.getElementById("Password");
     var inputPass2 = document.getElementById("Password2");
+
+
 
     inputNombres.addEventListener("keyup", function () {
         validarCampo(inputNombres, vNombres);
