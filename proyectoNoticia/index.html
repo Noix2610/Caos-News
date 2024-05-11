@@ -15,10 +15,22 @@
 
 <body>
     <header id="contenidoHeader"></header>
+    <div class="container-fluid" >
+        <div class="row container-fluid estiloAPI">
+            <div class="col" id="fechaPanel"></div>
+        </div>
+
+        <div class="row container-fluid estiloAPI"  >
+            <div class="col lg-2 " id="valorDolar"></div>
+            <div class="col lg-2 " id="valorUF"></div>
+            <div class="col lg-2 " id="valorIPC"></div>
+
+        </div>
+    </div>
 
     <div class="container-fluid">
-        <div class="row rowstyle">
-            
+        <div class="row rowstyle ">
+
             <div class="col-lg-3 col-md-3 col-sm-3 ">
                 <img src="resources/text.descr1.jpg" class="img-fluid img-p card-img" id="#img-h" alt="img principal"
                     style="margin-top: 5%;">
@@ -39,7 +51,7 @@
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                             aria-label="Slide 3" style="background-color: black;"></button>
                     </div>
-                    
+
 
                     <!-- imagen 1 -->
                     <div class="carousel-inner">
@@ -83,7 +95,7 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                
+
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <img src="resources/text.descr2.jpg" class="img-fluid card-img img-p" alt="img principal"
@@ -158,6 +170,7 @@
             crossorigin="anonymous"></script>
         <script src="recursosJS/header.js"></script>
         <script src="recursosJS/jquery.js"></script>
+        <script src="apiEconomico.js"></script>
 </body>
 
 </html>

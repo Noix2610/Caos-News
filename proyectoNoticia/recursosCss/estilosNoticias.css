@@ -93,3 +93,12 @@ h2 {
 .modal-xl {
     width: 500px;
 }
+
+.estiloAPI {
+    max-width: 500px;
+    width: auto;
+    max-height: 15px;
+    height: auto;
+    font-family: sans-serif;
+    font-weight: bolder;
+}
