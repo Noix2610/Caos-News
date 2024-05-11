@@ -67,12 +67,18 @@ body {
     font-weight: bold;
 }
 .header-carrito{
+    
     max-height: 40px;
     height: 40px;
-    background-color: hwb(0 3% 61%);
+    background-color: hwb(0 17% 47%);
     width: auto;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
+    color:white;
+    text-align: center;
+    
+    
+    
     
 
 }
