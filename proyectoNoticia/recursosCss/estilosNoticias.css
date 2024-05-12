@@ -76,10 +76,10 @@ h2 {
 
 .rowstyle {
     border-top: 2px solid #585656;
-    border-bottom: 2px solid #585656;
     padding-bottom: 20px;
     padding-top: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
+    
 }
 
 .img-p {
@@ -90,15 +90,7 @@ h2 {
 
 }
 
-.modal-xl {
-    width: 500px;
-}
-
 .estiloAPI {
-    max-width: 500px;
-    width: auto;
-    max-height: 15px;
-    height: auto;
     font-family: sans-serif;
-    font-weight: bolder;
+    margin-bottom: auto;
 }

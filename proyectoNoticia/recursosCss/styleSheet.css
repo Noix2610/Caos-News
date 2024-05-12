@@ -7,11 +7,9 @@ p {
     /* Tamaño de fuente */
     line-height: 1.2;
     /* Espaciado entre líneas */
-    text-align: justify;
-    /* Alineación justificada del texto */
-    max-width: 700px;
-    /* Margen automático en los lados para centrar el párrafo */
     
+    /* Alineación justificada del texto */
+    max-width: 900px;
     /* Ancho máximo del párrafo para que no se extienda demasiado */
     padding: 20px;
     /* Espaciado interior para mejorar la legibilidad */

@@ -11,35 +11,41 @@
     <link rel="stylesheet" href="recursosCss/header1.css">
     <link rel="stylesheet" href="recursosCss/header2.css">
 
+
 </head>
 
 <body>
     <header id="contenidoHeader"></header>
-    <div class="container-fluid" >
-        <div class="row container-fluid estiloAPI">
-            <div class="col" id="fechaPanel"></div>
+    <div class="container-fluid">
+        <div class="container-fluid estiloAPI">
+            <h6 class="text-center text-sm-* text-md-* text-lg-*" id="fechaPanel"></h6>
         </div>
 
-        <div class="row container-fluid estiloAPI"  >
-            <div class="col lg-2 " id="valorDolar"></div>
-            <div class="col lg-2 " id="valorUF"></div>
-            <div class="col lg-2 " id="valorIPC"></div>
-
+        <div class="row container-fluid estiloAPI">
+            <div class="col">
+                <h6 class="text-center text-sm-left text-md-left text-lg-left" id="valorDolar"></h6>
+            </div>
+            <div class="col">
+                <h6 class="text-center text-sm-left text-md-left text-lg-left" id="valorUF"></h6>
+            </div>
+            <div class="col" >
+                <h6 class="text-center text-sm-left text-md-left text-lg-left" id="valorIPC"></h6>
+            </div>
         </div>
     </div>
 
     <div class="container-fluid">
-        <div class="row rowstyle ">
+        <div class="row rowstyle " >
 
-            <div class="col-lg-3 col-md-3 col-sm-3 ">
+            <div class="col-lg-3 col-md-4 col-sm-3 " style="border-bottom: solid 2px #585656; padding-bottom: 40px;">
                 <img src="resources/text.descr1.jpg" class="img-fluid img-p card-img" id="#img-h" alt="img principal"
                     style="margin-top: 5%;">
-                <a href="#" style="color: black;">
-                    <p>"Tenemos miedo de que EE.UU. nos deporte por protestar en la universidad contra
+                <a href="#" style="color: black;" >
+                    <p >"Tenemos miedo de que EE.UU. nos deporte por protestar en la universidad contra
                         la guerra en Gaza"</p>
                 </a>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6" style="padding: 20px;">
+            <div class="col-lg-6 col-md-4 col-sm-6" style="border-bottom: solid 2px #585656; padding-bottom: 40px; margin-top: 10px;">
                 <!-- Contenedor del carrusel -->
                 <div id="carouselExampleCaptions" class="carousel slide mx-auto carousel-fade">
                     <div class="carousel-indicators padding-5">
@@ -85,7 +91,7 @@
                     </div>
                     <!-- Botones -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev" style="margin: auto; background-color: black;">
+                        data-bs-slide="prev" style="margin: auto; background-color: s;">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
@@ -97,7 +103,7 @@
                 </div>
 
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="col-lg-3 col-md-4 col-sm-3" style="border-bottom: solid 2px #585656; padding-bottom: 40px;">
                 <img src="resources/text.descr2.jpg" class="img-fluid card-img img-p" alt="img principal"
                     style="margin-top: 20%" ;>
                 <a href=" #" style="color: black;">4 datos que explican la crisis que atraviesa Tesla y que llevó a la
@@ -170,7 +176,7 @@
             crossorigin="anonymous"></script>
         <script src="recursosJS/header.js"></script>
         <script src="recursosJS/jquery.js"></script>
-        <script src="apiEconomico.js"></script>
+        <script src="recursosJS/apiEconomico.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
     var vNombres = document.querySelector(".valNombres");
     var vApellidos = document.querySelector(".valApellidos");
