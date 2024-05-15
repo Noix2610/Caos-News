@@ -5,9 +5,7 @@ body {
     padding: 0;
 }
 
-.container {
-    
-    
+.container { 
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -15,7 +13,6 @@ body {
 }
 
 #carrito {
-    
     background-color: #f9ece6;
     padding: 20px;
     margin-bottom: 20px;
@@ -75,11 +72,7 @@ body {
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     color:white;
-    text-align: center;
-    
-    
-    
-    
+    text-align: center;   
 
 }
 

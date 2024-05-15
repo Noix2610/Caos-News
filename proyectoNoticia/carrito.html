@@ -32,69 +32,66 @@
         <!-- Aquí irá el carrito de compras -->
         <div class="row container-fluid" id="carrito">
             <div class="col-lg-3 producto">
-                <img src="resources/planbasico.png " class="img-fluid" alt="plan basico">
+                <img src="resources/planbasico.png" class="img-fluid" alt="plan basico">
                 <br>
-                <button class="btn-agregar" data-prodcuto="intermediate">Agregar al carrito</button>
+                <button class="btn-agregar" data-producto="basico">Agregar al carrito</button>
             </div>
             <div class="col-lg-3 producto">
                 <img src="resources/PLANINTERMEDIO.png" class="img-fluid" alt="plan intermedio">
 
-                <button class="btn-agregar" data-prodcuto="intermediate">Agregar al carrito</button>
+                <button class="btn-agregar" data-producto="intermedio">Agregar al carrito</button>
             </div>
             <div class="col-lg-3 producto">
                 <img src="resources/promocion.png" class="img-fluid" alt="promocion">
 
-                <button class="btn-agregar" data-prodcuto="intermediate">Agregar al carrito</button>
+                <button class="btn-agregar" data-producto="promocion">Agregar al carrito</button>
             </div>
-
             <div class="col-lg-3 producto" id="carrito-container">
                 
-                <div class="header-carrito" > Carrito Compras</div>
+                <div class="col-lg-3 producto" id="carrito-container"></div>
+                <div class="header-carrito" > Compras</div>
+                <ul id="lista-carrito"></ul>
+                <p>Total: $<span id="total-carrito">0</span></p>
+                <br>
+  
             </div>
-
-
-
-            <!-- Contenido del carrito -->
-
 
             <!-- Opciones de suscripción -->
             <div id="suscripcion">
                 <h2>Suscripciones</h2>
                 <div class="opcion-suscripcion container-fluid" data-plan="basic">
                     <h3>Plan Básico</h3>
-                    <p>✔ Acceso digital ilimitado a los contenidos de La Tercera.com, La Tercera AM, PM y Noche, Pulso,
+                    <p>✔ Acceso digital ilimitado a los contenidos de Caos News.com, Caos News AM, PM y Noche, Pulso,
                         Qué Pasa, Culto, Paula
                         <br>
                         ✔ Navega sin publicidad emergente
                         <br>
-                        ✔ Acceso exclusivo a papel digital La Tercera, La Tercera Noche y Conversaciones LT
+                        ✔ Acceso exclusivo a papel digital Caos News, Caos News Noche y Conversaciones LT
                         <br>
-                        ✔ Early Access La Tercera (Edición digital disponible en App y Mailing en día anterior desde las
+                        ✔ Early Access Caos News (Edición digital disponible en App y Mailing en día anterior desde las
                         21 horas)
                         <br>
                         ✔ Acceso a Newsletter
                         <br>
                         ✔ Acceso a Podcast
                         <br>
-                        ✔ Beneficios Club La Tercera + 1 adicional
+                        ✔ Beneficios Club Caos News  + 1 adicional
                     </p>
-                    <p>Precio: 1.990 MES </p>
+                    <p>Precio:1.990 <p id="basico"></p> 
                 </div>
-
-
 
             </div>
             <div class="opcion-suscripcion container-fluid" data-plan="intermedio">
                 <h3>Plan Intendermedio</h3>
         
-                <p>✔ Acceso digital ilimitado a los contenidos de La Tercera.com, La Tercera AM, PM y Noche, Pulso, Qué Pasa,
+                <p>✔ Acceso digital ilimitado a los contenidos de Caos News .com, Caos News  AM, PM y Noche, Pulso, Qué Pasa,
                     Culto, Paula.
                     <br>
                     ✔ Navega sin publicidad emergente
                     <br>
-                    ✔ Acceso exclusivo a papel digital La Tercera, La Tercera Noche y Conversaciones LT
+                    ✔ Acceso exclusivo a papel digital Caos News , Caos News  Noche y Conversaciones LT
                     <br>
-                    ✔ Early Access La Tercera (Edición digital disponible en App y Mailing en día anterior desde las 21 horas)
+                    ✔ Early Access Caos News  (Edición digital disponible en App y Mailing en día anterior desde las 21 horas)
                     <br>
                     ✔ Acceso a Newsletter
                     <br>
@@ -107,7 +104,7 @@
             <div class="opcion-suscripcion container-fluid" data-plan="premium">
                 <h3>Plan Promocion especial</h3>
         
-                <p>✔ Acceso digital ilimitado a los contenidos de La Tercera.com, La Tercera AM, PM y Noche, Pulso, Qué Pasa,
+                <p>✔ Acceso digital ilimitado a los contenidos de Caos News .com, Caos News  AM, PM y Noche, Pulso, Qué Pasa,
                     Culto, Paula.
                     <br>
                     ✔ Navega sin publicidad emergente
@@ -115,7 +112,7 @@
         
                     ✔ Acceso exclusivo a papel digital La Tercera, La Tercera Noche y Conversaciones LT
                     <br>
-                    ✔ Early Access La Tercera (Edición digital disponible en App y Mailing en día anterior desde las 21 horas)
+                    ✔ Early Access Caos News  (Edición digital disponible en App y Mailing en día anterior desde las 21 horas)
                     <br>
                     ✔ Acceso a Newsletter
                     <br>
@@ -123,8 +120,6 @@
                     <br>
                     ✔ Beneficios Club La Tercera + 4 adicionales
                 <p>Precio: 8.990</p>
-        
-        
                 </p>
         
             </div>
@@ -132,9 +127,6 @@
 
     </div>
 
-    
-   
-   
 
     <footer id="#contenidoFooter"></footer>
   
