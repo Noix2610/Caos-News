@@ -63,14 +63,3 @@ $(document).ready(function () {
 
 });
 
-$(document).ready(function () {
-    $(function () {
-        $("#contenidoHeader").load("header.html");
-    });
-});
-
-$(document).ready(function () {
-    $(function () {
-        $("#contenidoFooter").load("footer.html");
-    });
-    });
