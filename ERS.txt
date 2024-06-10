@@ -34,4 +34,4 @@
 - [ ] Mostrar cantidad de noticias ingresadas por un usuario.
 - [ ] Permitir acceso a noticias por categoría o periodista desde la página principal.
 - [ ] Establecer proceso de aprobación de nuevas noticias por el administrador antes de la publicación.
-- [ ] Asociar cada noticia con una categoría.
+- [x] Asociar cada noticia con una categoría.
