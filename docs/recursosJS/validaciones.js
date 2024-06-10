@@ -63,31 +63,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validarCampo(input, div) {
-        var texto = input.value;
-        var contieneNumeros = false;
-        if (texto.length > 0) {
-            for (var i = 0; i < texto.length; i++) {
-                if (!isNaN(texto.charAt(i))) {
-                    contieneNumeros = true;
-                    break;
-                }
-            }
-
-
-            if (contieneNumeros) {
-                div.style.color = "red";
-                div.innerText = "El texto no puede contener números.";
-                return;
-            } else if (texto.length < 3 || texto.length > 20) {
-                div.style.color = "red";
-                div.innerText = "El tamaño del texto debe tener entre 3 y 20 caracteres."
-            } else {
-                div.style.color = "green";
-                div.innerText = "Válido";
-            }
-
+        // Guardar el texto original
+        var textoOriginal = input.value;
+        
+        // Eliminar espacios en blanco al principio y al final para la validación
+        var texto = textoOriginal.trim();
+    
+        // Expresión regular para verificar si hay números
+        var contieneNumeros = /\d/.test(texto);
+    
+        // Validar si el campo está vacío después de eliminar espacios
+        if (texto.length === 0) {
+            div.style.color = "red";
+            div.innerText = "El campo no puede estar vacío.";
+        } else if (contieneNumeros) {
+            div.style.color = "red";
+            div.innerText = "El texto no puede contener números.";
+        } else if (texto.length < 3 || texto.length > 20) {
+            div.style.color = "red";
+            div.innerText = "El tamaño del texto debe tener entre 3 y 20 caracteres.";
         } else {
-            div.innerText = "";
+            div.style.color = "green";
+            div.innerText = "Válido";
         }
     }
 
