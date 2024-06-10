@@ -1,0 +1,215 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="{% static 'recursosCss/header1.css' %}">
+    <link rel="stylesheet" href="{% static 'recursosCss/header2.css' %}">
+</head>
+
+<body>
+    <header style="width: 100%; background: #aeafb3;">
+        <div class="container-fluid" style="border-bottom: solid 2px #585656;">
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="container-fluid">
+                            <a href="{% url 'index'%}"><img src="{% static 'resources/logoFlechas.png' %}" alt="logo_caosNews"
+                                    class="logo img-p">
+                            </a>
+                            <h2 style="margin-left: 20px;"><a id="aTransition"
+                                    style="text-decoration:none; color: #1b1b1b;">Caos News</a></h2>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <!-- Inicio Menu -->
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a href="{% url 'index'%}" class="nav-link active" aria-current="page"
+                                            id="aTransition" style="color: #1b1b1b;">Inicio</a>
+                                    </li>
+                                    <li><a class="nav-link" href="{% url 'carrito'%}" id="aTransition"
+                                            style="text-decoration:none; color: #1b1b1b;">Suscripciones</a></li>
+                                    <!-- Boton dropdown -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false" id="aTransition"
+                                            style="text-decoration:none; color: #1b1b1b;">
+                                            Noticias
+                                        </a>
+
+                                        <ul class="dropdown-menu" style="background-color: #d1d0d0;">
+                                            <li><a class="dropdown-item" href="{% url 'nacional' %}">Nacional</a></li>
+                                            <li><a class="dropdown-item" href="{% url 'noticiaInternacional' %}"
+                                                    style="text-decoration:none; color: #1b1b1b;">Internacional</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="{% url 'deportes' %}"
+                                                    style="text-decoration:none; color: #1b1b1b;">Deportes</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- Fin boton dropdown -->
+                                    <a class="nav-link active" aria-current="page" href="#" id="aTransition"
+                                        style="text-decoration:none; color: #1b1b1b;">Contacto</a>
+                                </ul>
+                                <!-- Fin Menu 1-->
+                                <!-- inicio search1 -->
+                                <form class="d-flex ms-auto" role="search">
+                                    <input class="form-control" type="search" placeholder="Búsqueda" aria-label="Search"
+                                        id="busqueda">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
+                                <!-- Fin search 2 -->
+
+                                <!-- Menu 2-->
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" id="aTransition" data-bs-toggle="modal"
+                                            data-bs-target="#modal" style="text-decoration:none; color: #1b1b1b;">
+                                            Iniciar Sesión
+                                        </a>
+                                        <div class="modal fade" id="modal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Inicia Sesión
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <!-- Ocurre un error al abrir Inicio Sesion cuando se activa jquery de header -->
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="mb-3">
+                                                                <label for="exampleInputEmail1"
+                                                                    class="form-label">Correo o
+                                                                    Nombre de
+                                                                    Usuario</label>
+                                                                <input type="email" class="form-control"
+                                                                    id="exampleInputEmail1"
+                                                                    aria-describedby="emailHelp">
+                                                                <div id="emailHelp" class="form-text">No usaremos tu
+                                                                    contraseña con nadie.</div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="exampleInputPassword1"
+                                                                    class="form-label">Contraseña</label>
+                                                                <input type="password" class="form-control"
+                                                                    id="exampleInputPassword1">
+                                                            </div>
+                                                            <div class="mb-3 form-check">
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    id="exampleCheck1">
+                                                                <label class="form-check-label"
+                                                                    for="exampleCheck1">Recuerdame</label>
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Ingresar</button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <a href="{% url 'registro' %}" class="nav-link" id="aTransition" target="_blank"
+                                        style="text-decoration:none; color: #1b1b1b;">Registrarse</a>
+                                </ul>
+                            </nav>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <div class="container-center ">
+            <div class="row">
+                <!-- Columna logo duoc -->
+                <div class="col-lg-3 p-5 bg-dark padding" style="color: rgb(255, 255, 255);">
+                    <img src="{% static 'resources/DUOC.jpg' %}" alt="logoduoc"
+                        style="height: 100px; width: 100px; margin-left: 30px;">
+                </div>
+                <!-- coluna con datos de contacto -->
+                <div class="col-lg-9 p-5 bg-dark padding" style="color: rgb(255, 255, 255);">
+                    <!-- tabla -->
+                    <table class="table-dark">
+                        <tr class="table-dark">Contacto</tr>
+                        <!-- fila dirección web de pie de pag -->
+                        <tr>
+                            <td class="table-dark">
+                                <!-- icono web -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-code-square" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                                    <path
+                                        d="M6.854 7.146a.5.5 0 1 0-.708.708L8.293 10 6.146 12.146a.5.5 0 0 0 .708.708l2.5-2.5a.5.5 0 0 0 0-.708l-2.5-2.5zM3.5 10a.5.5 0 0 0 0-1H2.5a.5.5 0 0 0 0 1h1z" />
+                                </svg>
+                                <!-- texto contacto -->
+                                www.Duoc.cl
+                            </td>
+                        </tr>
+                        <!-- fila numero de contacto -->
+                        <tr>
+                            <td class="table-dark">
+                                <!-- icono numero -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-phone" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 1a1 1 0 0 1 1 1v1a1 1 0 0 1-.41.812l-1.318.988a1 1 0 0 0-.252.312L8.5 6.5a1 1 0 0 1-1 0l-1.52-.76a1 1 0 0 0-.31-.15L4 5V3a1 1 0 0 1 1-1h6zm-1 1H6v2l.09.035a1.5 1.5 0 0 0 .45.175L7.707 4.5h.586l1.158-.29c.115-.03.232-.058.344-.072L10 2V1z" />
+                                    <path
+                                        d="M14.85 2.85a.5.5 0 0 0-.7-.7l-1.5 1.5a.5.5 0 0 0 .7.7l1.5-1.5zM1.85 11.15a.5.5 0 1 0-.7.7l1.5 1.5a.5.5 0 1 0 .7-.7l-1.5-1.5z" />
+                                    <path
+                                        d="M11 15a1 1 0 0 0 1-1v-1a1 1 0 0 0-.41-.812l-1.318-.988a1 1 0 0 0-.252-.312L8.5 9.5a1 1 0 0 0-1 0l-1.52.76a1 1 0 0 0-.31.15L4 11v2a1 1 0 0 0 1 1h6zm-1-1H6v-2l.09-.035a1.5 1.5 0 0 0 .45-.175L7.707 12.5h.586l1.158-.29c.115-.03.232-.058.344-.072L10 12v1z" />
+                                </svg>
+                                <!-- texto contacto -->
+                                +569 12345678
+                            </td>
+                        </tr>
+                        <!-- fila dirección pie de pag -->
+                        <tr>
+                            <td class="table-dark">
+                                <!-- icono ubicacion -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0a5 5 0 0 1 5 5c0 4.778-4.658 10.271-4.858 10.485a.5.5 0 0 1-.684 0C6.658 15.27 2 9.777 2 5a5 5 0 0 1 5-5zm0 1a4 4 0 0 0-4 4c0 3.528 3.728 8.317 4 8.681.272-.364 4-5.153 4-8.681a4 4 0 0 0-4-4zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" />
+                                </svg>
+                                <!-- texto contacto -->
+                                San Andres, Concepción
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+    <script src="{% static 'recursosJS/jquery2.js' %}"></script>
+    <script src="{% static 'recursosJS/header.js' %}"></script>
+    <script src="{% static 'recursosJS/jquery.js' %}"></script>
+    
+</body>
+
+</html>

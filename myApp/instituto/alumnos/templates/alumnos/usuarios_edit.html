@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        {% if usuario %}
+            <h2>Formulario para Actualizar Datos</h2>
+        
+            <form action="{% url 'usuariosUpdate'%}" method="POST">
+                {% csrf_token %}
+
+                <pre>NOMBRES:                   <input type="text" name="nombres" value="{{usuario.nombres}}"></pre>
+                <pre>APELLIDOS:                 <input type="text" name="apellidos" value="{{usuario.apellidos}}"></pre>
+                <pre>NOMBRE DE USUARIO :        <input type="text" name="nom_usuario" value="{{usuario.nom_usuario}}"></pre>
+                <pre>TELEFONO:                  <input type="text" name="telefono" value="{{usuario.telefono}}"></pre>
+                <pre>CORREO:                    <input type="text" name="email" value="{{usuario.email}}"></pre>
+                <pre>CONTRASEÑA:                <input type="text" name="password" value="{{usuario.password}}"></pre>
+                <pre>F. NACIMIENTO:             <input type="text" name="fecha_nacimiento" value="{{usuario.fecha_nacimiento|date:'Y-m-d'}}"></pre>
+                <pre>GENERO:                                <select name="genero" value="{{usuario.genero}}">
+                    {% for genero in generos %}
+                        {% if genero.genero == usuario.id_genero.genero%}
+                            <option value="{{genero.id_genero}}" selected>{{ genero.genero }}</option>
+                        {% else%}
+                        <option value="{{genero.id_genero}}">{{ genero.genero }}</option>
+                        {%endif%}
+                    {% endfor %}
+                </select>
+                <pre>REGION:                    <input type="text" name="region" value="{{usuario.region}}"></pre>
+                <pre>CIUDAD:                    <input type="text" name="ciudad" value="{{usuario.ciudad}}"></pre>
+                <pre>COD POSTAL:                <input type="text" name="cod_postal" value="{{usuario.cod_postal}}"></pre>
+
+                <input type="submit" name="opcion" value="Actualizar">
+
+            </form> <br><br>
+        {% endif%}
+        <div id="idMensajes">
+                {% if mensaje %}
+                {{mensaje}}
+                {% endif %}
+        </div>
+        <br><br>
+        <a href="{% url 'crud' %}">Volver</a>
+        
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Edicion de Usuarios</h1>
+    <br>
+
+    <button type="button">
+        <a href="{% url 'usuarios_add' %}">Agregar</a>
+    </button>
+    
+
+    <div id="idMensajes">
+        {% if mensaje %}
+            {{mensaje}}
+        {% endif%}
+    </div>
+
+    <table>
+        {% if usuarios%}
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Eliminar</th>
+            <th>Modificar</th>
+            {% for x in usuarios %}
+                <tr>
+                    <td>{{x.nombres}}</td>
+                    <td>{{x.apellidos}}</td>
+                    <td><a href="{% url 'usuarios_del' pk=x.id_alumno%}">Eliminar</a></td>
+                    <td><a href="{% url 'usuarios_findEdit' pk=x.id_alumno%}">Modificar</a></td>
+                </tr>
+            {% endfor%}
+        {% endif %}
+        
+    </table>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#idMensajes").delay(2000).fadeOut("slow");
+        })
+    </script>
+</body>
+</html>

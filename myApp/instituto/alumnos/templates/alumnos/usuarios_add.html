@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h2>Formulario CRUD para Usuarios</h2>
+        <form action="adminUsuarioAdd" method="POST">
+            {% csrf_token %}
+            <pre>NOMBRES:                   <input type="text" name="nombres"></pre>
+            <pre>APELLIDOS:                 <input type="text" name="apellidos"></pre>
+            <pre>NOMBRE DE USUARIO :        <input type="text" name="nom_usuario"></pre>
+            <pre>TELEFONO:                  <input type="text" name="telefono"></pre>
+            <pre>CORREO:                    <input type="text" name="correo"></pre>
+            <pre>CONTRASEÑA:                <input type="text" name="password"></pre>
+            <pre>F. NACIMIENTO:             <input type="text" name="fecha_nacimiento"></pre>
+            <pre>GENERO:                                <select name="genero">
+                <option selected disabled value="">Elige...</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+            </select>
+            <pre>REGION:                    <input type="text" name="region"></pre>
+            <pre>CIUDAD:                    <input type="text" name="ciudad"></pre>
+            <pre>COD POSTAL:                <input type="text" name="cod_postal"></pre>
+
+            <input type="submit" name="opcion" value="Agregar">
+
+        </form> <br><br>
+        <div id="idMensajes">
+            {% if mensaje %}
+            {{mensaje}}
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

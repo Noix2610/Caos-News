@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'recursosCss/header1.css' %}">
+<link rel="stylesheet" href="{% static 'recursosCss/header2.css' %}">
+<link rel="stylesheet" href="{% static 'recursosCss/estilosNoticias.css' %}">
+
+<div class="container-fluid">
+    <div class="container-fluid estiloAPI">
+        <h6 class="text-center text-sm-* text-md-* text-lg-*" id="fechaPanel"></h6>
+    </div>
+
+    <div class="row container-fluid estiloAPI">
+        <div class="col">
+            <h6 class="text-center text-sm-left text-md-left text-lg-left" id="valorDolar"></h6>
+        </div>
+        <div class="col">
+            <h6 class="text-center text-sm-left text-md-left text-lg-left" id="valorUF"></h6>
+        </div>
+        <div class="col">
+            <h6 class="text-center text-sm-left text-md-left text-lg-left" id="valorIPC"></h6>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row rowstyle ">
+        <div class="col-lg-3 col-md-4 col-sm-3 " style="border-bottom: solid 2px #585656; padding-bottom: 40px;">
+            <img src="{% static 'resources/text.descr1.jpg' %}" class="img-fluid img-p card-img" id="img-h"
+                alt="img principal" style="margin-top: 5%;">
+
+            <a href="#" style="color: black;">
+                <p>"Tenemos miedo de que EE.UU. nos deporte por protestar en la universidad contra
+                    la guerra en Gaza"</p>
+            </a>
+        </div>
+        <div class="col-lg-6 col-md-4 col-sm-6"
+            style="border-bottom: solid 2px #585656; padding-bottom: 40px; margin-top: 10px;">
+            <!-- Contenedor del carrusel -->
+            <div id="carouselExampleCaptions" class="carousel slide mx-auto carousel-fade" data-bs-ride="carousel"
+                data-bs-interval="5000">
+                <div class="carousel-indicators padding-5">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1" style="background-color: black;"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2" style="background-color: black;"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3" style="background-color: black;"></button>
+                </div>
+
+                <!-- imagen 1 -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="{% url 'nacional' %}">
+                            <img src="{% static 'resources/peregrinacion.jpg' %}" class="img-fluid card-img img-p"
+                                alt="...">
+                            <div class="carousel-caption d-none d-md-block ">
+                                <h5>Peregrinación</h5>
+                                <p>Cantidad masiva de personas peregrinando.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- imagen 2 -->
+                    <div class="carousel-item">
+                        <a href="{% url 'noticiaInternacional' %}">
+                            <img src="{%static 'resources/img-internacional.png'%}" class="img-fluid card-img img-p"
+                                alt="..." style="max-height: 500px;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Envejecimiento de China</h5>
+                                <p>Todo sobre este fenómeno del gigante oriental</p>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- imagen 3 -->
+                    <div class="carousel-item">
+                        <a href="{% url 'deportes' %}">
+                            <img src="{%static 'resources/deporte-1.jpg' %}" class="img-fluid card-img img-p" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Deportes</h5>
+                                <p>Torneo Bodyboard Femenino</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev" style="margin: auto; background-color: black;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next" style="margin: auto; background-color: black;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-3" style="border-bottom: solid 2px #585656; padding-bottom: 40px;">
+            <img src="{%static 'resources/text.descr2.jpg'%}" class="img-fluid card-img img-p" alt="img principal"
+                style="margin-top: 20%" ;>
+            <a href=" #" style="color: black;">4 datos que explican la crisis que atraviesa Tesla y que llevó a la
+                compañía despedir a miles de empleados</a>
+        </div>
+    </div>
+
+
+    <!-- card noticias medio -->
+    <div class="row rowstyle">
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card">
+                <img src="{%static 'resources/NOTICIA1.PNG'%}" alt="" class="card-img img-p img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title" id="tlt1">Genocide Joe</h5>
+                    <p class="card-text">"Cómo las protestas en las universidades en EE.UU. muestran que el
+                        conflicto en Gaza
+                        amenaza la reelección de Biden."</p>
+                    <a href="#" class="btn btn-dark" id="btn1">Mostrar más Info</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- noticias recuedro noticia 2 -->
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card">
+                <img src="{% static 'resources/NOTICIA2.PNG' %}" class="card-img img-p img-fluid" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" id="tlt2">IA Reddit</h5>
+                    <p class="card-text">Cómo la red social Reddit logró alcanzar un valor de US$9.000 millones y
+                        convertirse en el preciado objetivo de las empresas de inteligencia artificial</p>
+                    <a href="#" class="btn btn-dark" id="btn2">Mostrar más Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card">
+                <img src="{% static 'resources/noticia3.png' %}" alt="" class="card-img img-p img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title" id="tlt3">CERN</h5>
+                    <p class="card-text">El "ingenioso" experimento del CERN que buscará las misteriosas "partículas
+                        fantasma"
+                    </p>
+                    <a href="#" class="btn btn-dark" id="btn3">Mostrar más Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="card">
+                <img src="{% static 'resources/NOTICIAS4.PNG' %}" alt="" class="card-img img-p img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title" id="tlt4">Atlas Celular Humano</h5>
+                    <p class="card-text">Qué es Atlas Celular Humano y por qué promete revolucionar el tratamiento
+                        de enfermedades</p>
+                    <a href="#" class="btn btn-dark" id="btn4">Mostrar más Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="{% static 'recursosJS/jquery2.js' %}"></script>
+    <script src="{% static 'recursosJS/apiEconomico.js' %}"></script>
+</div>
+
+{% endblock %}
