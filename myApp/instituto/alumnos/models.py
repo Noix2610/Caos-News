@@ -1,7 +1,7 @@
 from django.db import models # type: ignore
 
 # Create your models here.
-class Alumno(models.Model):
+class Usuario(models.Model):
     id_alumno = models.AutoField(primary_key=True)
     nombres = models.CharField(max_length=20)
     apellidos = models.CharField(max_length=20)

@@ -1,5 +1,5 @@
 from django.shortcuts import render # type: ignore
-from .models import Alumno, Genero
+from .models import Usuario, Genero
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -50,7 +50,7 @@ def usuarios_list(request):
     return render(request,'alumnos/usuarios_list.html',context)
 
 def crud(request):
-    usuarios = Alumno.objects.all()
+    usuarios = Usuario.objects.all()
     context={'usuarios':usuarios}
     return render(request,'alumnos/usuarios_list.html',context)
 
@@ -74,7 +74,7 @@ def usuarioAdd(request):
         cod_postal = request.POST.get('cod_postal')
 
         # Crear el usuario y guardarlo en la base de datos
-        nuevo_usuario = Alumno(
+        nuevo_usuario = Usuario(
             nombres=nombres,
             apellidos=apellidos,
             nom_usuario=nom_usuario,
@@ -103,22 +103,22 @@ def usuarioAdd(request):
 def usuarios_del(request,pk):
     context={}
     try:
-        usuario = Alumno.objects.get(id_alumno=pk)
+        usuario = Usuario.objects.get(id_alumno=pk)
 
         usuario.delete()
         mensaje="Usuario Eliminado..."
-        usuarios = Alumno.objects.all()
+        usuarios = Usuario.objects.all()
         context={'usuarios':usuarios, 'mensaje':mensaje}
         return render(request, 'alumnos/usuarios_list.html',context)
     except:
         mensaje= 'Error, usuario no existe...'
-        usuarios = Alumno.objects.all()
+        usuarios = Usuario.objects.all()
         context={'usuarios':usuarios, 'mensaje':mensaje}
         return render(request, 'alumnos/usuarios_list.html',context)
     
 def usuarios_findEdit(request,pk):
     if pk != "":
-        usuario = Alumno.objects.get(id_alumno=pk)
+        usuario = Usuario.objects.get(id_alumno=pk)
         generos = Genero.objects.all()
 
         print(type(usuario.id_genero.genero))
@@ -146,7 +146,7 @@ def usuariosUpdate(request):
         cod_postal = request['cod_postal']
         objGenero = Genero.objects.get(id_genero=genero)
 
-        usuario = Alumno()
+        usuario = Usuario()
         usuario.nombres=nombres,
         usuario.apellidos=apellidos,
         usuario.nom_usuario=nom_usuario,
@@ -165,7 +165,7 @@ def usuariosUpdate(request):
         context = {'mensaje': "Datos actualizados...",'generos': generos, 'usuario':usuario}
         return render(request, 'alumnos/usuarios_edit.html', context)
     else:
-        usuarios = Alumno.objects.all()
+        usuarios = Usuario.objects.all()
         context={'usuarios':usuarios}
         return render(request, 'alumnos/usuarios_edit.html', context)
     
@@ -187,7 +187,7 @@ def adminUsuarioAdd(request):
         cod_postal = request.POST.get('cod_postal')
 
         # Crear el usuario y guardarlo en la base de datos
-        nuevo_usuario = Alumno(
+        nuevo_usuario = Usuario(
             nombres=nombres,
             apellidos=apellidos,
             nom_usuario=nom_usuario,
