@@ -31,8 +31,8 @@
                 <tr>
                     <td>{{x.nombres}}</td>
                     <td>{{x.apellidos}}</td>
-                    <td><a href="{% url 'usuarios_del' pk=x.id_alumno%}">Eliminar</a></td>
-                    <td><a href="{% url 'usuarios_findEdit' pk=x.id_alumno%}">Modificar</a></td>
+                    <td><a href="{% url 'usuarios_del' pk=x.id_usuario%}">Eliminar</a></td>
+                    <td><a href="{% url 'usuarios_findEdit' pk=x.id_usuario%}">Modificar</a></td>
                 </tr>
             {% endfor%}
         {% endif %}

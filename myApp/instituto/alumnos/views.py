@@ -1,5 +1,5 @@
 from django.shortcuts import render # type: ignore
-from .models import Usuario, Genero
+from .models import Usuario, Profesion
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -33,7 +33,7 @@ def registro(request):
     return render(request,'alumnos/registro.html',context)
 
 def listaSQL(request):
-    usuarios = Alumno.objects.raw(' SELECT * FROM alumnos_alumno')
+    usuarios = Usuario.objects.raw(' SELECT * FROM alumnos_alumno')
     print()
     context={'usuarios':usuarios}
     return render(request,'alumnos/listaSQL.html',context)
@@ -67,8 +67,8 @@ def usuarioAdd(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         fecha_nacimiento = request.POST.get('fecha_nacimiento')
-        id_genero_id = request.POST.get('genero')  # Obtener el ID del género del formulario
-        id_genero = Genero.objects.get(pk=id_genero_id)
+        id_profesion_id = request.POST.get('profesion')  # Obtener el ID del género del formulario
+        id_profesion = Profesion.objects.get(pk=id_profesion_id)
         region = request.POST.get('region')
         ciudad = request.POST.get('ciudad')
         cod_postal = request.POST.get('cod_postal')
@@ -82,7 +82,7 @@ def usuarioAdd(request):
             email=email,
             password=password,
             fecha_nacimiento=fecha_nacimiento,
-            id_genero=id_genero,  # Asignar el objeto Genero
+            id_profesion=id_profesion,  # Asignar el objeto Genero
             region = region,
             ciudad = ciudad,
             cod_postal = cod_postal
@@ -96,14 +96,14 @@ def usuarioAdd(request):
     
     else:
         # Si la solicitud no es POST, renderizar el formulario
-        generos = Genero.objects.all()
-        context = {'generos': generos}
+        profesiones = Profesion.objects.all()
+        context = {'profesiones': profesiones}
         return render(request, 'alumnos/registro.html', context)
     
 def usuarios_del(request,pk):
     context={}
     try:
-        usuario = Usuario.objects.get(id_alumno=pk)
+        usuario = Usuario.objects.get(id_usuario=pk)
 
         usuario.delete()
         mensaje="Usuario Eliminado..."
@@ -118,12 +118,12 @@ def usuarios_del(request,pk):
     
 def usuarios_findEdit(request,pk):
     if pk != "":
-        usuario = Usuario.objects.get(id_alumno=pk)
-        generos = Genero.objects.all()
+        usuario = Usuario.objects.get(id_usuario=pk)
+        profesiones = Profesion.objects.all()
 
-        print(type(usuario.id_genero.genero))
+        print(type(usuario.id_profesion.profesion))
 
-        context={'usuario':usuario, 'generos':generos}
+        context={'usuario':usuario, 'profesiones':profesiones}
 
         if usuario:
             return render(request, 'alumnos/usuarios_edit.html',context)
@@ -136,38 +136,39 @@ def usuariosUpdate(request):
         nombres = request.POST['nombres']
         apellidos = request.POST['apellidos']
         nom_usuario = request.POST['nom_usuario']
-        genero = request.POST['genero']
+        profesion_id = request.POST['profesion']
         telefono = request.POST['telefono']
         email = request.POST['email']
         password = request.POST['password']
         fecha_nacimiento = request.POST['fecha_nacimiento']
         region = request.POST['region']
         ciudad = request.POST['ciudad']
-        cod_postal = request['cod_postal']
-        objGenero = Genero.objects.get(id_genero=genero)
+        cod_postal = request.POST['cod_postal']
+        objProfesion = Profesion.objects.get(id_profesion=profesion_id)
 
         usuario = Usuario()
-        usuario.nombres=nombres,
-        usuario.apellidos=apellidos,
-        usuario.nom_usuario=nom_usuario,
-        usuario.telefono=telefono,
-        usuario.email=email,
-        usuario.password=password,
-        usuario.fecha_nacimiento=fecha_nacimiento,
-        usuario.id_genero=objGenero,  # Asignar el objeto Genero
-        usuario.region=region,
-        usuario.ciudad=ciudad,
-        usuario.cod_postal=cod_postal
+        usuario.nombres = nombres
+        usuario.apellidos = apellidos
+        usuario.nom_usuario = nom_usuario
+        usuario.telefono = telefono
+        usuario.email = email
+        usuario.password = password
+        usuario.fecha_nacimiento = fecha_nacimiento
+        usuario.id_profesion = objProfesion  # Asignar la instancia de Profesion
+        usuario.region = region
+        usuario.ciudad = ciudad
+        usuario.cod_postal = cod_postal
         
         usuario.save()
 
-        generos = Genero.objects.all()
-        context = {'mensaje': "Datos actualizados...",'generos': generos, 'usuario':usuario}
+        profesiones = Profesion.objects.all()
+        context = {'mensaje': "Datos actualizados...", 'profesiones': profesiones, 'usuario': usuario}
         return render(request, 'alumnos/usuarios_edit.html', context)
     else:
         usuarios = Usuario.objects.all()
-        context={'usuarios':usuarios}
+        context = {'usuarios': usuarios}
         return render(request, 'alumnos/usuarios_edit.html', context)
+
     
 def adminUsuarioAdd(request):
     if request.method == "POST":
@@ -180,8 +181,8 @@ def adminUsuarioAdd(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         fecha_nacimiento = request.POST.get('fecha_nacimiento')
-        id_genero_id = request.POST.get('genero')  # Obtener el ID del género del formulario
-        id_genero = Genero.objects.get(pk=id_genero_id)
+        id_profesion_id = request.POST.get('genero')  # Obtener el ID del género del formulario
+        id_profesion = Profesion.objects.get(pk=id_profesion_id)
         region = request.POST.get('region')
         ciudad = request.POST.get('ciudad')
         cod_postal = request.POST.get('cod_postal')
@@ -195,7 +196,7 @@ def adminUsuarioAdd(request):
             email=email,
             password=password,
             fecha_nacimiento=fecha_nacimiento,
-            id_genero=id_genero,  # Asignar el objeto Genero
+            id_profesion=id_profesion,  # Asignar el objeto Genero
             region = region,
             ciudad = ciudad,
             cod_postal = cod_postal
@@ -207,8 +208,8 @@ def adminUsuarioAdd(request):
     
     else:
         # Si la solicitud no es POST, renderizar el formulario
-        generos = Genero.objects.all()
-        context = {'generos': generos}
+        profesiones = Profesion.objects.all()
+        context = {'profesiones': profesiones}
         return render(request, 'alumnos/usuarios_add.html', context)
 
     
