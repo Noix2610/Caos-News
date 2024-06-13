@@ -29,8 +29,9 @@ def carrito(request):
     return render(request,'alumnos/carrito.html',context)
 
 def registro(request):
-    context={}
-    return render(request,'alumnos/registro.html',context)
+    profesiones = Profesion.objects.all()
+    context = {'profesiones': profesiones}
+    return render(request, 'alumnos/registro.html', context)
 
 def listaSQL(request):
     usuarios = Usuario.objects.raw(' SELECT * FROM alumnos_alumno')
@@ -38,15 +39,18 @@ def listaSQL(request):
     context={'usuarios':usuarios}
     return render(request,'alumnos/listaSQL.html',context)
 def usuarios_add(request):
-    context={}
+    profesiones = Profesion.objects.all()
+    context = {'profesiones': profesiones}
     return render(request,'alumnos/usuarios_add.html',context)
 
 def usuarios_edit(request):
-    context={}
+    profesiones = Profesion.objects.all()
+    context = {'profesiones': profesiones}
     return render(request,'alumnos/usuarios_edit.html',context)
 
 def usuarios_list(request):
-    context={}
+    usuarios = Usuario.objects.all()
+    context = {'usuarios': usuarios}
     return render(request,'alumnos/usuarios_list.html',context)
 
 def crud(request):
@@ -181,7 +185,7 @@ def adminUsuarioAdd(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         fecha_nacimiento = request.POST.get('fecha_nacimiento')
-        id_profesion_id = request.POST.get('genero')  # Obtener el ID del género del formulario
+        id_profesion_id = request.POST.get('profesion')  # Obtener el ID del género del formulario
         id_profesion = Profesion.objects.get(pk=id_profesion_id)
         region = request.POST.get('region')
         ciudad = request.POST.get('ciudad')
@@ -196,7 +200,7 @@ def adminUsuarioAdd(request):
             email=email,
             password=password,
             fecha_nacimiento=fecha_nacimiento,
-            id_profesion=id_profesion,  # Asignar el objeto Genero
+            id_profesion=id_profesion,  # Asignar el objeto Profesion
             region = region,
             ciudad = ciudad,
             cod_postal = cod_postal

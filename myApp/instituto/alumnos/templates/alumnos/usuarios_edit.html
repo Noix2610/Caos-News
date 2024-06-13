@@ -21,8 +21,8 @@
                 <pre>TELEFONO:                  <input type="text" name="telefono" value="{{usuario.telefono}}"></pre>
                 <pre>CORREO:                    <input type="text" name="email" value="{{usuario.email}}" readonly></pre>
                 <pre>CONTRASEÑA:                <input type="text" name="password" value="{{usuario.password}}"></pre>
-                <pre>F. NACIMIENTO:             <input type="text" name="fecha_nacimiento" value="{{usuario.fecha_nacimiento|date:'Y-m-d'}}"></pre>
-                <pre>PROFESION:                                <select name="profesion" value="{{usuario.profesion}}">
+                <pre>F. NACIMIENTO:                     <input type="date" name="fecha_nacimiento" value="{{usuario.fecha_nacimiento|date:'Y-m-d'}}"></pre>
+                <pre>PROFESION:                             <select name="profesion" value="{{usuario.profesion}}">
                     {% for profesion in profesiones %}
                         {% if profesion.id_profesion == usuario.id_profesion.profesion%}
                             <option value="{{profesion.id_profesion}}" selected>{{ profesion.profesion }}</option>

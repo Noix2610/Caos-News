@@ -7,10 +7,10 @@ class Usuario(models.Model):
     apellidos = models.CharField(max_length=20)
     nom_usuario = models.CharField(max_length=20)
     telefono = models.CharField(max_length=45)
-    email = models.EmailField(unique=True, max_length=100, blank=True, null=True)
+    email = models.EmailField(max_length=100, blank=True, null=True)
     password = models.CharField(max_length=20)
     fecha_nacimiento = models.DateField(blank=False, null=False)
-    id_profesion = models.ForeignKey('Profesion',on_delete=models.CASCADE, db_column='idProfesion')
+    id_profesion = models.ForeignKey('Profesion',on_delete=models.CASCADE, db_column='id_profesion')
     region = models.CharField(max_length=50, blank=True, null=True)
     ciudad = models.CharField(max_length=50, blank=True, null=True)
     cod_postal = models.IntegerField()
@@ -19,7 +19,7 @@ class Usuario(models.Model):
         return str(self.nombres)+" "+str(self.apellidos)
     
 class Profesion(models.Model):
-    id_profesion = models.AutoField(db_column='iProfesion', primary_key=True)
+    id_profesion = models.AutoField(db_column='id_profesion', primary_key=True)
     profesion = models.CharField(max_length=20, blank=False, null=False)
 
     def __str__(self):

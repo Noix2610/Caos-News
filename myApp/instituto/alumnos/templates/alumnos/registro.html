@@ -63,9 +63,7 @@
             <select class="form-select" id="profesion" name="profesion" required>
                 <option selected disabled value="">Elige...</option>
                 {% for profesion in profesiones %}
-
-                        <option value="{{profesion.id_profesion}}" selected>{{ profesion.profesion }}</option>
-                        
+                <option value="{{profesion.id_profesion}}" selected>{{ profesion.profesion }}</option>
                 {% endfor %}
             </select>
         </div>
