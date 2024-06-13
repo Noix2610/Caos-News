@@ -59,11 +59,12 @@
             <div class="valUsuario"></div>
         </div>
         <div class="col-lg-md-4 registro">
-            <label for="validationCustomGen" class="form-label">Género</label>
-            <select class="form-select" id="genero" name="genero" required>
+            <label for="validationCustomGen" class="form-label">Profesión</label>
+            <select class="form-select" id="profesion" name="profesion" required>
                 <option selected disabled value="">Elige...</option>
-                <option value="1">Masculino</option>
-                <option value="2">Femenino</option>
+                {% for profesion in profesiones %}
+                <option value="{{profesion.id_profesion}}" selected>{{ profesion.profesion }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="col-lg-md-4 registro">

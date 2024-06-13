@@ -18,11 +18,12 @@
             <pre>TELEFONO:                  <input type="text" name="telefono"></pre>
             <pre>CORREO:                    <input type="text" name="correo"></pre>
             <pre>CONTRASEÑA:                <input type="text" name="password"></pre>
-            <pre>F. NACIMIENTO:             <input type="text" name="fecha_nacimiento"></pre>
-            <pre>GENERO:                                <select name="genero">
+            <pre>F. NACIMIENTO:                     <input type="date" name="fecha_nacimiento"></pre>
+            <pre>Profesion:                             <select name="profesion">
                 <option selected disabled value="">Elige...</option>
-                <option value="1">Masculino</option>
-                <option value="2">Femenino</option>
+                {% for profesion in profesiones %}
+                <option value="{{profesion.id_profesion}}" selected>{{ profesion.profesion }}</option>
+                {% endfor %}
             </select>
             <pre>REGION:                    <input type="text" name="region"></pre>
             <pre>CIUDAD:                    <input type="text" name="ciudad"></pre>
