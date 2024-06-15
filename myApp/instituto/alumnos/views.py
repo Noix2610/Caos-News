@@ -1,7 +1,7 @@
 from django.shortcuts import render # type: ignore
 from .models import Usuario, Profesion
 from django.http import HttpResponse # type: ignore
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist # type: ignore
 
 # Create your views here.
 def base(request):
@@ -216,4 +216,8 @@ def adminUsuarioAdd(request):
         context = {'profesiones': profesiones}
         return render(request, 'alumnos/usuarios_add.html', context)
 
-    
+def menu(request):
+    request.session["usuario"]="cgarcia@gmail.com"
+    usuario=request.session["usuario"]
+    context = {'usuario':usuario}
+    return render (request,'alumnos/index.html', context)
