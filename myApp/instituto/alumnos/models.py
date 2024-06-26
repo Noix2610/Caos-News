@@ -14,6 +14,7 @@ class Usuario(models.Model):
     region = models.CharField(max_length=50, blank=True, null=True)
     ciudad = models.CharField(max_length=50, blank=True, null=True)
     cod_postal = models.IntegerField()
+    #Se comenta ya que da problema con la migración value=9
     # id_tipo_usuario = models.ForeignKey('Tipo_usuario',on_delete=models.CASCADE, db_column='id_tipo_usuario')
 
     def __str__(self):

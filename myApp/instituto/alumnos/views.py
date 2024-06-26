@@ -2,6 +2,7 @@ from django.shortcuts import render # type: ignore
 from .models import Usuario, Profesion
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
 
 # Create your views here.
 def base(request):
@@ -216,8 +217,13 @@ def adminUsuarioAdd(request):
         context = {'profesiones': profesiones}
         return render(request, 'alumnos/usuarios_add.html', context)
 
+@login_required
 def menu(request):
     request.session["usuario"]="cgarcia@gmail.com"
     usuario=request.session["usuario"]
     context = {'usuario':usuario}
-    return render (request,'alumnos/index.html', context)
+    return render (request,'alumnos/base.html', context)
+
+def home(request):
+    context={}
+    return render(request, 'alumno/base.html', context)

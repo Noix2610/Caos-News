@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-</head>
-<body>
-    <h2>Log In</h2>
-    <form method="post">
+{% extends "alumnos/base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'recursosCss/header1.css' %}">
+<link rel="stylesheet" href="{% static 'recursosCss/header2.css' %}">
+<link rel="stylesheet" href="{% static 'recursosCss/estilosNoticias.css' %}">
+
+<div class="container-fluid">
+    <div>
+   
+    <form method="post" style="text-align: center; height: 400px;" >
+        <h2>Iniciar Sesión</h2>
+
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Log In</button>
     </form>
-</body>
-</html>
+    </div>
+
+</div>
+{% endblock %}

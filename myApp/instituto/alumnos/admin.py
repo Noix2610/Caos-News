@@ -6,3 +6,4 @@ admin.site.register(Profesion)
 admin.site.register(Usuario)
 admin.site.register(Tipo_usuario)
 admin.site.register(Categoria)
+
