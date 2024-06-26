@@ -79,54 +79,13 @@
                                 <!-- Menu 2-->
                                 <ul class="navbar-nav ms-auto">
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link" id="aTransition" data-bs-toggle="modal"
-                                            data-bs-target="#modal" style="text-decoration:none; color: #1b1b1b;">
-                                            Iniciar Sesión
+                                        
+                                            {% if user.is_authenticated %}
+                                                <a href="{% url 'logout' %}" class="nav-link" style="text-decoration:none;  color: #1b1b1b;">{{user.username}}</a>
+                                            {% else %}
+                                                <a href="{% url 'login' %}" class="nav-link" style="text-decoration:none;  color: #1b1b1b;"> iniciar sesión</a>
+                                            {% endif %}
                                         </a>
-                                        <div class="modal fade" id="modal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Inicia Sesión
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <!-- Ocurre un error al abrir Inicio Sesion cuando se activa jquery de header -->
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputEmail1"
-                                                                    class="form-label">Correo o
-                                                                    Nombre de
-                                                                    Usuario</label>
-                                                                <input type="email" class="form-control"
-                                                                    id="exampleInputEmail1"
-                                                                    aria-describedby="emailHelp">
-                                                                <div id="emailHelp" class="form-text">No usaremos tu
-                                                                    contraseña con nadie.</div>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="exampleInputPassword1"
-                                                                    class="form-label">Contraseña</label>
-                                                                <input type="password" class="form-control"
-                                                                    id="exampleInputPassword1">
-                                                            </div>
-                                                            <div class="mb-3 form-check">
-                                                                <input type="checkbox" class="form-check-input"
-                                                                    id="exampleCheck1">
-                                                                <label class="form-check-label"
-                                                                    for="exampleCheck1">Recuerdame</label>
-                                                            </div>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Ingresar</button>
-                                                        </form>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
                                     </li>
                                     <a href="{% url 'registro' %}" class="nav-link" id="aTransition" target="_blank"
                                         style="text-decoration:none; color: #1b1b1b;">Registrarse</a>

@@ -19,4 +19,7 @@ urlpatterns =[
     path('adminUsuarioAdd',views.adminUsuarioAdd,name='adminUsuarioAdd'),
     path('crud',views.crud,name='crud'),
     path('usuariosUpdate',views.usuariosUpdate,name='usuariosUpdate'),
+    path('menu',views.menu, name='menu'),
+    path('home', views.home, name='home'),
+    # path('login', views.login, name='login')
 ]

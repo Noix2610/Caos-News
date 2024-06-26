@@ -14,6 +14,8 @@ class Usuario(models.Model):
     region = models.CharField(max_length=50, blank=True, null=True)
     ciudad = models.CharField(max_length=50, blank=True, null=True)
     cod_postal = models.IntegerField()
+    #Se comenta ya que da problema con la migración value=9
+    # id_tipo_usuario = models.ForeignKey('Tipo_usuario',on_delete=models.CASCADE, db_column='id_tipo_usuario')
 
     def __str__(self):
         return str(self.nombres)+" "+str(self.apellidos)
@@ -24,3 +26,17 @@ class Profesion(models.Model):
 
     def __str__(self):
         return str(self.profesion)
+
+class Tipo_usuario(models.Model):
+    id_tipo_usuario = models.IntegerField(primary_key=True)
+    descripcion =models.CharField(max_length=400, blank=False, null=False)
+
+    def __str__(self):
+        return str(self.id_tipo_usuario)
+
+class Categoria(models.Model):
+    id_categoria = models.IntegerField(primary_key=True)
+    nombre_categoria = models.CharField(max_length=50,blank=False, null=False)
+
+    def __str__(self):
+        return str(self.Categoria)
