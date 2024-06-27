@@ -1,5 +1,6 @@
 from django.shortcuts import render # type: ignore
 from .models import Usuario, Profesion
+from django.contrib.auth.models import User
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
@@ -35,7 +36,7 @@ def registro(request):
     return render(request, 'alumnos/registro.html', context)
 
 def listaSQL(request):
-    usuarios = Usuario.objects.raw(' SELECT * FROM alumnos_alumno')
+    usuarios = User.objects.raw(' SELECT * FROM alumnos_alumno')
     print()
     context={'usuarios':usuarios}
     return render(request,'alumnos/listaSQL.html',context)
@@ -50,12 +51,12 @@ def usuarios_edit(request):
     return render(request,'alumnos/usuarios_edit.html',context)
 
 def usuarios_list(request):
-    usuarios = Usuario.objects.all()
+    usuarios = User.objects.all()
     context = {'usuarios': usuarios}
     return render(request,'alumnos/usuarios_list.html',context)
 
 def crud(request):
-    usuarios = Usuario.objects.all()
+    usuarios = User.objects.all()
     context={'usuarios':usuarios}
     return render(request,'alumnos/usuarios_list.html',context)
 
@@ -79,18 +80,16 @@ def usuarioAdd(request):
         cod_postal = request.POST.get('cod_postal')
 
         # Crear el usuario y guardarlo en la base de datos
-        nuevo_usuario = Usuario(
-            nombres=nombres,
-            apellidos=apellidos,
-            nom_usuario=nom_usuario,
-            telefono=telefono,
-            email=email,
+        nuevo_usuario =  User.objects.create_user(
+             username=nom_usuario,
+
             password=password,
-            fecha_nacimiento=fecha_nacimiento,
-            id_profesion=id_profesion,  # Asignar el objeto Genero
-            region = region,
-            ciudad = ciudad,
-            cod_postal = cod_postal
+
+            email=email,
+
+            first_name=nombres,
+
+            last_name=apellidos
             # Otros campos...
         )
         nuevo_usuario.save()
@@ -108,7 +107,7 @@ def usuarioAdd(request):
 def usuarios_del(request,pk):
     context={}
     try:
-        usuario = Usuario.objects.get(id_usuario=pk)
+        usuario = User.objects.get(id_usuario=pk)
 
         usuario.delete()
         mensaje="Usuario Eliminado..."
@@ -123,7 +122,7 @@ def usuarios_del(request,pk):
     
 def usuarios_findEdit(request,pk):
     if pk != "":
-        usuario = Usuario.objects.get(id_usuario=pk)
+        usuario = User.objects.get(id_usuario=pk)
         profesiones = Profesion.objects.all()
 
         print(type(usuario.id_profesion.profesion))
@@ -151,10 +150,10 @@ def usuariosUpdate(request):
         cod_postal = request.POST['cod_postal']
         objProfesion = Profesion.objects.get(id_profesion=profesion_id)
 
-        usuario = Usuario()
+        usuario =  User.objects.create_user()
         usuario.nombres = nombres
         usuario.apellidos = apellidos
-        usuario.nom_usuario = nom_usuario
+        usuario.username = nom_usuario
         usuario.telefono = telefono
         usuario.email = email
         usuario.password = password
@@ -193,10 +192,10 @@ def adminUsuarioAdd(request):
         cod_postal = request.POST.get('cod_postal')
 
         # Crear el usuario y guardarlo en la base de datos
-        nuevo_usuario = Usuario(
+        nuevo_usuario =  User.objects.create_user(
             nombres=nombres,
             apellidos=apellidos,
-            nom_usuario=nom_usuario,
+            username=nom_usuario,
             telefono=telefono,
             email=email,
             password=password,
