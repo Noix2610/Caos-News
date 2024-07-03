@@ -1,6 +1,6 @@
 from django.shortcuts import render # type: ignore
 from .models import Usuario, Profesion
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User # type: ignore
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
@@ -81,7 +81,7 @@ def usuarioAdd(request):
 
         # Crear el usuario y guardarlo en la base de datos
         nuevo_usuario =  User.objects.create_user(
-             username=nom_usuario,
+            username=nom_usuario,
 
             password=password,
 
@@ -92,6 +92,21 @@ def usuarioAdd(request):
             last_name=apellidos
             # Otros campos...
         )
+
+        nuevo_usuario2 = Usuario(
+            nombres=nombres,
+            apellidos=apellidos,
+            nom_usuario=nom_usuario,
+            telefono=telefono,
+            email=email,
+            password=password,
+            fecha_nacimiento=fecha_nacimiento, 
+            id_profesion=id_profesion,
+            region = region,
+            ciudad = ciudad,
+            cod_postal = cod_postal)
+        
+        nuevo_usuario2.save()
         nuevo_usuario.save()
 
         # Opcional: redirigir a una página de éxito o mostrar un mensaje de confirmación
@@ -162,11 +177,25 @@ def usuariosUpdate(request):
         usuario.region = region
         usuario.ciudad = ciudad
         usuario.cod_postal = cod_postal
-        
+
+        usuario2 = Usuario()
+        usuario.nombres = nombres
+        usuario.apellidos = apellidos
+        usuario.nom_usuario = nom_usuario
+        usuario.telefono = telefono
+        usuario.email = email
+        usuario.password = password
+        usuario.fecha_nacimiento = fecha_nacimiento
+        usuario.id_profesion = objProfesion  # Asignar la instancia de Profesion
+        usuario.region = region
+        usuario.ciudad = ciudad
+        usuario.cod_postal = cod_postal
+
+        usuario2.save()
         usuario.save()
 
         profesiones = Profesion.objects.all()
-        context = {'mensaje': "Datos actualizados...", 'profesiones': profesiones, 'usuario': usuario}
+        context = {'mensaje': "Datos actualizados...", 'profesiones': profesiones, 'usuario': usuario, 'usuario2':usuario2}
         return render(request, 'alumnos/usuarios_edit.html', context)
     else:
         usuarios = Usuario.objects.all()
@@ -206,6 +235,21 @@ def adminUsuarioAdd(request):
             cod_postal = cod_postal
             # Otros campos...
         )
+
+        nuevo_usuario2 = Usuario(
+            nombres=nombres,
+            apellidos=apellidos,
+            nom_usuario=nom_usuario,
+            telefono=telefono,
+            email=email,
+            password=password,
+            fecha_nacimiento=fecha_nacimiento, 
+            id_profesion=id_profesion,
+            region = region,
+            ciudad = ciudad,
+            cod_postal = cod_postal)
+        
+        nuevo_usuario2.save()
         nuevo_usuario.save()
         context={'mensaje':'Usuario Registrado Correctamente'}
         return render(request, 'alumnos/usuarios_add.html', context)
