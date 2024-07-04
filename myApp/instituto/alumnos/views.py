@@ -51,12 +51,12 @@ def usuarios_edit(request):
     return render(request,'alumnos/usuarios_edit.html',context)
 
 def usuarios_list(request):
-    usuarios = User.objects.all()
+    usuarios = Usuario.objects.all()
     context = {'usuarios': usuarios}
     return render(request,'alumnos/usuarios_list.html',context)
 
 def crud(request):
-    usuarios = User.objects.all()
+    usuarios = Usuario.objects.all()
     context={'usuarios':usuarios}
     return render(request,'alumnos/usuarios_list.html',context)
 
@@ -122,7 +122,7 @@ def usuarioAdd(request):
 def usuarios_del(request,pk):
     context={}
     try:
-        usuario = User.objects.get(id_usuario=pk)
+        usuario = Usuario.objects.get(id_usuario=pk)
 
         usuario.delete()
         mensaje="Usuario Eliminado..."
@@ -137,7 +137,7 @@ def usuarios_del(request,pk):
     
 def usuarios_findEdit(request,pk):
     if pk != "":
-        usuario = User.objects.get(id_usuario=pk)
+        usuario = Usuario.objects.get(id_usuario=pk)
         profesiones = Profesion.objects.all()
 
         print(type(usuario.id_profesion.profesion))
