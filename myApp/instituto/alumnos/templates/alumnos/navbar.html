@@ -1,0 +1,29 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Demo project</a>
+      </div>
+
+      <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right">
+                {% if request.user.is_authenticated %}
+                    <li class='dropdown'>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Account
+                            <span class="caret"></span>
+                        </a>
+                        <ul class='dropdown-menu' role='menu'>
+                            <li><a href="#">Account Information</a></li>
+                            <li><a href="/accounts/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="/alumnos/registro">Sign Up</a></li>
+                    <li><a href="/accounts/login">Login</a></li>
+                {% endif %}
+
+            </ul>            
+
+        </div><!--/.navbar-collapse -->
+
+    </div>
+</div>

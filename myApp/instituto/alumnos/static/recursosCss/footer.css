@@ -1,0 +1,52 @@
+footer {
+    background: linear-gradient(#6b9ac4, #405d8a);
+    color: #343A40;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    color: #fff;
+    position: relative;
+    /* Ajusta la posición relativa para que el `footer` esté al final */
+    bottom: 0;
+    /* Asegura que el `footer` esté pegado al fondo */
+}
+
+footer .container-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+footer .col-lg-3,
+footer .col-lg-9 {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+footer img {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+footer table {
+    width: 100%;
+}
+
+footer td {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+footer svg {
+    margin-right: 10px;
+}

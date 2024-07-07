@@ -2,55 +2,51 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'recursosCss/usuarios_list.css' %}">
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Edición de Usuarios</h1>
 
-<div style="display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;">
-    
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Edición de Usuarios</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button type="button" class="btn btn-primary">
+            <a href="{% url 'registro' %}" style="text-decoration: none; color: white;">Agregar Usuario</a>
+        </button>
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <button type="button" class="btn btn-primary">
-                <a href="{% url 'registro' %}" style="text-decoration: none; color: white;">Agregar Usuario</a>
-            </button>
-
-            <div id="idMensajes">
-                {% if mensaje %}
-                <div class="alert alert-info">{{ mensaje }}</div>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Eliminar</th>
-                        <th scope="col">Modificar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for x in usuarios %}
-                    <tr>
-                        <td>{{ x.nombres }}</td>
-                        <td>{{ x.apellidos }}</td>
-                        <td><a href="{% url 'usuarios_del' pk=x.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
-                        <td><a href="{% url 'usuarios_findEdit' pk=x.id_usuario %}"
-                                class="btn btn-warning">Modificar</a></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div id="idMensajes">
+            {% if mensaje %}
+            <div class="alert alert-info">{{ mensaje }}</div>
+            {% endif %}
         </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#idMensajes").delay(2000).fadeOut("slow");
-        })
-    </script>
-    {% endblock %}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Eliminar</th>
+                    <th scope="col">Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in usuarios %}
+                <tr>
+                    <td>{{ x.nombres }}</td>
+                    <td>{{ x.apellidos }}</td>
+                    <td><a href="{% url 'usuarios_del' pk=x.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
+                    <td><a href="{% url 'usuarios_findEdit' pk=x.id_usuario %}" class="btn btn-warning">Modificar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#idMensajes").delay(2000).fadeOut("slow");
+    })
+</script>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil del Usuario</title>
+    
+</head>
+<body>
+    <h1>Perfil de {{ usuario.username }}</h1>
+    <p>Correo electrónico: {{ usuario.email }}</p>
+    <p>Fecha de nacimiento: {{ usuario.fecha_nacimiento }}</p>
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+</body>
+</html>

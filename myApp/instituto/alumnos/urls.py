@@ -19,7 +19,8 @@ urlpatterns =[
     path('adminUsuarioAdd',views.adminUsuarioAdd,name='adminUsuarioAdd'),
     path('crud',views.crud,name='crud'),
     path('usuariosUpdate',views.usuariosUpdate,name='usuariosUpdate'),
-    path('menu',views.menu, name='menu'),
-    path('home', views.home, name='home'),
-    # path('login', views.login, name='login')
+    path('perfil/', views.perfil, name='perfil'),
+    path('usuarios/', views.usuarios_list, name='usuarios_list'),
+    path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
+    
 ]

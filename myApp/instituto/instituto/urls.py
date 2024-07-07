@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from alumnos import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('alumnos/',include('alumnos.urls')),
-    path("accounts/", include("django.contrib.auth.urls")),
+    path('alumnos/', include('alumnos.urls')),
+    path('no-autorizado/', views.no_autorizado, name='no_autorizado'),
+    path('accounts/', include('django.contrib.auth.urls')),  # Configurar las URLs de autenticación de Django
+    path('perfil/', views.perfil, name='perfil'),
+    path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
     
 ]
+

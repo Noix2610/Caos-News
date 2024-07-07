@@ -1,9 +1,12 @@
-from django.shortcuts import render # type: ignore
-from .models import Usuario, Profesion
+from django.contrib.auth.decorators import user_passes_test # type: ignore
+from django.shortcuts import render,redirect # type: ignore
+from .models import Usuario, Profesion, Categoria
 from django.contrib.auth.models import User # type: ignore
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
+from .models import Noticia, Foto
+
 
 # Create your views here.
 def base(request):
@@ -40,27 +43,11 @@ def listaSQL(request):
     print()
     context={'usuarios':usuarios}
     return render(request,'alumnos/listaSQL.html',context)
+
 def usuarios_add(request):
     profesiones = Profesion.objects.all()
     context = {'profesiones': profesiones}
     return render(request,'alumnos/usuarios_add.html',context)
-
-def usuarios_edit(request):
-    profesiones = Profesion.objects.all()
-    context = {'profesiones': profesiones}
-    return render(request,'alumnos/usuarios_edit.html',context)
-
-def usuarios_list(request):
-    usuarios = Usuario.objects.all()
-    context = {'usuarios': usuarios}
-    return render(request,'alumnos/usuarios_list.html',context)
-
-def crud(request):
-    usuarios = Usuario.objects.all()
-    context={'usuarios':usuarios}
-    return render(request,'alumnos/usuarios_list.html',context)
-
-
     
 def usuarioAdd(request):
     if request.method == "POST":
@@ -118,23 +105,47 @@ def usuarioAdd(request):
         profesiones = Profesion.objects.all()
         context = {'profesiones': profesiones}
         return render(request, 'alumnos/registro.html', context)
-    
-def usuarios_del(request,pk):
-    context={}
-    try:
-        usuario = Usuario.objects.get(id_usuario=pk)
 
-        usuario.delete()
-        mensaje="Usuario Eliminado..."
-        usuarios = Usuario.objects.all()
-        context={'usuarios':usuarios, 'mensaje':mensaje}
-        return render(request, 'alumnos/usuarios_list.html',context)
-    except:
-        mensaje= 'Error, usuario no existe...'
-        usuarios = Usuario.objects.all()
-        context={'usuarios':usuarios, 'mensaje':mensaje}
-        return render(request, 'alumnos/usuarios_list.html',context)
-    
+def es_staff(user):
+    return user.is_authenticated and user.is_staff
+
+def no_autorizado(request):
+    return render(request, 'alumnos/no_autorizado.html')
+
+from .forms import NoticiaForm  # Si utilizas un formulario personalizado
+
+@login_required
+def agregar_noticia(request):
+    categorias = Categoria.objects.all()
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # Reemplaza 'index' con la URL a donde quieres redireccionar
+    else:
+        form = NoticiaForm()
+
+    context = {
+        'form': form,
+        'categorias': categorias,
+    }
+    return render(request, 'alumnos/agregar-noticia.html', context)
+
+
+
+@login_required
+def perfil(request):
+    usuario = request.user
+    context = {'usuario': usuario}
+    return render(request, 'alumnos/perfil.html', context)
+
+@user_passes_test(es_staff, login_url='/no-autorizado/')
+def usuarios_list(request):
+    usuarios = Usuario.objects.all()
+    context = {'usuarios': usuarios}
+    return render(request, 'alumnos/usuarios_list.html', context)
+
+@user_passes_test(es_staff, login_url='/no-autorizado/')
 def usuarios_findEdit(request,pk):
     if pk != "":
         usuario = Usuario.objects.get(id_usuario=pk)
@@ -149,7 +160,8 @@ def usuarios_findEdit(request,pk):
         else:
             mensaje = 'Error, usuario no existe...'
             return render(request, 'alumnos/usuarios_edit.html',context)
-    
+
+@user_passes_test(es_staff, login_url='/no-autorizado/')
 def usuariosUpdate(request):
     if request.method == "POST":
         nombres = request.POST['nombres']
@@ -202,7 +214,43 @@ def usuariosUpdate(request):
         context = {'usuarios': usuarios}
         return render(request, 'alumnos/usuarios_edit.html', context)
 
+@user_passes_test(es_staff, login_url='/no-autorizado/')  
+def usuarios_edit(request):
+    profesiones = Profesion.objects.all()
+    context = {'profesiones': profesiones}
+    return render(request,'alumnos/usuarios_edit.html',context)
+
+@user_passes_test(es_staff, login_url='/no-autorizado/')
+def usuarios_list(request):
+    usuarios = Usuario.objects.all()
+    context = {'usuarios': usuarios}
+    return render(request,'alumnos/usuarios_list.html',context)
+
+@user_passes_test(es_staff, login_url='/no-autorizado/')
+def crud(request):
+    usuarios = Usuario.objects.all()
+    context={'usuarios':usuarios}
+    return render(request,'alumnos/usuarios_list.html',context)
+
+
+@user_passes_test(es_staff, login_url='/no-autorizado/')
+def usuarios_del(request,pk):
+    context={}
+    try:
+        usuario = Usuario.objects.get(id_usuario=pk)
+
+        usuario.delete()
+        mensaje="Usuario Eliminado..."
+        usuarios = Usuario.objects.all()
+        context={'usuarios':usuarios, 'mensaje':mensaje}
+        return render(request, 'alumnos/usuarios_list.html',context)
+    except:
+        mensaje= 'Error, usuario no existe...'
+        usuarios = Usuario.objects.all()
+        context={'usuarios':usuarios, 'mensaje':mensaje}
+        return render(request, 'alumnos/usuarios_list.html',context)
     
+@user_passes_test(es_staff, login_url='/no-autorizado/')
 def adminUsuarioAdd(request):
     if request.method == "POST":
         # Obtener los datos del formulario
@@ -259,14 +307,3 @@ def adminUsuarioAdd(request):
         profesiones = Profesion.objects.all()
         context = {'profesiones': profesiones}
         return render(request, 'alumnos/usuarios_add.html', context)
-
-@login_required
-def menu(request):
-    request.session["usuario"]="cgarcia@gmail.com"
-    usuario=request.session["usuario"]
-    context = {'usuario':usuario}
-    return render (request,'alumnos/base.html', context)
-
-def home(request):
-    context={}
-    return render(request, 'alumno/base.html', context)
