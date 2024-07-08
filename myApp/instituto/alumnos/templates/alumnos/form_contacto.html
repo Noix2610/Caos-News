@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <a class="nav-link active" aria-current="page" href="{% url 'formulario_contacto' %}" id="aTransition" style="text-decoration:none; color: #1b1b1b;">Contacto</a>
+
+    {% bootstrap_css %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Formulario de Contacto</h1>
+        <form method="POST" action="{% url 'enviar_contacto' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="mensaje" class="form-label">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" class="form-control" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    {% bootstrap_javascript %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- instituto/alumnos/templates/alumnos/contacto.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Formulario de Contacto</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    {% bootstrap_javascript %}
+</body>
+</html>

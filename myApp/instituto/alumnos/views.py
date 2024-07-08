@@ -1,9 +1,15 @@
-from django.shortcuts import render # type: ignore
-from .models import Usuario, Profesion
+from django.shortcuts import render, redirect# type: ignore
+from .models import Usuario, Profesion, Noticia
 from django.contrib.auth.models import User # type: ignore
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
+from django.db.models import Count
+from .forms import ContactForm
+from django.core.mail import send_mail
+from django.conf import settings
+
+
 
 # Create your views here.
 def base(request):
@@ -270,3 +276,42 @@ def menu(request):
 def home(request):
     context={}
     return render(request, 'alumno/base.html', context)
+
+def contar_noticias_usuario(request):
+    usuarios_con_cantidad = User.objects.annotate(num_noticias=Count('noticia'))
+    return render(request,'conteo_noticias.html',{'usuario_con_cantidad': usuarios_con_cantidad}) 
+
+def formulario_contacto(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Aquí puedes añadir el código para manejar el formulario (p.ej., enviar un correo, guardar en la base de datos, etc.)
+            pass
+    else:
+        form = ContactForm()
+    
+    return render(request, 'alumnos/contacto.html', {'form': form})
+
+def enviar_contacto(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            email = form.cleaned_data['email']
+            mensaje = form.cleaned_data['mensaje']
+
+            send_mail(
+                'mensaje de contacto'
+                f'{nombre}the ha enviado un mensaje:\n\n{mensaje}',
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_HOST_USER],
+                fail_silently=False,
+
+            )
+            return redirect('formulario_contacto')
+        else:
+            form = ContactForm()
+        return render(request,'formulario_contacto.html',{'form': form})
+
+        
+

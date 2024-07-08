@@ -21,5 +21,7 @@ urlpatterns =[
     path('usuariosUpdate',views.usuariosUpdate,name='usuariosUpdate'),
     path('menu',views.menu, name='menu'),
     path('home', views.home, name='home'),
+    path('contacto/', views.formulario_contacto, name='formulario_contacto'),
+   
     # path('login', views.login, name='login')
 ]
