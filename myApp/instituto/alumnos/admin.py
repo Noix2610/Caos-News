@@ -6,12 +6,5 @@ admin.site.register(Profesion)
 admin.site.register(Usuario)
 admin.site.register(Categoria)
 admin.site.register(Noticia)
-
-class FotoInline(admin.TabularInline):
-    model = Foto
-    extra = 1  # Número inicial de formularios en línea
-
-@admin.register(Foto)
-class FotoAdmin(admin.ModelAdmin):
-    list_display = ('imagen',)
+admin.site.register(Foto)
 

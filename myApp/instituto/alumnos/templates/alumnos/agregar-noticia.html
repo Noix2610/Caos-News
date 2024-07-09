@@ -9,34 +9,44 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="titulo">Título:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo">
+            <input type="text" class="form-control" id="titulo" name="titulo" required>
         </div>
         <div class="form-group">
             <label for="historia">Historia:</label>
-            <textarea class="form-control" id="historia" name="historia"></textarea>
+            <textarea class="form-control" id="historia" name="historia" required></textarea>
         </div>
         <input type="hidden" id="autor" name="autor" value="{{ request.user.username }}">
         <div class="form-group">
             <label for="fecha_publicacion">Fecha de Publicación:</label>
-            <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion">
+            <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion" readonly>
         </div>
         <div class="form-group">
             <label for="ubicacion">Ubicación:</label>
-            <input type="text" class="form-control" id="ubicacion" name="ubicacion">
+            <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
         </div>
         <div class="form-group">
             <label for="categoria">Categoría:</label>
-            <select class="form-control" id="categoria" name="categoria">
+            <select class="form-control" id="categoria" name="categoria" required>
                 {% for categoria in categorias %}
-                    <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
                 {% endfor %}
             </select>
-        </div>
-        <div class="form-group">
-            <label for="imagen">Imagen:</label>
-            <input type="file" class="form-control-file" id="imagen" name="imagen">
         </div>
         <button type="submit" class="btn btn-primary">Agregar Noticia</button>
     </form>
 </div>
+
+<script>
+    // Establecer la fecha actual como valor por defecto en el campo de fecha
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0
+        const dd = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${yyyy}-${mm}-${dd}`;
+
+        document.getElementById('fecha_publicacion').value = formattedDate;
+    });
+</script>
+
 {% endblock %}

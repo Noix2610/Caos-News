@@ -1,14 +1,20 @@
-
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Perfil del Usuario</title>
-    
-</head>
 <body>
     <h1>Perfil de {{ usuario.username }}</h1>
     <p>Correo electrónico: {{ usuario.email }}</p>
     <p>Fecha de nacimiento: {{ usuario.fecha_nacimiento }}</p>
     <a href="{% url 'logout' %}">Cerrar sesión</a>
-</body>
-</html>
+
+    <h2>Noticias Creadas por {{ usuario.username }}</h2>
+    <ul>
+        {% for noticia in noticias %}
+        <li>
+            <h3>{{ noticia.titulo }}</h3>
+            <p>{{ noticia.historia|truncatewords:30 }}</p> <!-- Limita el contenido de la noticia a 30 palabras -->
+            <p><strong>Fecha de Publicación:</strong> {{ noticia.fecha_publicacion }}</p>
+            <a href="">Leer más</a>
+            <!-- Asegúrate de tener la vista 'detalle_noticia' configurada -->
+        </li>
+        {% empty %}
+        <p>No has creado ninguna noticia todavía.</p>
+        {% endfor %}
+    </ul>

@@ -116,27 +116,48 @@ from .forms import NoticiaForm  # Si utilizas un formulario personalizado
 
 @login_required
 def agregar_noticia(request):
-    categorias = Categoria.objects.all()
     if request.method == 'POST':
-        form = NoticiaForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('index')  # Reemplaza 'index' con la URL a donde quieres redireccionar
-    else:
-        form = NoticiaForm()
+        titulo = request.POST['titulo']
+        historia = request.POST['historia']
+        autor = request.user  # Usuario logueado
+        fecha_publicacion = request.POST.get('fecha_publicacion')  # Puede ser omitido si auto_now_add está en el modelo
+        ubicacion = request.POST['ubicacion']
+        categoria_id = request.POST['categoria']
+        categoria = Categoria.objects.get(id=categoria_id)
+        
+        nueva_noticia = Noticia.objects.create(
+            titulo=titulo,
+            historia=historia,
+            autor=autor,
+            ubicacion=ubicacion,
+            categoria=categoria,
+            fecha_publicacion = fecha_publicacion
+        )
 
-    context = {
-        'form': form,
-        'categorias': categorias,
-    }
-    return render(request, 'alumnos/agregar-noticia.html', context)
+        # Procesar las fotos
+        imagenes = request.FILES.getlist('imagen')
+        for imagen in imagenes:
+            Foto.objects.create(noticia=nueva_noticia, imagen=imagen)
+
+        return redirect('alumnos/agregar_noticia.html')  # Redirige a una vista después de agregar la noticia
+
+    else:
+        categorias = Categoria.objects.all()
+        context = {'categorias': categorias}
+        return render(request, 'alumnos/agregar_noticia.html', context)
+
 
 
 
 @login_required
 def perfil(request):
-    usuario = request.user
-    context = {'usuario': usuario}
+    usuario = request.user  # Obtener el usuario actualmente autenticado
+    noticias = Noticia.objects.filter(autor=usuario)  # Filtrar noticias por autor
+
+    context = {
+        'usuario': usuario,
+        'noticias': noticias,
+    }
     return render(request, 'alumnos/perfil.html', context)
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')

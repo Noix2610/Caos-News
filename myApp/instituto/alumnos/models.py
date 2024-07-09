@@ -44,19 +44,18 @@ class Categoria(models.Model):
 class Noticia(models.Model):
     titulo = models.CharField(max_length=200)
     historia = models.TextField()
-    autor = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el autor, ajusta según tus necesidades
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_publicacion = models.DateField()
     ubicacion = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    galeria_fotos = models.ManyToManyField('Foto', related_name='fotos_noticia', blank=True)
 
     def __str__(self):
         return self.titulo
 
 class Foto(models.Model):
     imagen = models.ImageField(upload_to='fotos_noticias')
-    
-
+    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')  # Relaciona con `Noticia`
 
     def __str__(self):
         return self.imagen.url
+

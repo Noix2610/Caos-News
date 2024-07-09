@@ -23,4 +23,5 @@ urlpatterns =[
     path('usuarios/', views.usuarios_list, name='usuarios_list'),
     path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
     
+    
 ]
