@@ -1,0 +1,62 @@
+{% extends "alumnos/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        /* Color de fondo suave */
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        /* Fondo blanco para el formulario */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        /* Sombra suave */
+    }
+
+    .form-container h2 {
+        margin-bottom: 20px;
+        color: #007bff;
+        /* Color azul para el título */
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        /* Color de fondo azul */
+        color: #ffffff;
+        /* Texto blanco */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover {
+        background-color: #0056b3;
+        /* Cambio de color al pasar el ratón */
+    }
+</style>
+
+<div class="container" style="margin-top: 10%; margin-bottom: 11%;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container">
+                <form method="post">
+                    <h2 class="mb-4">Iniciar Sesión</h2>
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
