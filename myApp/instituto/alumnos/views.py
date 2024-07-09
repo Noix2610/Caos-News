@@ -1,12 +1,10 @@
 from django.contrib.auth.decorators import user_passes_test # type: ignore
 from django.shortcuts import render,redirect # type: ignore
-from .models import Usuario, Profesion, Categoria
+from .models import Usuario, Profesion, Categoria, Region, Comuna, Noticia, Foto
 from django.contrib.auth.models import User # type: ignore
 from django.http import HttpResponse # type: ignore
 from django.core.exceptions import ObjectDoesNotExist # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
-from .models import Noticia, Foto
-
 
 # Create your views here.
 def base(request):
@@ -34,9 +32,17 @@ def carrito(request):
     return render(request,'alumnos/carrito.html',context)
 
 def registro(request):
+    regiones = Region.objects.all()
+    comunas = Comuna.objects.all()  # Obtener todas las comunas, asegúrate de filtrar si es necesario
     profesiones = Profesion.objects.all()
-    context = {'profesiones': profesiones}
+
+    context = {
+        'regiones': regiones,
+        'comunas': comunas,
+        'profesiones': profesiones,
+    }
     return render(request, 'alumnos/registro.html', context)
+
 
 def listaSQL(request):
     usuarios = User.objects.raw(' SELECT * FROM alumnos_alumno')
@@ -139,12 +145,12 @@ def agregar_noticia(request):
         for imagen in imagenes:
             Foto.objects.create(noticia=nueva_noticia, imagen=imagen)
 
-        return redirect('alumnos/agregar_noticia.html')  # Redirige a una vista después de agregar la noticia
+        return redirect('alumnos/agregar-noticia.html')  # Redirige a una vista después de agregar la noticia
 
     else:
         categorias = Categoria.objects.all()
         context = {'categorias': categorias}
-        return render(request, 'alumnos/agregar_noticia.html', context)
+        return render(request, 'alumnos/agregar-noticia.html', context)
 
 
 

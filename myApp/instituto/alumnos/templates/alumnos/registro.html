@@ -3,21 +3,18 @@
 
 {% block content %}
 
-
-
 <link rel="stylesheet" href="{% static 'recursosCss/style_carga.css' %}">
 <link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
 
 <div class="page-loader">
     <div class="spinner"></div>
     <div class="txt">Cargando<br />espere...</div>
-
 </div>
 
 <div>
     <div style="text-align: center;" id="idMensajes">
         {% if mensaje %}
-        {{mensaje}}
+        {{ mensaje }}
         {% endif %}
     </div>
 </div>
@@ -34,8 +31,7 @@
                 <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
             </button>
             <input type="text" class="form-control" id="nombres" name="nombres" required>
-            <div class="valNombres">
-            </div>
+            <div class="valNombres"></div>
         </div>
         <div class="col-lg-md-4 registro">
             <label for="validationCustom02" class="form-label">Apellidos</label>
@@ -44,8 +40,7 @@
                 <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
             </button>
             <input type="text" class="form-control" id="apellidos" name="apellidos" required>
-            <div class="valApellidos">
-            </div>
+            <div class="valApellidos"></div>
         </div>
         <div class="col-lg-md-4 registro">
             <label for="validationCustomUsername" class="form-label">Nombre de Usuario</label>
@@ -63,7 +58,7 @@
             <select class="form-select" id="profesion" name="profesion" required>
                 <option selected disabled value="">Elige...</option>
                 {% for profesion in profesiones %}
-                <option value="{{profesion.id_profesion}}" selected>{{ profesion.profesion }}</option>
+                <option value="{{ profesion.id_profesion }}">{{ profesion.profesion }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -131,32 +126,22 @@
             <label for="validationCustomRegion" class="form-label">Región</label>
             <select class="form-select" id="region" name="region" required>
                 <option selected disabled value="">Elige...</option>
-                <option>Arica y Parinacota</option>
-                <option>Tarapaca</option>
-                <option>Antofagasta</option>
-                <option>Atacama</option>
-                <option>Coquimbo</option>
-                <option>Valparaíso</option>
-                <option>O'Higgins</option>
-                <option>Maule</option>
-                <option>Ñuble</option>
-                <option>Bío Bío</option>
-                <option>La Araucanía</option>
-                <option>Los Ríos</option>
-                <option>Los Lagos</option>
-                <option>Aysen</option>
-                <option>Magallanes</option>
-                <option>Metropolitana</option>
+                {% for region in regiones %}
+                <option value="{{ region.cod_region }}">{{ region.nombre_region }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="col-lg-6-md-3 registro">
             <label for="validationCustomCity" class="form-label">Ciudad</label>
             <select class="form-select" id="ciudad" name="ciudad" required>
                 <option selected disabled value="">Elige...</option>
-                <option>Valparaiso</option>
-                <option>Viña del Mar</option>
+                {% for comuna in comunas %}
+                <option value="{{ comuna.cod_comuna }}" data-region="{{ comuna.region.cod_region }}">{{
+                    comuna.nombre_comuna }}</option>
+                {% endfor %}
             </select>
         </div>
+
         <div class="col-md-3 registro">
             <label for="validationCustomPostal" class="form-label">Codigo Postal</label>
             <input type="number" class="form-control" id="cod_postal" name="cod_postal" required>
@@ -168,7 +153,7 @@
                     Acepto los Terminos y Condiciones
                 </label>
                 <div class="invalid-feedback">
-                    Debes aceptar los terminos antes de terminar el formulario.
+                    Debes aceptar los términos antes de terminar el formulario.
                 </div>
             </div>
         </div>
@@ -176,9 +161,28 @@
             <button class="btn btn-primary" type="submit" name="opcion">Registrarse</button>
         </div>
     </form>
-
 </div>
 
 <script src="{% static 'recursosJS/validaciones.js' %}"></script>
 <script src="{% static 'recursosJS/script_carga.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const regionSelect = document.getElementById("region");
+        const ciudadSelect = document.getElementById("ciudad");
+
+        regionSelect.addEventListener("change", function () {
+            const regionId = this.value;
+
+            // Resetea las opciones de comunas
+            ciudadSelect.innerHTML = '<option selected disabled value="">Elige...</option>';
+
+            // Añade las comunas correspondientes a la región seleccionada
+            Array.from(ciudadSelect.options).forEach(option => {
+                if (option.dataset.region === regionId) {
+                    ciudadSelect.appendChild(option.cloneNode(true));
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

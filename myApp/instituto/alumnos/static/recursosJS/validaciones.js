@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var inputPass2 = document.getElementById("pass2");
 
 
-
     inputNombres.addEventListener("keyup", function () {
         validarCampo(inputNombres, vNombres);
     });
@@ -173,4 +172,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
 

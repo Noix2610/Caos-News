@@ -59,3 +59,17 @@ class Foto(models.Model):
     def __str__(self):
         return self.imagen.url
 
+class Region(models.Model):
+    cod_region = models.IntegerField(primary_key=True)
+    nombre_region = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nombre_region
+
+class Comuna(models.Model):
+    cod_comuna = models.IntegerField(primary_key=True)
+    nombre_comuna = models.CharField(max_length=30)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='comunas')
+
+    def __str__(self):
+        return self.nombre_comuna
