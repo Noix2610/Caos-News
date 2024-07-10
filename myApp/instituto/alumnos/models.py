@@ -57,7 +57,7 @@ class Foto(models.Model):
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')  # Relaciona con `Noticia`
 
     def __str__(self):
-        return self.imagen.url
+        return f'Foto de la Noticia: {self.noticia.titulo}'
 
 class Region(models.Model):
     cod_region = models.IntegerField(primary_key=True)

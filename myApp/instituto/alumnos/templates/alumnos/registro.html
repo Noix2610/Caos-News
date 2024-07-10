@@ -3,25 +3,26 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'recursosCss/style_carga.css' %}">
+
 <link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
+<link rel="stylesheet" href="{% static 'recursosCss/style_carga.css' %}">
 
 <div class="page-loader">
     <div class="spinner"></div>
     <div class="txt">Cargando<br />espere...</div>
 </div>
 
-<div>
-    <div style="text-align: center;" id="idMensajes">
+<div class="container">
+    <div style="text-align: center; " >
         {% if mensaje %}
-        {{ mensaje }}
+        <div id="idMensajes" class="mensaje">{{ mensaje }}</div>
         {% endif %}
     </div>
 </div>
 
 <div class="registroCont">
     <h1>Formulario de Registro</h1>
-    <form action="usuarioAdd" method="POST" class="row g-3 needs-validation" validate>
+    <form action="usuarioAdd" method="POST" class="row g-3 needs-validation" id="registroForm">
         {% csrf_token %}
         <div class="col-lg-md-4 registro">
             <label for="validationCustom01" class="form-label">Nombres</label>
@@ -52,110 +53,77 @@
                 <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" required>
             </div>
             <div class="valUsuario"></div>
+            <div id="nombreUsuarioError" class="text-danger"></div>
         </div>
         <div class="col-lg-md-4 registro">
-            <label for="validationCustomGen" class="form-label">Profesión</label>
-            <select class="form-select" id="profesion" name="profesion" required>
-                <option selected disabled value="">Elige...</option>
-                {% for profesion in profesiones %}
-                <option value="{{ profesion.id_profesion }}">{{ profesion.profesion }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-lg-md-4 registro">
-            <label for="validationCustomTelefono" class="form-label">Telefono</label>
-            <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
-                data-bs-content="El Teléfono se usará para recuperar los datos de ingreso." data-bs-placement="right">
-                <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
-            </button>
-            <div class="input-group has-validation">
-                <input type="number" class="form-control" id="telefono" name="telefono" required>
-            </div>
+            <label for="validationCustom03" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" required>
             <div class="valTelefono"></div>
         </div>
-
         <div class="col-lg-md-4 registro">
-            <label for="validationCustomCorreo" class="form-label">Correo</label>
+            <label for="validationCustom04" class="form-label">Correo Electrónico</label>
             <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
                 data-bs-content="Debe ser @gmail.com, @hotmail.com/es, @yahoo.es." data-bs-placement="right">
                 <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
             </button>
-            <div class="input-group has-validation">
-                <input type="text" class="form-control" id="correo" name="email" required>
-            </div>
+            <input type="email" class="form-control" id="correo" name="correo" required>
             <div class="valCorreo"></div>
         </div>
-
         <div class="col-lg-md-4 registro">
-            <label for="validationCustomPassword" class="form-label">Contraseña</label>
+            <label for="validationCustom05" class="form-label">Contraseña</label>
             <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
                 data-bs-content="Debe contener al menos una letra, un número y al menos 8 caracteres."
                 data-bs-placement="right">
                 <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
             </button>
-            <div class="input-group has-validation">
-                <input type="text" class="form-control" id="pass" name="password" required>
-            </div>
+            <input type="password" class="form-control" id="pass" name="password" required>
             <div class="valPassword"></div>
         </div>
-
         <div class="col-lg-md-4 registro">
-            <label for="validationCustomPass" class="form-label">Repetir Contraseña</label>
-            <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
-                data-bs-content="Debe ser igual a la contraseña ingresada." data-bs-placement="right">
-                <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
-            </button>
-            <div class="input-group has-validation">
-                <input type="text" class="form-control" id="pass2" required>
-            </div>
+            <label for="validationCustom06" class="form-label">Repetir Contraseña</label>
+            <input type="password" class="form-control" id="pass2" required>
             <div class="valPassword2"></div>
         </div>
-
         <div class="col-lg-md-4 registro">
-            <label for="validationCustomFecNac" class="form-label">Fecha de Nacimiento</label>
+            <label for="validationCustom07" class="form-label">Fecha de Nacimiento</label>
             <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
                 data-bs-content="Seleccionar una fecha válida." data-bs-placement="right">
                 <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
             </button>
-            <div class="input-group has-validation">
-                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
-            </div>
+            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
         </div>
 
-        <div class="col-lg-6-md-6 registro">
-            <label for="validationCustomRegion" class="form-label">Región</label>
+        <div class="col-lg-md-4 registro">
+            <label for="validationCustom08" class="form-label">Profesión</label>
+            <select class="form-select" id="profesion" name="profesion" required>
+                {% for profesion in profesiones %}
+                <option value="{{ profesion.id_profesion }}">{{ profesion.profesion }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-lg-md-4 registro">
+            <label for="validationCustom09" class="form-label">Región</label>
             <select class="form-select" id="region" name="region" required>
-                <option selected disabled value="">Elige...</option>
                 {% for region in regiones %}
                 <option value="{{ region.cod_region }}">{{ region.nombre_region }}</option>
                 {% endfor %}
             </select>
         </div>
-        <div class="col-lg-6-md-3 registro">
-            <label for="validationCustomCity" class="form-label">Ciudad</label>
+        <div class="col-lg-md-4 registro">
+            <label for="validationCustom10" class="form-label">Ciudad</label>
             <select class="form-select" id="ciudad" name="ciudad" required>
-                <option selected disabled value="">Elige...</option>
                 {% for comuna in comunas %}
-                <option value="{{ comuna.cod_comuna }}" data-region="{{ comuna.region.cod_region }}">{{
-                    comuna.nombre_comuna }}</option>
+                <option value="{{ comuna.cod_comuna }}" data-region-id="{{ comuna.region.cod_region }}">
+                    {{ comuna.nombre_comuna }}
+                </option>
                 {% endfor %}
             </select>
         </div>
 
-        <div class="col-md-3 registro">
-            <label for="validationCustomPostal" class="form-label">Codigo Postal</label>
+        <div class="col-lg-md-4 registro">
+            <label for="validationCustom11" class="form-label">Código Postal</label>
             <input type="number" class="form-control" id="cod_postal" name="cod_postal" required>
-        </div>
-        <div class="col-12 registro">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                    Acepto los Terminos y Condiciones
-                </label>
-                <div class="invalid-feedback">
-                    Debes aceptar los términos antes de terminar el formulario.
-                </div>
-            </div>
         </div>
         <div class="col-12 registro">
             <button class="btn btn-primary" type="submit" name="opcion">Registrarse</button>
@@ -163,26 +131,8 @@
     </form>
 </div>
 
+
 <script src="{% static 'recursosJS/validaciones.js' %}"></script>
 <script src="{% static 'recursosJS/script_carga.js' %}"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const regionSelect = document.getElementById("region");
-        const ciudadSelect = document.getElementById("ciudad");
-
-        regionSelect.addEventListener("change", function () {
-            const regionId = this.value;
-
-            // Resetea las opciones de comunas
-            ciudadSelect.innerHTML = '<option selected disabled value="">Elige...</option>';
-
-            // Añade las comunas correspondientes a la región seleccionada
-            Array.from(ciudadSelect.options).forEach(option => {
-                if (option.dataset.region === regionId) {
-                    ciudadSelect.appendChild(option.cloneNode(true));
-                }
-            });
-        });
-    });
-</script>
+<script src="{% static 'recursosJS/cargarComunasRegiones.js' %}"></script>
 {% endblock %}

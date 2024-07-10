@@ -1,72 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var vNombres = document.querySelector(".valNombres");
-    var vApellidos = document.querySelector(".valApellidos");
-    var vUserName = document.querySelector(".valUsuario");
-    var vCorreo = document.querySelector(".valCorreo");
-    var vTel = document.querySelector(".valTelefono")
-    var vPassword = document.querySelector(".valPassword")
-    var vPassword2 = document.querySelector(".valPassword2")
+    var formRegistro = document.getElementById("formRegistro");
 
-    var inputNombres = document.getElementById("nombres");
-    var inputApellidos = document.getElementById("apellidos");
-    var inputUsuario = document.getElementById("nom_usuario");
-    var inputCorreo = document.getElementById("correo");
-    var inputTelefono = document.getElementById("telefono");
-    var inputPass = document.getElementById("pass");
-    var inputPass2 = document.getElementById("pass2");
+    formRegistro.addEventListener("submit", function (event) {
+        // Obtener valores de los campos
+        var nombres = document.getElementById("nombres").value.trim();
+        var apellidos = document.getElementById("apellidos").value.trim();
+        var nom_usuario = document.getElementById("nom_usuario").value.trim();
+        var correo = document.getElementById("correo").value.trim();
+        var telefono = document.getElementById("telefono").value.trim();
+        var pass = document.getElementById("pass").value;
+        var pass2 = document.getElementById("pass2").value;
 
+        // Validar cada campo
+        var nombresValido = validarCampo(nombres, document.querySelector(".valNombres"));
+        var apellidosValido = validarCampo(apellidos, document.querySelector(".valApellidos"));
+        var usuarioValido = validarUsuario(nom_usuario, document.querySelector(".valUsuario"));
+        var correoValido = validarCorreo(correo, document.querySelector(".valCorreo"));
+        var telefonoValido = validarTel(telefono, document.querySelector(".valTelefono"));
+        var passValido = validarPassword(pass, document.querySelector(".valPassword"));
+        var pass2Valido = validarRepetirPass(pass, pass2, document.querySelector(".valPassword2"));
 
-    inputNombres.addEventListener("keyup", function () {
-        validarCampo(inputNombres, vNombres);
-    });
-
-    inputApellidos.addEventListener("keyup", function () {
-        validarCampo(inputApellidos, vApellidos);
-    });
-
-    inputUsuario.addEventListener("keyup", function () {
-        validarUsuario(inputUsuario, vUserName);
-    });
-
-    inputCorreo.addEventListener("keyup", function () {
-        validarCorreo(inputCorreo, vCorreo);
-    });
-
-    inputTelefono.addEventListener("keyup", function () {
-        validarTel(inputTelefono, vTel);
-    });
-
-    inputPass.addEventListener("keyup", function () {
-        validarPassword(inputPass, vPassword);
-    });
-
-    inputPass2.addEventListener("keyup", function () {
-        validarRepetirPass(inputPass, inputPass2, vPassword2);
-    });
-
-
-
-    function validarUsuario(input, div) {
-        var texto = input.value;
-        if (texto.length > 0) {
-            if (texto.length < 4 || texto.length > 15) {
-                div.style.color = "red";
-                div.innerText = "El texto debe contener entre 4 y 15 caracteres.";
-            } else {
-                div.style.color = "green";
-                div.innerText = "Válido";
-            }
-        } else {
-            div.innerText = "";
+        // Verificar si todos los campos son válidos
+        if (!nombresValido || !apellidosValido || !usuarioValido || !correoValido || !telefonoValido || !passValido || !pass2Valido) {
+            // Detener el envío del formulario si hay campos inválidos
+            event.preventDefault();
         }
-    }
+    });
 
-    function validarCampo(input, div) {
-        var texto = input.value;
+    function validarCampo(texto, div) {
         var contieneNumeros = false;
-
-        // Eliminar espacios al principio y al final del texto
-        texto = texto.trim();
 
         // Comprobar si el texto contiene números, excluyendo los espacios
         for (var i = 0; i < texto.length; i++) {
@@ -79,60 +41,67 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validar el texto
         if (texto.length === 0) {
-            div.style.color = "red";
-            div.innerText = "El campo no puede estar vacío.";
+            mostrarMensajeError(div, "El campo no puede estar vacío.");
+            return false;
         } else if (contieneNumeros) {
-            div.style.color = "red";
-            div.innerText = "El texto no puede contener números.";
+            mostrarMensajeError(div, "El texto no puede contener números.");
+            return false;
         } else if (texto.length < 3 || texto.length > 20) {
-            div.style.color = "red";
-            div.innerText = "El tamaño del texto debe tener entre 3 y 20 caracteres.";
+            mostrarMensajeError(div, "El tamaño del texto debe tener entre 3 y 20 caracteres.");
+            return false;
         } else {
-            div.style.color = "green";
-            div.innerText = "Válido";
+            mostrarMensajeValido(div, "Válido");
+            return true;
         }
     }
 
-    function validarCorreo(input, div) {
-        var correo = input.value.toLowerCase(); // Convertir el correo a minúsculas para hacer la comparación sin distinción de mayúsculas/minúsculas
-        if (correo.length > 0) {
-            // Verificar si el correo contiene alguno de los dominios permitidos
-            if (correo.includes('@gmail.com') || correo.includes('@hotmail.com') || correo.includes('@hotmail.es') || correo.includes('@yahoo.es')) {
-                // El correo contiene uno de los dominios permitidos
-                div.style.color = "green";
-                div.textContent = 'Correo válido';
+    function validarUsuario(texto, div) {
+        if (texto.length > 0) {
+            if (texto.length < 4 || texto.length > 15) {
+                mostrarMensajeError(div, "El texto debe contener entre 4 y 15 caracteres.");
+                return false;
             } else {
-                // El correo no contiene ninguno de los dominios permitidos
-                div.style.color = "red";
-                div.textContent = 'El correo electrónico no es válido o no está permitido.';
+                mostrarMensajeValido(div, "Válido");
+                return true;
+            }
+        } else {
+            div.innerText = "";
+            return false;
+        }
+    }
+
+    function validarCorreo(texto, div) {
+        texto = texto.toLowerCase(); // Convertir el correo a minúsculas
+        if (texto.length > 0) {
+            // Verificar si el correo contiene alguno de los dominios permitidos
+            if (texto.includes('@gmail.com') || texto.includes('@hotmail.com') || texto.includes('@hotmail.es') || texto.includes('@yahoo.es')) {
+                mostrarMensajeValido(div, 'Correo válido');
+                return true;
+            } else {
+                mostrarMensajeError(div, 'El correo electrónico no es válido o no está permitido.');
                 return false;
             }
         } else {
             div.textContent = "";
+            return false;
         }
     }
 
-    function validarTel(input, div) {
-        var texto = toString(input.value);
-        var texto = input.value.trim();/*Elimina espacios vacíos*/
-        if (texto.length == 9) {
-            div.style.color = "green";
-            div.textContent = 'Teléfono válido';
+    function validarTel(texto, div) {
+        texto = texto.trim();
+        if (texto.length === 9) {
+            mostrarMensajeValido(div, 'Teléfono válido');
+            return true;
         } else {
-            div.style.color = "red";
-            div.textContent = 'El Teléfono debe contener 9 dígitos (Ej: 9 99999999)';
+            mostrarMensajeError(div, 'El Teléfono debe contener 9 dígitos (Ej: 999999999)');
+            return false;
         }
     }
 
-    function validarPassword(input, div) {
-        var texto = input.value;
+    function validarPassword(texto, div) {
         var esNumero = false;
         var esLetra = false;
-        var largo = false;
-
-        if (texto.length >= 8) {
-            largo = true;
-        }
+        var largo = texto.length >= 8;
 
         for (var i = 0; i < texto.length; i++) {
             if (!isNaN(parseInt(texto[i]))) {
@@ -150,27 +119,31 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (esNumero && esLetra && largo) {
-            div.style.color = "green";
-            div.textContent = 'Contraseña válida';
+            mostrarMensajeValido(div, 'Contraseña válida');
+            return true;
         } else {
-            div.style.color = "red";
-            div.textContent = 'Contraseña inválida';
+            mostrarMensajeError(div, 'Contraseña inválida');
+            return false;
         }
     }
 
-
-    function validarRepetirPass(input, inputPass2, div) {
-        var pass1 = input.value.toLowerCase();
-        var pass2 = inputPass2.value.toLowerCase();
-
-        if (pass1 === pass2) {
-            div.style.color = "green";
-            div.textContent = 'Las contraseñas coinciden';
+    function validarRepetirPass(pass, pass2, div) {
+        if (pass === pass2) {
+            mostrarMensajeValido(div, 'Las contraseñas coinciden');
+            return true;
         } else {
-            div.style.color = "red";
-            div.textContent = 'Las contraseñas no coinciden';
+            mostrarMensajeError(div, 'Las contraseñas no coinciden');
+            return false;
         }
+    }
+
+    function mostrarMensajeError(div, mensaje) {
+        div.style.color = "red";
+        div.textContent = mensaje;
+    }
+
+    function mostrarMensajeValido(div, mensaje) {
+        div.style.color = "green";
+        div.textContent = mensaje;
     }
 });
-
-

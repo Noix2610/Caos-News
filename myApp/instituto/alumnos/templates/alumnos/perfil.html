@@ -1,20 +1,68 @@
-<body>
+{% extends "alumnos/base.html" %}
+{% load static %}
+
+{% block content %}
+<div style="float: left; width: 70%;">
     <h1>Perfil de {{ usuario.username }}</h1>
     <p>Correo electrónico: {{ usuario.email }}</p>
     <p>Fecha de nacimiento: {{ usuario.fecha_nacimiento }}</p>
     <a href="{% url 'logout' %}">Cerrar sesión</a>
-
+    <div style="float: right; width: 30%; background-color: #f0f0f0; padding: 10px;">
+        <h3>Acciones</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+            {% if noticia %}
+            <li><a href="{% url 'detalle_noticia' noticia_id=noticia.id %}" style="text-decoration: none;">Ver Detalle
+                    de Noticia</a></li>
+            {% endif %}
+            <li><a href="{% url 'perfil' %}" style="text-decoration: none;">Volver al Perfil</a></li>
+        </ul>
+    </div>
+    {% if noticias %}
     <h2>Noticias Creadas por {{ usuario.username }}</h2>
     <ul>
         {% for noticia in noticias %}
         <li>
             <h3>{{ noticia.titulo }}</h3>
-            <p>{{ noticia.historia|truncatewords:30 }}</p> <!-- Limita el contenido de la noticia a 30 palabras -->
+            <p>{{ noticia.historia }}</p>
             <p><strong>Fecha de Publicación:</strong> {{ noticia.fecha_publicacion }}</p>
-            <a href="">Leer más</a>
-            <!-- Asegúrate de tener la vista 'detalle_noticia' configurada -->
+
+            <!-- Lista de imágenes de la noticia -->
+            <!-- Mostrar imágenes -->
+            <h4>Imágenes</h4>
+            {% if noticia.fotos.all %}
+            <ul>
+                {% for foto in noticia.fotos.all %}
+                {% if foto.noticia == noticia %}
+                <li>{{ foto.nombre }}</li>
+                <img src="{{ foto.imagen.url }}" width="200" height="auto">
+                {% endif %}
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No hay imágenes para esta noticia.</p>
+            {% endif %}
+
+            <!-- Formulario para agregar imagen -->
+            <h4>Agregar Imagen</h4>
+            <form method="post" action="{% url 'agregar_imagen' noticia_id=noticia.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="imagen" accept="image/*">
+                <button type="submit">Agregar Imagen</button>
+            </form>
+            <a href="{% url 'detalle_noticia' noticia.id %}">Leer más</a>
         </li>
-        {% empty %}
-        <p>No has creado ninguna noticia todavía.</p>
         {% endfor %}
     </ul>
+    {% else %}
+    <p>No has creado ninguna noticia todavía.</p>
+    {% endif %}
+</div>
+
+<div style="float: right; width: 30%; background-color: #f0f0f0; padding: 10px;">
+    <h3>Acciones</h3>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li><a href="{% url 'agregar_noticia' %}" style="text-decoration: none;">Ingresar Noticia</a></li>
+
+    </ul>
+</div>
+{% endblock %}
