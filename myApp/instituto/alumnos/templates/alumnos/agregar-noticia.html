@@ -12,9 +12,20 @@
             <input type="text" class="form-control" id="titulo" name="titulo" required>
         </div>
         <div class="form-group">
-            <label for="historia">Historia:</label>
+            <label for="historia">Parrafo 1:</label>
             <textarea class="form-control" id="historia" name="historia" required></textarea>
         </div>
+
+        <div class="form-group">
+            <label for="historia2">Parrafo 2:</label>
+            <textarea class="form-control" id="historia2" name="historia2" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="textoAgregado">Texto Adicional:</label>
+            <textarea class="form-control" id="textoAgregado" name="textoAgregado" required></textarea>
+        </div>
+
         <input type="hidden" id="autor" name="autor" value="{{ request.user.username }}">
         <div class="form-group">
             <label for="fecha_publicacion">Fecha de Publicación:</label>
@@ -24,6 +35,8 @@
             <label for="ubicacion">Ubicación:</label>
             <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
         </div>
+
+
         <div class="form-group">
             <label for="categoria">Categoría:</label>
             <select class="form-control" id="categoria" name="categoria" required>

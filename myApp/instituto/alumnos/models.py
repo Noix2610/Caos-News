@@ -44,6 +44,8 @@ class Categoria(models.Model):
 class Noticia(models.Model):
     titulo = models.CharField(max_length=200)
     historia = models.TextField()
+    historia2 = models.TextField()
+    textoAgregado = models.TextField()
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_publicacion = models.DateField()
     ubicacion = models.CharField(max_length=100)

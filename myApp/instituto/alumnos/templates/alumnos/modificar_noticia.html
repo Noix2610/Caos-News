@@ -2,34 +2,16 @@
 {% load static %}
 
 {% block content %}
-    <h1>Modificar Noticia</h1>
+<link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
 
-    <form method="post">
+
+<div class="justify-content text-align registroCont">
+    <h4>{{ noticia.titulo }}</h4>
+    <form method="post" action="{% url 'guardar_modificacion' noticia.id %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar Cambios</button>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </form>
+</div>
 
-    <!-- Mostrar imágenes de la noticia -->
-    <h2>Imágenes</h2>
-    {% if noticia.foto_set.all %}
-        <ul>
-            {% for foto in noticia.foto_set.all %}
-                <li>{{ foto.nombre }}</li>
-                <img src="{{ foto.imagen.url }}" width="200" height="auto">
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay imágenes para esta noticia.</p>
-    {% endif %}
-
-    <!-- Formulario para agregar imagen -->
-    <h2>Agregar Imagen</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ foto_form.as_p }}
-        <button type="submit">Agregar Imagen</button>
-    </form>
-
-    <a href="{% url 'detalle_noticia' noticia_id=noticia.id %}">Volver a Detalle de Noticia</a>
 {% endblock %}

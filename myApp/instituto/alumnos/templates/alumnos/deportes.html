@@ -2,147 +2,67 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'recursosCss/stylesheet.css' %}">
+<div class="wrapper">
 
 
-<link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
-
-<h1><b>Deportes</b></h1>
-<div class="container-fluid" id="deportes">
+    {% for noticia in noticias %}
     <div class="row rowstyle">
-        <h2 style="text-align: center;">Iquique: Lanzan primer tour de bodyboard femenino <br>"Mujeres del Mar".
-        </h2>
-        <!-- Columna central -->
-        <div class="col-sm-3">
-            <br>
-            <p>
-                <em>En Iquique se realizó el lanzamiento de la primera fecha del Tour Femenino de Bodyboard "Mujeres
-                    del Mar", que tendrá lugar en el sector La Punta y que espera reunir a 50 participantes de todo
-                    el país. El campeonato se dió acabo el 27 y 28 de abril.
-
-                    El circuito es único en el mundo ya que si bien en otros países se realizan campeonatos sólo de
-                    mujeres, este es reconocido por la Federación Chilena de Bodyboard, lo que hace que este sea
-                    totalmente dirigido por mujeres, entregando a sus participantes igualdad de condiciones ante los
-                    hombres tanto en olas, como también en premios y difusión.
-
-                </em>
+        <div class="col-lg-3 col-md-12 col-sm-12 justify-content text-align">
+            <p style="margin-top: 130px;">
+                <em>{{ noticia.historia}}</em>
             </p>
         </div>
-        <div class="col-sm-6">
-            <img src="{% static 'resources/deporte-1.jpg' %}" alt="deporte-1" class="img-fluid card-img img-p"
-                id="img1">
-            <h5 style="margin-left: 20px;" id="inner1"><em>Lanzan campeonato femenino de bodyboard. 03/05/2024
-                    Autor: J.Kenneth</em></h5>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <h2>{{ noticia.titulo }}</h2>
+
+            <!-- Carrusel de Bootstrap -->
+            <div id="carouselExampleIndicators{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for foto in noticia.fotos.all %}
+                    <li data-target="#carouselExampleIndicators{{ forloop.parentloop.counter }}"
+                        data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for foto in noticia.fotos.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ foto.imagen.url }}" class="d-block mx-auto" alt="Imagen de la noticia" style="max-height: 600px; max-width: 900px;">
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div style="display: flex; justify-content: center; margin-top: 1%;">
+
+                    <em>
+                        <h5>{{noticia.textoAgregado}} <br> Autor: {{ noticia.autor }}, Fecha de Publicación:
+                            {{ noticia.fecha_publicacion|date:"d/m/Y" }},
+                            Ubicación: {{ noticia.ubicacion }}</h5>
+                    </em>
+
+                </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleIndicators{{ forloop.counter }}" role="button"
+                    data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators{{ forloop.counter }}" role="button"
+                    data-slide="next">
+                    <span class="sr-only">Next</span>
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+
+            </div>
         </div>
-        <div class="col-sm-3">
-            <br>
-            <br>
-            <br>
-            <p><em>El alcalde de Iquique, Mauricio Soria, dijo que "como todo campeonato las apoyamos, felicito a
-                    las que están encargadas de este circuito que comenzó el año 2018 y que ya ahora puede tocar
-                    nuestras playas, así que estamos felices que las mujeres también tengan su espacio, porque
-                    siempre los campeonatos son mixtos y queda un poco relegada la figura de los campeonatos
-                    femeninos y esto lo resalta mucho más".
-                </em>
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <p style="margin-top: 130px;">
+                <em>{{ noticia.historia2}}</em>
             </p>
         </div>
     </div>
 </div>
-
-<div class="container-fluid">
-    <div class="row rowstyle">
-        <!-- Columna central -->
-        <div class="col-sm-6">
-            <b>
-                <h2 style="text-align: center;">Deportes Quillón eliminó a Constitución Unido y será rival de Colo
-                    Colo en la Copa Chile</h2>
-            </b>
-
-            <img src="{% static 'resources/Deportes2.jpg' %}" alt="deporte-2" class="img-fluid card-img img-p"
-                id="img2">
-            <h5 style="margin-left: 20px;" id="inner2"><em> Fotografía post-partido. <br>Publicado: Miércoles, 1 de
-                    Mayo de 2024
-                    a
-                    las 18:02hrs. Autor: Cooperativa.cl</em>
-            </h5>
-
-        </div>
-        <div class="col-sm-6">
-            <br>
-            <br>
-            <p>
-                <em>Deportes Quillón eliminó a Constitución Unido en duelo de revancha de la fase previa de la Copa
-                    Chile 2024, al igualar 1-1 y ganar 5-4 el global, y será rival de Colo Colo en los octavos de
-                    final de la Zona Centro Sur.
-                </em>
-            </p>
-            <p>Quillón había ganado por 4-3 el duelo de ida y este miércoles, en el Estadio "Enrique Donn",
-                logró clasificar en final ante un Constitución Unido que estuvo a punto de forzar la definición
-                a penales.
-
-                En un duelo parejo, Constitución marcó en el minuto 89, con un cabezazo de Ignacio Vega, y
-                parecía que todo se definiría desde los 12 pasos.
-
-                El duelo con los albos será en los octavos de final de la fase zonal.
-
-                Sin embargo, dos minutos después, en el tiempo agregado, Quillón encontró el empate y la
-                clasificación, con un agónico gol de Jonathan Riquelme (90+1').
-
-                Constitución Unido terminó el partido con nueve jugadores, por las expulsiones de Felipe Yáñez (59')
-                y Bastián Henríquez (90+3').
-
-            </p>
-
-            <h5>Los duelos de octavos de final de la fase regional se disputarán entre el 10 y el 16 de junio.</h5>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row rowstyle">
-        <!-- Columna central -->
-        <div class="col-sm-6">
-
-            <b>
-                <h2 style="text-align: center;">Alejandro Tabilo quedó eliminado en el dobles del Challenger de
-                    Aix-en-Provence</h2>
-            </b>
-
-            <img src="{% static 'resources/TabiloDeporte.jpg' %}" alt="deporte-2" class="img-fluid card-img img-p"
-                id="img3">
-            <h5 style="margin-left: 20px;" id="inner3"><em> Este jueves el chileno va por los cuartos de final en la
-                    competencia
-                    de singles. <br>02/05/2024 Autor: R. Vasquez</em>
-            </h5>
-
-        </div>
-        <div class="col-sm-6">
-            <br>
-            <br>
-            <p>
-                <em>Alejandro Tabilo (38 de la ATP) tomó parte del challenger de Aix-e-Provence, Francia, previo a
-                    su participación en el Masters 1000 de Roma. Y lo hizo en ambos cuadros de la competencia.
-                    n el dobles, esta jornada de miércoles, junto al español David Vega Hernández cayeron en un
-                    extenso partido que daba pasajes a los cuartos de final. El binomio francés de Alexander Müeller
-                    y Luca Sánchez se impuso por 3-6; 6-3 y 11-9.
-                </em>
-            </p>
-            <br>
-            <h2>Debutará en singles</h2>
-
-            <p>Ahora “Jano”, tercer cabeza de serie de este torneo, deberá enfrentar por los octavos de final al
-                tenista galo Hugo Gastón (95°), que hoy dio cuenta de su compatriota Terence Atmane (135 Atp) por
-                6-2 y 6-4.
-
-                El mach de Tabilo y Gastón se disputará en el cuarto turno de la cancha central, alrededor de las
-                11:00 horas de nuestro país (15:00 GMT). Y entre ellos hay un antecedente, el 2022 se enfrentaron en
-                Múnich con victoria de Tabilo por abandono del francés en el tercer set.
-
-            </p>
-
-        </div>
-    </div>
-</div>
-
-<script src="{% static 'recursosJS/jquery2.js' %}"></script>
+{% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
-
-</html>

@@ -1,9 +1,9 @@
-header {
-    width: 100%; 
+.header {
+    width: 100%;
     background: #aeafb3;
 }
 
-a {
+.header a {
     font-size: 18px;
     font-weight: bold;
     -webkit-transition: all 1000ms ease-in-out;
@@ -12,11 +12,7 @@ a {
     color: #696c74;
 }
 
-a:hover {
+.header a:hover {
     background: #fffefe;
     border-radius: 20px;
-}
-
-#aTransition {
-    transition: all 1000ms ease;
 }
