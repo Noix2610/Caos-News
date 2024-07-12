@@ -30,6 +30,9 @@ urlpatterns =[
     path('noticia/<int:noticia_id>/', views.detalle_noticia, name='detalle_noticia'),
     path('perfil/', views.perfil, name='perfil'),
     path('eliminar-noticia/<int:noticia_id>/', views.eliminar_noticia, name='eliminar_noticia'),
+    path('aprobar_noticias/', views.aprobar_noticias, name='aprobar_noticias'),
+    path('cambiar_estado/<int:noticia_id>/', views.cambiar_estado_noticia, name='cambiar_estado_noticia'),
+    
     
     
 ]

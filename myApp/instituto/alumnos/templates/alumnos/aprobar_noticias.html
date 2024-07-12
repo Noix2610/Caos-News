@@ -1,0 +1,46 @@
+{% extends "alumnos/base.html" %}
+{% block content %}
+<h1>Noticias Ingresadas</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for noticia in noticias %}
+        <tr>
+            <td>{{ noticia.titulo }}</td>
+            <td>{{ noticia.estado }}</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Acciones">
+                    <form action="{% url 'cambiar_estado_noticia' noticia.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="estado_id" value="2">
+                        <button type="submit" class="btn btn-success">Aprobar</button>
+                    </form>
+                    <form action="{% url 'cambiar_estado_noticia' noticia.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="estado_id" value="3">
+                        <button type="submit" class="btn btn-danger">Rechazar</button>
+                    </form>
+                    <form action="{% url 'cambiar_estado_noticia' noticia.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="estado_id" value="4">
+                        <button type="submit" class="btn btn-warning">Modificar</button>
+                    </form>
+
+                    <form action="{% url 'cambiar_estado_noticia' noticia.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="estado_id" value="5">
+                        <button type="submit" class="btn btn-success">Publicada</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

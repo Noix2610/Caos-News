@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import user_passes_test # type: ignore
 from django.shortcuts import render,redirect ,get_object_or_404 # type: ignore
-from .models import Usuario, Profesion, Categoria, Region, Comuna, Noticia, Foto
+from .models import Usuario, Profesion, Categoria, Region, Comuna, Noticia, Foto, EstadoNoticia
 from django.contrib.auth.models import User # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from django.http import JsonResponse, HttpResponse # type: ignore
 from .forms import FotoForm, NoticiaForm
+from django.contrib import messages # type: ignore
 
 
 # Create your views here.
@@ -216,19 +217,48 @@ def no_autorizado(request):
 
 def nacional(request):
     categoria_nacional = Categoria.objects.get(id=1)
-    noticias = Noticia.objects.filter(categoria=categoria_nacional)
+    estado_publicada = EstadoNoticia.objects.get(id_estado=5)  # Ajusta el ID según tu configuración en la base de datos
+    noticias = Noticia.objects.filter(categoria=categoria_nacional, estado=estado_publicada)
     return render(request, 'alumnos/nacional.html', {'noticias': noticias})
 
 def noticiaInternacional(request):
     categoria_internacional = Categoria.objects.get(id=2)
-    noticias = Noticia.objects.filter(categoria=categoria_internacional)
+    estado_publicada = EstadoNoticia.objects.get(id_estado=5)  # Ajusta el ID según tu configuración en la base de datos
+
+    # Filtrar las noticias por categoría internacional y estado aprobada
+    noticias = Noticia.objects.filter(categoria=categoria_internacional, estado=estado_publicada)
+
     return render(request, 'alumnos/noticiaInternacional.html', {'noticias': noticias})
 
 def deportes(request):
     categoria_deportes = Categoria.objects.get(id=3)
-    noticias = Noticia.objects.filter(categoria=categoria_deportes)
+    estado_publicada = EstadoNoticia.objects.get(id_estado=5)  # Ajusta el ID según tu configuración en la base de datos
+    noticias = Noticia.objects.filter(categoria=categoria_deportes, estado=estado_publicada)
     return render(request, 'alumnos/deportes.html', {'noticias': noticias})
 
+@user_passes_test(es_staff, login_url='/no-autorizado/')
+def aprobar_noticias(request):
+    noticias = Noticia.objects.filter(estado=1)  # Filtra por estado "Ingresada"
+    context = {'noticias': noticias}
+    return render(request, 'alumnos/aprobar_noticias.html', context)
+
+
+def cambiar_estado_noticia(request, noticia_id):
+    noticia = get_object_or_404(Noticia, id=noticia_id)
+
+    if request.method == 'POST':
+        estado_id = request.POST.get('estado_id')
+        estado = get_object_or_404(EstadoNoticia, id_estado=estado_id)  # Obtiene el objeto EstadoNoticia por su ID
+        noticia.estado = estado  # Asigna el objeto EstadoNoticia a la noticia
+        noticia.save()  # Guarda la noticia con el nuevo estado
+        return redirect('aprobar_noticias')  # Redirige a la página de noticias ingresadas
+
+    estados_noticia = EstadoNoticia.objects.all()
+    context = {
+        'noticia': noticia,
+        'estados_noticia': estados_noticia,
+    }
+    return render(request, 'alumnos/aprobar_noticias/', context)
 
 @login_required
 def agregar_noticia(request):
@@ -271,22 +301,69 @@ def agregar_noticia(request):
         context = {'categorias': categorias}
         return render(request, 'alumnos/agregar-noticia.html', context) 
 
+
 @login_required
-def perfil(request, noticia_id=None):
+def modificar_noticia(request, noticia_id):
+    noticia = get_object_or_404(Noticia, id=noticia_id)
+    estado_ingresada = EstadoNoticia.objects.get(id_estado=1)  # Ajusta el ID según tu configuración en la base de datos
+
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, instance=noticia)
+        if form.is_valid():
+            # Asignar el estado y guardar la noticia
+            noticia = form.save(commit=False)
+            noticia.estado = estado_ingresada
+            noticia.save()
+            return redirect('detalle_noticia', noticia_id=noticia.id)
+    else:
+        form = NoticiaForm(instance=noticia)
+
+    # Formulario para agregar imagen
+    foto_form = FotoForm()
+
+    context = {
+        'noticia': noticia,
+        'form': form,
+        'foto_form': foto_form,
+    }
+    return render(request, 'alumnos/modificar_noticia.html', context)
+
+
+@login_required
+def detalle_noticia(request, noticia_id):
+    noticia = Noticia.objects.get(pk=noticia_id)
+    return render(request, 'alumnos/detalle_noticia.html', {'noticia': noticia})
+
+@login_required
+def perfil(request):
     usuario = request.user
     noticias = Noticia.objects.filter(autor=usuario)
+    foto_form = FotoForm()
 
-    if noticia_id:
+    if request.method == 'POST':
+        noticia_id = request.POST.get('noticia_id')
         noticia = get_object_or_404(Noticia, id=noticia_id)
-    else:
-        noticia = None
+        foto_form = FotoForm(request.POST, request.FILES)
+        if foto_form.is_valid():
+            foto = foto_form.save(commit=False)
+            foto.noticia = noticia
+            foto.save()
+            return redirect('perfil')
+
+    # Obtener datos adicionales del usuario (pueden ser del modelo Usuario si están disponibles)
+    try:
+        usuario_extra = Usuario.objects.get(nom_usuario=usuario.username)
+    except Usuario.DoesNotExist:
+        usuario_extra = None
 
     context = {
         'usuario': usuario,
         'noticias': noticias,
-        'noticia': noticia,
+        'foto_form': foto_form,
+        'usuario_extra': usuario_extra,  # Incluye los datos adicionales del usuario aquí
     }
     return render(request, 'alumnos/perfil.html', context)
+
 
 @login_required
 def agregar_imagen(request, noticia_id):
@@ -307,33 +384,6 @@ def agregar_imagen(request, noticia_id):
         'noticia': noticia,
     }
     return render(request, 'alumnos/agregar_imagen.html', context)
-
-@login_required
-def modificar_noticia(request, noticia_id):
-    noticia = get_object_or_404(Noticia, id=noticia_id)
-
-    if request.method == 'POST':
-        form = NoticiaForm(request.POST, instance=noticia)
-        if form.is_valid():
-            form.save()
-            return redirect('detalle_noticia', noticia_id=noticia.id)
-    else:
-        form = NoticiaForm(instance=noticia)
-
-    # Formulario para agregar imagen
-    foto_form = FotoForm()
-
-    context = {
-        'noticia': noticia,
-        'form': form,
-        'foto_form': foto_form,
-    }
-    return render(request, 'alumnos/modificar_noticia.html', context)
-
-@login_required
-def detalle_noticia(request, noticia_id):
-    noticia = Noticia.objects.get(pk=noticia_id)
-    return render(request, 'alumnos/detalle_noticia.html', {'noticia': noticia})
 
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')

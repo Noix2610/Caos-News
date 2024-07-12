@@ -40,7 +40,13 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class EstadoNoticia(models.Model):
+    id_estado = models.AutoField(primary_key=True)
+    descripcion= models.TextField()
 
+    def __str__(self):
+        return self.descripcion
 class Noticia(models.Model):
     titulo = models.CharField(max_length=200)
     historia = models.TextField()
@@ -50,10 +56,10 @@ class Noticia(models.Model):
     fecha_publicacion = models.DateField()
     ubicacion = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-
+    estado = models.ForeignKey(EstadoNoticia, on_delete=models.CASCADE)
     def __str__(self):
         return self.titulo
-
+    
 class Foto(models.Model):
     imagen = models.ImageField(upload_to='fotos_noticias')
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')  # Relaciona con `Noticia`
