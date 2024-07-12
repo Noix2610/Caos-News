@@ -1,0 +1,116 @@
+{% extends "alumnos/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'recursosCss/styleCarrito.css' %}">
+<link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
+<!-- Contenedor principal -->
+<div class="container">
+    <h1>PLAN DIGITAL</h1>
+    <!-- Aquí irá el carrito de compras -->
+    <div class="row container-fluid" id="carrito">
+        <div class="col-lg-3 producto">
+            <img src="{% static 'resources/planbasico.png' %}" class="img-fluid" alt="plan basico">
+            <br>
+            <button class="btn-agregar" data-producto="basico">Agregar al carrito</button>
+        </div>
+        <div class="col-lg-3 producto">
+            <img src="{% static 'resources/PLANINTERMEDIO.png'%}" class="img-fluid" alt="plan intermedio">
+            <br>
+            <button class="btn-agregar" data-producto="intermedio">Agregar al carrito</button>
+        </div>
+        <div class="col-lg-3 producto">
+            <img src="{% static 'resources/promocion.png' %}" class="img-fluid" alt="promocion">
+            <br>
+            <button class="btn-agregar" data-producto="promocion">Agregar al carrito</button>
+        </div>
+        <div class="col-lg-3 producto" id="carrito-container">
+            <div class="header-carrito"> Carrito de Compras</div>
+            <ul id="lista-carrito"></ul>
+            <p>Total: $<span id="total-carrito">0</span></p>
+            <button class="btn btn-primary" id="btn-realizar-compra">Realizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Opciones de suscripción -->
+    <div id="suscripcion">
+        <h2>Suscripciones</h2>
+        <div class="opcion-suscripcion container-fluid" data-plan="basico">
+            <h3>Plan Básico</h3>
+            <p>✔ Acceso digital ilimitado a los contenidos de Caos News.com, Caos News AM, PM y Noche, Pulso,
+                Qué Pasa, Culto, Paula
+                <br>
+                ✔ Navega sin publicidad emergente
+                <br>
+                ✔ Acceso exclusivo a papel digital Caos News, Caos News Noche y Conversaciones LT
+                <br>
+                ✔ Early Access Caos News (Edición digital disponible en App y Mailing en día anterior desde las
+                21 horas)
+                <br>
+                ✔ Acceso a Newsletter
+                <br>
+                ✔ Acceso a Podcast
+                <br>
+                ✔ Beneficios Club Caos News + 1 adicional
+            </p>
+            <p>Precio: $1990</p>
+            <button class="btn btn-outline-primary btn-agregar-suscripcion" data-plan="basico">Agregar al
+                carrito</button>
+        </div>
+
+        <div class="opcion-suscripcion container-fluid" data-plan="intermedio">
+            <h3>Plan Intermedio</h3>
+            <p>✔ Acceso digital ilimitado a los contenidos de Caos News.com, Caos News AM, PM y Noche, Pulso, Qué
+                Pasa,
+                Culto, Paula.
+                <br>
+                ✔ Navega sin publicidad emergente
+                <br>
+                ✔ Acceso exclusivo a papel digital Caos News , Caos News Noche y Conversaciones LT
+                <br>
+                ✔ Early Access Caos News (Edición digital disponible en App y Mailing en día anterior desde las 21
+                horas)
+                <br>
+                ✔ Acceso a Newsletter
+                <br>
+                ✔ Acceso a Podcast
+                <br>
+                ✔ Beneficios Club La Tercera + 4 adicionales.
+            </p>
+            <p>Precio: $5990</p>
+            <button class="btn btn-outline-primary btn-agregar-suscripcion" data-plan="intermedio">Agregar al
+                carrito</button>
+        </div>
+
+        <div class="opcion-suscripcion container-fluid" data-plan="promocion">
+            <h3>Plan Promoción Especial</h3>
+            <p>✔ Acceso digital ilimitado a los contenidos de Caos News.com, Caos News AM, PM y Noche, Pulso, Qué
+                Pasa,
+                Culto, Paula.
+                <br>
+                ✔ Navega sin publicidad emergente
+                <br>
+                ✔ Acceso exclusivo a papel digital La Tercera, La Tercera Noche y Conversaciones LT
+                <br>
+                ✔ Early Access Caos News (Edición digital disponible en App y Mailing en día anterior desde las 21
+                horas)
+                <br>
+                ✔ Acceso a Newsletter
+                <br>
+                ✔ Acceso a Podcast
+                <br>
+                ✔ Beneficios Club La Tercera + 4 adicionales
+            </p>
+            <p>Precio: $8990</p>
+            <button class="btn btn-outline-primary btn-agregar-suscripcion" data-plan="promocion">Agregar al
+                carrito</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="{% static 'recursosJS/jquery2.js' %}"></script>
+<script src="{% static 'recursosJS/carrito.js' %}"></script>
+
+{% endblock %}

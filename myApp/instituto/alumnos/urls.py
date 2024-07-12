@@ -1,6 +1,5 @@
 from django.urls import path # type: ignore
-from django.conf import settings
-from django.conf.urls.static import static
+
 from .import views
 
 urlpatterns =[
@@ -9,7 +8,7 @@ urlpatterns =[
     path('deportes',views.deportes,name='deportes'),
     path('nacional/', views.nacional, name='nacional'),
     path('noticiaInternacional',views.noticiaInternacional,name='noticiaInternacional'),
-    path('carrito',views.carrito,name='carrito'),
+    path('suscripciones',views.suscripciones,name='suscripciones'),
     path('registro',views.registro,name='registro'),
     path('listaSQL',views.listaSQL,name='listaSQL'),
     path('usuarios_add',views.usuarios_add,name='usuarios_add'),
@@ -32,6 +31,8 @@ urlpatterns =[
     path('eliminar-noticia/<int:noticia_id>/', views.eliminar_noticia, name='eliminar_noticia'),
     path('aprobar_noticias/', views.aprobar_noticias, name='aprobar_noticias'),
     path('cambiar_estado/<int:noticia_id>/', views.cambiar_estado_noticia, name='cambiar_estado_noticia'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('carrito',views.carrito,name='carrito'),
     
     
     

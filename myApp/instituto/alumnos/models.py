@@ -81,3 +81,25 @@ class Comuna(models.Model):
 
     def __str__(self):
         return self.nombre_comuna
+    
+class Producto(models.Model):
+    id_producto = models.AutoField(primary_key=True)
+    nombre_producto = models.TextField()
+    valor_producto =  models.IntegerField()
+    descripcion = models.TextField()
+    cantidad = models.IntegerField()
+    tiempo_mes = models.IntegerField()
+    def __str__(self):
+        return self.nombre_producto
+
+class Carrito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    productos = models.ManyToManyField('Producto', through='ItemCarrito')
+
+    def __str__(self):
+        return f"Carrito de {self.usuario.username}"
+
+class ItemCarrito(models.Model):
+    carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
+    producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
+    cantidad = models.IntegerField(default=1)

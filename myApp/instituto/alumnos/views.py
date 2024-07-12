@@ -1,12 +1,10 @@
 from django.contrib.auth.decorators import user_passes_test # type: ignore
 from django.shortcuts import render,redirect ,get_object_or_404 # type: ignore
-from .models import Usuario, Profesion, Categoria, Region, Comuna, Noticia, Foto, EstadoNoticia
+from .models import Usuario, Profesion, Categoria, Region, Comuna, Noticia, Foto, EstadoNoticia, Producto, Carrito, ItemCarrito
 from django.contrib.auth.models import User # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from django.http import JsonResponse, HttpResponse # type: ignore
 from .forms import FotoForm, NoticiaForm
-from django.contrib import messages # type: ignore
-
 
 # Create your views here.
 def base(request):
@@ -17,9 +15,54 @@ def index(request):
     context={}
     return render(request,'alumnos/index.html',context)
 
-def carrito(request):
+def suscripciones(request):
     context={}
-    return render(request,'alumnos/carrito.html',context)
+    return render(request,'alumnos/suscripciones.html',context)
+
+@login_required
+def agregar_al_carrito(request, producto_id):
+    producto = Producto.objects.get(pk=producto_id)
+
+    # Obtener o crear el carrito del usuario actual
+    if request.user.is_authenticated:
+        usuario = request.user
+        carrito, creado = Carrito.objects.get_or_create(usuario=usuario)
+    else:
+        # Manejo para usuarios anónimos si es necesario
+        return redirect('login')  # Redirige al login o registro
+
+    # Agregar el producto al carrito (o actualizar la cantidad si ya está)
+    item, creado = ItemCarrito.objects.get_or_create(carrito=carrito, producto=producto)
+    if not creado:
+        item.cantidad += 1
+        item.save()
+
+    # Redirigir a la página del carrito
+    return redirect('alumnos/carrito.html')
+
+@login_required
+def carrito(request):
+    usuario = request.user
+
+    # Obtener o crear el carrito para el usuario actual
+    carrito, creado = Carrito.objects.get_or_create(usuario=usuario)
+
+    # Obtener todos los ítems del carrito
+    items = carrito.itemcarrito_set.all()
+
+    # Calcular el total del carrito
+    total = sum(item.producto.valor_producto * item.cantidad for item in items)
+
+    context = {
+        'carrito': carrito,
+        'items': items,
+        'total': total,
+    }
+    return render(request, 'alumnos/carrito.html', context)
+
+def checkout(request):
+    # Lógica de la vista de checkout
+    return render(request, 'alumnos/carrito.html')
 
 def registro(request):
     regiones = Region.objects.all()
@@ -73,6 +116,7 @@ def guardar_modificacion(request, noticia_id):
     
     return render(request, 'alumnos/modificar_noticia.html', {'form': form, 'noticia': noticia})
 
+@login_required
 def eliminar_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
     if request.method == 'POST':
@@ -235,6 +279,48 @@ def deportes(request):
     estado_publicada = EstadoNoticia.objects.get(id_estado=5)  # Ajusta el ID según tu configuración en la base de datos
     noticias = Noticia.objects.filter(categoria=categoria_deportes, estado=estado_publicada)
     return render(request, 'alumnos/deportes.html', {'noticias': noticias})
+
+@login_required
+def agregar_al_carrito(request, producto_id):
+    producto = Producto.objects.get(pk=producto_id)
+
+    # Obtener o crear el carrito del usuario actual
+    if request.user.is_authenticated:
+        usuario = request.user
+        carrito, creado = Carrito.objects.get_or_create(usuario=usuario)
+    else:
+        # Manejo para usuarios anónimos si es necesario
+        return redirect('login')  # Redirige al login o registro
+
+    # Agregar el producto al carrito (o actualizar la cantidad si ya está)
+    item, creado = ItemCarrito.objects.get_or_create(carrito=carrito, producto=producto)
+    if not creado:
+        item.cantidad += 1
+        item.save()
+
+    # Redirigir a la página del carrito
+    return redirect('alumnos/carrito.html')
+
+def ver_carrito(request):
+    if request.user.is_authenticated:
+        usuario = request.user
+        carrito = Carrito.objects.get(usuario=usuario)
+        items = carrito.itemcarrito_set.all()
+        total = sum(item.producto.valor_producto * item.cantidad for item in items)
+    else:
+        # Manejo para usuarios anónimos si es necesario
+        return redirect('login')  # Redirige al login o registro
+
+    context = {
+        'carrito': carrito,
+        'items': items,
+        'total': total,
+    }
+    return render(request, 'alumnos/carrito.html', context)
+
+def checkout(request):
+    # Lógica de la vista de checkout
+    return render(request, 'alumnos/carrito.html')
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')
 def aprobar_noticias(request):
