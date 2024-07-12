@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import user_passes_test # type: ignore
-from django.shortcuts import render,redirect # type: ignore
+from django.shortcuts import render,redirect ,get_object_or_404 # type: ignore
 from .models import Usuario, Profesion, Categoria, Region, Comuna, Noticia, Foto
 from django.contrib.auth.models import User # type: ignore
-from django.http import HttpResponse # type: ignore
-from django.core.exceptions import ObjectDoesNotExist # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
+from django.http import JsonResponse, HttpResponse # type: ignore
+from .forms import FotoForm, NoticiaForm
+
 
 # Create your views here.
 def base(request):
@@ -15,34 +16,21 @@ def index(request):
     context={}
     return render(request,'alumnos/index.html',context)
 
-def deportes(request):
-    context={}
-    return render(request,'alumnos/deportes.html',context)
-
-def nacional(request):
-    context={}
-    return render(request,'alumnos/nacional.html',context)
-
-def noticiaInternacional(request):
-    context={}
-    return render(request,'alumnos/noticiaInternacional.html',context)
-
 def carrito(request):
     context={}
     return render(request,'alumnos/carrito.html',context)
 
 def registro(request):
     regiones = Region.objects.all()
-    comunas = Comuna.objects.all()  # Obtener todas las comunas, asegúrate de filtrar si es necesario
+    comunas = Comuna.objects.all()
     profesiones = Profesion.objects.all()
 
     context = {
-        'regiones': regiones,
-        'comunas': comunas,
         'profesiones': profesiones,
+        'regiones': regiones,
+        'comunas': comunas
     }
     return render(request, 'alumnos/registro.html', context)
-
 
 def listaSQL(request):
     usuarios = User.objects.raw(' SELECT * FROM alumnos_alumno')
@@ -54,36 +42,110 @@ def usuarios_add(request):
     profesiones = Profesion.objects.all()
     context = {'profesiones': profesiones}
     return render(request,'alumnos/usuarios_add.html',context)
+
+def modificar_noticia(request, noticia_id):
+    noticia = get_object_or_404(Noticia, id=noticia_id)
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, instance=noticia)
+        if form.is_valid():
+            form.save()
+            return redirect('perfil')  
+    else:
+        form = NoticiaForm(instance=noticia)
     
+    context = {
+        'noticia': noticia,
+        'form': form,
+    }
+    return render(request, 'alumnos/modificar_noticia.html', context)
+
+def guardar_modificacion(request, noticia_id):
+    noticia = get_object_or_404(Noticia, id=noticia_id)
+    
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, instance=noticia)
+        if form.is_valid():
+            form.save()
+            return redirect('perfil')
+    else:
+        form = NoticiaForm(instance=noticia)
+    
+    return render(request, 'alumnos/modificar_noticia.html', {'form': form, 'noticia': noticia})
+
+def eliminar_noticia(request, noticia_id):
+    noticia = get_object_or_404(Noticia, pk=noticia_id)
+    if request.method == 'POST':
+        noticia.delete()
+        # Puedes redirigir a la misma página o a otra vista después de eliminar la noticia
+        return redirect('perfil')  # Redirige a la página de perfil
+    # Si es un método GET, podrías renderizar un template de confirmación o manejarlo según tu lógica
+    return redirect('perfil')  # Redirige a la página de perfil si no se procesa POST
+
+
 def usuarioAdd(request):
     if request.method == "POST":
         # Obtener los datos del formulario
-        print(request.POST)
         nombres = request.POST.get('nombres')
         apellidos = request.POST.get('apellidos')
         nom_usuario = request.POST.get('nom_usuario')
         telefono = request.POST.get('telefono')
-        email = request.POST.get('email')
+        email = request.POST.get('correo')  # El campo en el formulario es 'correo'
         password = request.POST.get('password')
         fecha_nacimiento = request.POST.get('fecha_nacimiento')
-        id_profesion_id = request.POST.get('profesion')  # Obtener el ID del género del formulario
-        id_profesion = Profesion.objects.get(pk=id_profesion_id)
-        region = request.POST.get('region')
-        ciudad = request.POST.get('ciudad')
+        id_profesion_id = request.POST.get('profesion')  # Obtener el ID de la profesión del formulario
+        region_codigo = request.POST.get('region')
+        comuna_codigo = request.POST.get('ciudad')
         cod_postal = request.POST.get('cod_postal')
 
+        # Validar datos del formulario
+        if not validar_datos_formulario(nombres, apellidos, nom_usuario, telefono, email, password, fecha_nacimiento, id_profesion_id, region_codigo, comuna_codigo, cod_postal):
+            profesiones = Profesion.objects.all()
+            regiones = Region.objects.all()
+            comunas = Comuna.objects.all()
+            context = {
+                'mensaje': 'Error en los datos del formulario. Por favor, verifica y completa correctamente todos los campos.',
+                'profesiones': profesiones,
+                'regiones': regiones,
+                'comunas': comunas
+            }
+            return render(request, 'alumnos/registro.html', context)
+
+        # Verificar si el nombre de usuario ya existe
+        if User.objects.filter(username=nom_usuario).exists():
+            profesiones = Profesion.objects.all()
+            regiones = Region.objects.all()
+            comunas = Comuna.objects.all()
+            context = {
+                'mensaje': 'El nombre de usuario ya existe. Por favor, elige otro.',
+                'profesiones': profesiones,
+                'regiones': regiones,
+                'comunas': comunas
+            }
+            return render(request, 'alumnos/registro.html', context)
+
+        # Obtener instancias de la región y la comuna
+        try:
+            region = Region.objects.get(cod_region=region_codigo)
+            comuna = Comuna.objects.get(cod_comuna=comuna_codigo)
+        except Region.DoesNotExist or Comuna.DoesNotExist:
+            profesiones = Profesion.objects.all()
+            regiones = Region.objects.all()
+            comunas = Comuna.objects.all()
+            context = {
+                'mensaje': 'La región o comuna seleccionada no existe. Por favor, selecciona una opción válida.',
+                'profesiones': profesiones,
+                'regiones': regiones,
+                'comunas': comunas
+            }
+            return render(request, 'alumnos/registro.html', context)
+
         # Crear el usuario y guardarlo en la base de datos
-        nuevo_usuario =  User.objects.create_user(
+        nuevo_usuario = User.objects.create_user(
             username=nom_usuario,
-
             password=password,
-
             email=email,
-
             first_name=nombres,
-
             last_name=apellidos
-            # Otros campos...
         )
 
         nuevo_usuario2 = Usuario(
@@ -94,23 +156,57 @@ def usuarioAdd(request):
             email=email,
             password=password,
             fecha_nacimiento=fecha_nacimiento, 
-            id_profesion=id_profesion,
-            region = region,
-            ciudad = ciudad,
-            cod_postal = cod_postal)
-        
+            id_profesion_id=id_profesion_id,
+            region=region.nombre_region,
+            ciudad=comuna.nombre_comuna,
+            cod_postal=cod_postal
+        )
+
         nuevo_usuario2.save()
         nuevo_usuario.save()
 
-        # Opcional: redirigir a una página de éxito o mostrar un mensaje de confirmación
-        context={'mensaje':'Usuario Registrado Correctamente'}
+        # Redirigir a la misma página con un mensaje de éxito
+        context = {
+            'mensaje': 'Usuario Registrado Correctamente',
+            'profesiones': Profesion.objects.all(),
+            'regiones': Region.objects.all(),
+            'comunas': Comuna.objects.all()
+        }
         return render(request, 'alumnos/registro.html', context)
-    
+
     else:
         # Si la solicitud no es POST, renderizar el formulario
         profesiones = Profesion.objects.all()
-        context = {'profesiones': profesiones}
+        regiones = Region.objects.all()
+        comunas = Comuna.objects.all()
+        context = {
+            'profesiones': profesiones,
+            'regiones': regiones,
+            'comunas': comunas
+        }
         return render(request, 'alumnos/registro.html', context)
+
+def validar_datos_formulario(nombres, apellidos, nom_usuario, telefono, email, password, fecha_nacimiento, id_profesion_id, region_codigo, comuna_codigo, cod_postal):
+    # Validar cada campo según las reglas establecidas
+    if not (3 <= len(nombres) <= 20):
+        return False
+    if not (3 <= len(apellidos) <= 20):
+        return False
+    if not (4 <= len(nom_usuario) <= 15):
+        return False
+    if not (len(telefono) == 9):
+        return False
+    if not (len(password) >= 8):
+        return False
+    if not (email.endswith('@gmail.com') or email.endswith('@hotmail.com') or email.endswith('@hotmail.es') or email.endswith('@yahoo.es')):
+        return False
+    # Añadir más validaciones según sea necesario
+    return True
+
+def validar_nombre_usuario(request):
+    nom_usuario = request.GET.get('nom_usuario', None)
+    existe = User.objects.filter(username=nom_usuario).exists()
+    return JsonResponse({'existe': existe})
 
 def es_staff(user):
     return user.is_authenticated and user.is_staff
@@ -118,13 +214,29 @@ def es_staff(user):
 def no_autorizado(request):
     return render(request, 'alumnos/no_autorizado.html')
 
-from .forms import NoticiaForm  # Si utilizas un formulario personalizado
+def nacional(request):
+    categoria_nacional = Categoria.objects.get(id=1)
+    noticias = Noticia.objects.filter(categoria=categoria_nacional)
+    return render(request, 'alumnos/nacional.html', {'noticias': noticias})
+
+def noticiaInternacional(request):
+    categoria_internacional = Categoria.objects.get(id=2)
+    noticias = Noticia.objects.filter(categoria=categoria_internacional)
+    return render(request, 'alumnos/noticiaInternacional.html', {'noticias': noticias})
+
+def deportes(request):
+    categoria_deportes = Categoria.objects.get(id=3)
+    noticias = Noticia.objects.filter(categoria=categoria_deportes)
+    return render(request, 'alumnos/deportes.html', {'noticias': noticias})
+
 
 @login_required
 def agregar_noticia(request):
     if request.method == 'POST':
         titulo = request.POST['titulo']
         historia = request.POST['historia']
+        historia2 = request.POST['historia2']
+        textoAgregado = request.POST['textoAgregado']
         autor = request.user  # Usuario logueado
         fecha_publicacion = request.POST.get('fecha_publicacion')  # Puede ser omitido si auto_now_add está en el modelo
         ubicacion = request.POST['ubicacion']
@@ -134,10 +246,12 @@ def agregar_noticia(request):
         nueva_noticia = Noticia.objects.create(
             titulo=titulo,
             historia=historia,
+            historia2 = historia2,
+            textoAgregado = textoAgregado,
             autor=autor,
             ubicacion=ubicacion,
             categoria=categoria,
-            fecha_publicacion = fecha_publicacion
+            fecha_publicacion=fecha_publicacion
         )
 
         # Procesar las fotos
@@ -145,26 +259,82 @@ def agregar_noticia(request):
         for imagen in imagenes:
             Foto.objects.create(noticia=nueva_noticia, imagen=imagen)
 
-        return redirect('alumnos/agregar-noticia.html')  # Redirige a una vista después de agregar la noticia
+        # Obtener nuevamente las categorías para el contexto
+        categorias = Categoria.objects.all()
+
+        # Renderizar nuevamente la misma plantilla con las categorías actualizadas
+        context = {'categorias': categorias, 'mensaje': 'Noticia agregada correctamente.'}
+        return render(request, 'alumnos/agregar-noticia.html', context)
 
     else:
         categorias = Categoria.objects.all()
         context = {'categorias': categorias}
-        return render(request, 'alumnos/agregar-noticia.html', context)
-
-
-
+        return render(request, 'alumnos/agregar-noticia.html', context) 
 
 @login_required
-def perfil(request):
-    usuario = request.user  # Obtener el usuario actualmente autenticado
-    noticias = Noticia.objects.filter(autor=usuario)  # Filtrar noticias por autor
+def perfil(request, noticia_id=None):
+    usuario = request.user
+    noticias = Noticia.objects.filter(autor=usuario)
+
+    if noticia_id:
+        noticia = get_object_or_404(Noticia, id=noticia_id)
+    else:
+        noticia = None
 
     context = {
         'usuario': usuario,
         'noticias': noticias,
+        'noticia': noticia,
     }
     return render(request, 'alumnos/perfil.html', context)
+
+@login_required
+def agregar_imagen(request, noticia_id):
+    noticia = get_object_or_404(Noticia, id=noticia_id)
+
+    if request.method == 'POST':
+        form = FotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            nueva_foto = form.save(commit=False)
+            nueva_foto.noticia = noticia
+            nueva_foto.save()
+            return redirect('perfil')  # Redirige a la vista de detalle de la noticia
+    else:
+        form = FotoForm()
+
+    context = {
+        'form': form,
+        'noticia': noticia,
+    }
+    return render(request, 'alumnos/agregar_imagen.html', context)
+
+@login_required
+def modificar_noticia(request, noticia_id):
+    noticia = get_object_or_404(Noticia, id=noticia_id)
+
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, instance=noticia)
+        if form.is_valid():
+            form.save()
+            return redirect('detalle_noticia', noticia_id=noticia.id)
+    else:
+        form = NoticiaForm(instance=noticia)
+
+    # Formulario para agregar imagen
+    foto_form = FotoForm()
+
+    context = {
+        'noticia': noticia,
+        'form': form,
+        'foto_form': foto_form,
+    }
+    return render(request, 'alumnos/modificar_noticia.html', context)
+
+@login_required
+def detalle_noticia(request, noticia_id):
+    noticia = Noticia.objects.get(pk=noticia_id)
+    return render(request, 'alumnos/detalle_noticia.html', {'noticia': noticia})
+
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')
 def usuarios_list(request):
@@ -173,24 +343,39 @@ def usuarios_list(request):
     return render(request, 'alumnos/usuarios_list.html', context)
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')
-def usuarios_findEdit(request,pk):
-    if pk != "":
-        usuario = Usuario.objects.get(id_usuario=pk)
+def usuarios_findEdit(request, pk):
+    try:
+        usuario = get_object_or_404(Usuario, id_usuario=pk)
         profesiones = Profesion.objects.all()
 
-        print(type(usuario.id_profesion.profesion))
+        # Asegúrate de que usuario.id_profesion exista antes de acceder a profesion
+        profesion_usuario = usuario.id_profesion.profesion if usuario.id_profesion else None
 
-        context={'usuario':usuario, 'profesiones':profesiones}
+        context = {
+            'usuario': usuario,
+            'profesiones': profesiones,
+            'profesion_usuario': profesion_usuario,
+            'user_id': pk  # Pasar el user_id como parte del contexto
+        }
 
-        if usuario:
-            return render(request, 'alumnos/usuarios_edit.html',context)
-        else:
-            mensaje = 'Error, usuario no existe...'
-            return render(request, 'alumnos/usuarios_edit.html',context)
+        return render(request, 'alumnos/usuarios_edit.html', context)
+
+    except Usuario.DoesNotExist:
+        mensaje = 'Error, usuario no existe...'
+        return render(request, 'alumnos/usuarios_edit.html', {'mensaje': mensaje})
+
+    except Profesion.DoesNotExist:
+        mensaje = 'Error, profesión no existe...'
+        return render(request, 'alumnos/usuarios_edit.html', {'mensaje': mensaje})
+
+    except Exception as e:
+        # Manejo genérico de excepciones
+        return HttpResponse(f'Ocurrió un error: {str(e)}')
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')
 def usuariosUpdate(request):
     if request.method == "POST":
+        user_id = request.POST.get('user_id')  # Obtener el ID del usuario a modificar
         nombres = request.POST['nombres']
         apellidos = request.POST['apellidos']
         nom_usuario = request.POST['nom_usuario']
@@ -202,50 +387,73 @@ def usuariosUpdate(request):
         region = request.POST['region']
         ciudad = request.POST['ciudad']
         cod_postal = request.POST['cod_postal']
-        objProfesion = Profesion.objects.get(id_profesion=profesion_id)
+        
+        try:
+            # Obtener el usuario existente por su ID
+            usuario = User.objects.get(id=user_id)
 
-        usuario =  User.objects.create_user()
-        usuario.nombres = nombres
-        usuario.apellidos = apellidos
-        usuario.username = nom_usuario
-        usuario.telefono = telefono
-        usuario.email = email
-        usuario.password = password
-        usuario.fecha_nacimiento = fecha_nacimiento
-        usuario.id_profesion = objProfesion  # Asignar la instancia de Profesion
-        usuario.region = region
-        usuario.ciudad = ciudad
-        usuario.cod_postal = cod_postal
+            # Verificar si el nuevo nombre de usuario ya está en uso por otro usuario
+            if nom_usuario != usuario.username and User.objects.filter(username=nom_usuario).exists():
+                raise ValueError('El nombre de usuario ya está en uso. Por favor, elige otro.')
 
-        usuario2 = Usuario()
-        usuario.nombres = nombres
-        usuario.apellidos = apellidos
-        usuario.nom_usuario = nom_usuario
-        usuario.telefono = telefono
-        usuario.email = email
-        usuario.password = password
-        usuario.fecha_nacimiento = fecha_nacimiento
-        usuario.id_profesion = objProfesion  # Asignar la instancia de Profesion
-        usuario.region = region
-        usuario.ciudad = ciudad
-        usuario.cod_postal = cod_postal
+            # Modificar los campos del usuario solo si se proporcionan
+            usuario.first_name = nombres
+            usuario.last_name = apellidos
+            usuario.email = email
+            if password:
+                usuario.set_password(password)  # Cambiar la contraseña solo si se proporciona
 
-        usuario2.save()
-        usuario.save()
+            # Guardar los cambios en el usuario
+            usuario.save()
 
-        profesiones = Profesion.objects.all()
-        context = {'mensaje': "Datos actualizados...", 'profesiones': profesiones, 'usuario': usuario, 'usuario2':usuario2}
-        return render(request, 'alumnos/usuarios_edit.html', context)
+            # Actualizar los campos en el modelo de Usuario personalizado si es necesario
+            usuario2 = Usuario.objects.get(id_usuario=user_id)
+            usuario2.nombres = nombres
+            usuario2.apellidos = apellidos
+            usuario2.nom_usuario = nom_usuario
+            usuario2.telefono = telefono
+            usuario2.fecha_nacimiento = fecha_nacimiento
+            usuario2.region = region
+            usuario2.ciudad = ciudad
+            usuario2.cod_postal = cod_postal
+            usuario2.id_profesion = Profesion.objects.get(id_profesion=profesion_id)  # Asignar la instancia de Profesion
+
+            usuario2.save()
+
+            profesiones = Profesion.objects.all()
+            context = {'mensaje': "Datos actualizados correctamente", 'profesiones': profesiones, 'usuario': usuario, 'usuario2': usuario2}
+            return render(request, 'alumnos/usuarios_edit.html', context)
+        
+        except User.DoesNotExist:
+            return render(request, 'alumnos/usuarios_edit.html', {'mensaje': 'El usuario no existe'})
+        
+        except ValueError as ve:
+            return render(request, 'alumnos/usuarios_edit.html', {'mensaje': f'Error al actualizar datos: {ve}'})
+        
+        except Exception as e:
+            return render(request, 'alumnos/usuarios_edit.html', {'mensaje': f'Error al actualizar datos: {e}'})
+
     else:
         usuarios = Usuario.objects.all()
         context = {'usuarios': usuarios}
         return render(request, 'alumnos/usuarios_edit.html', context)
 
+
+
 @user_passes_test(es_staff, login_url='/no-autorizado/')  
 def usuarios_edit(request):
+    # Suponiendo que obtienes el usuario de alguna manera, por ejemplo, mediante un parámetro en la URL
+    user_id = request.GET.get('user_id')  # Obtén el user_id de alguna manera adecuada
+    user = get_object_or_404(User, id=user_id)  # Obtén el usuario o retorna un 404 si no existe
+
     profesiones = Profesion.objects.all()
-    context = {'profesiones': profesiones}
-    return render(request,'alumnos/usuarios_edit.html',context)
+
+    context = {
+        'user': user,
+        'profesiones': profesiones,
+    }
+
+    return render(request, 'alumnos/usuarios_edit.html', context)
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')
 def usuarios_list(request):

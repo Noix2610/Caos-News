@@ -1,20 +1,156 @@
-<body>
+{% extends "alumnos/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div style="float: left; width: 70%;">
     <h1>Perfil de {{ usuario.username }}</h1>
     <p>Correo electrónico: {{ usuario.email }}</p>
-    <p>Fecha de nacimiento: {{ usuario.fecha_nacimiento }}</p>
+    <p>Fecha de nacimiento: {{ usuario.fecha_nacimiento|date:"d/M/Y" }}</p>
     <a href="{% url 'logout' %}">Cerrar sesión</a>
+    <div style="float: right; width: 30%; background-color: #f0f0f0; padding: 10px;">
+        <h3>Acciones</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+            {% if noticia %}
+            <li><a href="{% url 'detalle_noticia' noticia_id=noticia.id %}" style="text-decoration: none;">Ver Detalle
+                    de Noticia</a></li>
+            {% endif %}
+            <li><a href="{% url 'perfil' %}" style="text-decoration: none;">Volver al Perfil</a></li>
+        </ul>
+    </div>
 
-    <h2>Noticias Creadas por {{ usuario.username }}</h2>
-    <ul>
-        {% for noticia in noticias %}
-        <li>
-            <h3>{{ noticia.titulo }}</h3>
-            <p>{{ noticia.historia|truncatewords:30 }}</p> <!-- Limita el contenido de la noticia a 30 palabras -->
-            <p><strong>Fecha de Publicación:</strong> {{ noticia.fecha_publicacion }}</p>
-            <a href="">Leer más</a>
-            <!-- Asegúrate de tener la vista 'detalle_noticia' configurada -->
-        </li>
-        {% empty %}
-        <p>No has creado ninguna noticia todavía.</p>
-        {% endfor %}
+</div>
+
+<div style="float: right; width: 30%; background-color: #f0f0f0; padding: 10px;">
+    <h3>Acciones</h3>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li><a href="{% url 'agregar_noticia' %}" style="text-decoration: none;">Ingresar Noticia</a></li>
+
     </ul>
+</div>
+
+<!-- Tabla de Noticias -->
+<div style="clear: both;">
+    <h2>Todas las Publicaciones</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha de Publicación</th>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for noticia in noticias %}
+            <tr>
+                <td>{{ noticia.fecha_publicacion|date:"d/M/Y" }}</td>
+                <td>{{ noticia.titulo }}</td>
+                <td>En revisión</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#modalImagenes{{ noticia.id }}">
+                        Ver Imágenes
+                    </button>
+                    <a href="{% url 'modificar_noticia' noticia_id=noticia.id %}" class="btn btn-success">Modificar</a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#modalEliminar{{ noticia.id }}">
+                        Eliminar
+                    </button>
+                </td>
+
+                <!-- Modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="modalImagenes{{ noticia.id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="modalImagenesLabel{{ noticia.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalImagenesLabel{{ noticia.id }}">Imágenes</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {% if noticia.fotos.all %}
+                                <div class="row">
+                                    {% for foto in noticia.fotos.all %}
+                                    <div class="col-md-4">
+                                        <img src="{{ foto.imagen.url }}" class="img-thumbnail"
+                                            alt="Imagen de la noticia">
+                                        <p>{{ foto.nombre }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <p>No hay imágenes para esta noticia.</p>
+                                {% endif %}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal de Confirmación de Eliminación -->
+                <div class="modal fade" id="modalEliminar{{ noticia.id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="modalEliminarLabel{{ noticia.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalEliminarLabel{{ noticia.id }}">Confirmar Eliminación
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>¿Estás seguro de que deseas eliminar la noticia "{{ noticia.titulo }}"?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <form id="formEliminarNoticia{{ noticia.id }}"
+                                    action="{% url 'eliminar_noticia' noticia_id=noticia.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="noticia_id" value="{{ noticia.id }}">
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="eliminarNoticia({{ noticia.id }})">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <script>
+        function eliminarNoticia(noticiaId) {
+            // Envía una solicitud POST para eliminar la noticia
+            $.ajax({
+                url: $('#formEliminarNoticia' + noticiaId).attr('action'),
+                type: 'POST',
+                data: $('#formEliminarNoticia' + noticiaId).serialize(),
+                success: function (response) {
+                    // Maneja la respuesta si es necesario
+                    location.reload(); // Recarga la página después de eliminar la noticia
+                },
+                error: function (xhr, status, error) {
+                    // Maneja los errores si es necesario
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+
+</div>
+{% endblock %}

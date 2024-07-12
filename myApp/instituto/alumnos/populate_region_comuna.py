@@ -149,3 +149,5 @@ for cod_region, nombre_region in regiones:
 for cod_comuna, nombre_comuna, region_codigo in comunas:
     region = Region.objects.get(cod_region=region_codigo)
     Comuna.objects.get_or_create(cod_comuna=cod_comuna, nombre_comuna=nombre_comuna, region=region)
+
+#ejecutar comando python manage.py shell en la terminal, luego copiar el codigo de este archivo en la terminal y ejecutar.

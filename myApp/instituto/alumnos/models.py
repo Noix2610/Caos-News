@@ -44,6 +44,8 @@ class Categoria(models.Model):
 class Noticia(models.Model):
     titulo = models.CharField(max_length=200)
     historia = models.TextField()
+    historia2 = models.TextField()
+    textoAgregado = models.TextField()
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_publicacion = models.DateField()
     ubicacion = models.CharField(max_length=100)
@@ -57,7 +59,7 @@ class Foto(models.Model):
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')  # Relaciona con `Noticia`
 
     def __str__(self):
-        return self.imagen.url
+        return f'Foto de la Noticia: {self.noticia.titulo}'
 
 class Region(models.Model):
     cod_region = models.IntegerField(primary_key=True)

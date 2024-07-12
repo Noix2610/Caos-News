@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from alumnos import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +28,5 @@ urlpatterns = [
     path('perfil/', views.perfil, name='perfil'),
     path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
     
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

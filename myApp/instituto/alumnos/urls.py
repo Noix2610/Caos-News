@@ -1,13 +1,13 @@
+from django.urls import path # type: ignore
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path # type: ignore
-from . import views
+from .import views
 
 urlpatterns =[
     path('index',views.index,name='index'),
     path('base',views.base,name='base'),
     path('deportes',views.deportes,name='deportes'),
-    path('nacional',views.nacional,name='nacional'),
+    path('nacional/', views.nacional, name='nacional'),
     path('noticiaInternacional',views.noticiaInternacional,name='noticiaInternacional'),
     path('carrito',views.carrito,name='carrito'),
     path('registro',views.registro,name='registro'),
@@ -21,12 +21,15 @@ urlpatterns =[
     path('adminUsuarioAdd',views.adminUsuarioAdd,name='adminUsuarioAdd'),
     path('crud',views.crud,name='crud'),
     path('usuariosUpdate',views.usuariosUpdate,name='usuariosUpdate'),
-    path('perfil/', views.perfil, name='perfil'),
     path('usuarios/', views.usuarios_list, name='usuarios_list'),
     path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
+    path('validar_nombre_usuario/', views.validar_nombre_usuario, name='validar_nombre_usuario'),
+    path('agregar-imagen/<int:noticia_id>/', views.agregar_imagen, name='agregar_imagen'),
+    path('modificar/<int:noticia_id>/', views.modificar_noticia, name='modificar_noticia'),
+    path('guardar_modificacion/<int:noticia_id>/', views.guardar_modificacion, name='guardar_modificacion'),
+    path('noticia/<int:noticia_id>/', views.detalle_noticia, name='detalle_noticia'),
+    path('perfil/', views.perfil, name='perfil'),
+    path('eliminar-noticia/<int:noticia_id>/', views.eliminar_noticia, name='eliminar_noticia'),
     
     
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
