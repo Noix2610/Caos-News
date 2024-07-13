@@ -1,5 +1,7 @@
 {% extends "alumnos/base.html" %}
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
 <h1>Noticias Ingresadas</h1>
 <table class="table">
     <thead>
@@ -37,10 +39,86 @@
                         <input type="hidden" name="estado_id" value="5">
                         <button type="submit" class="btn btn-success">Publicada</button>
                     </form>
+                    <form style="display: inline;">
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                            data-target="#modalDetalles{{ noticia.id }}">
+                            Detalles
+                        </button>
+                    </form>
+
+                    <form style="display: inline;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalImagenes{{ noticia.id }}">Imágenes
+                        </button>
+                    </form>
+
+                    <!-- Modal para Ver Imágenes de la Noticia -->
+                    <div class="modal fade" id="modalImagenes{{ noticia.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="modalImagenesLabel{{ noticia.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalImagenesLabel{{ noticia.id }}">Imágenes de la
+                                        Noticia</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% for foto in noticia.fotos.all %}
+                                    <img src="{{ foto.imagen.url }}" alt="Imagen" class="img-thumbnail">
+                                    {% empty %}
+                                    <p>No hay imágenes disponibles para esta noticia.</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal para Detalles de la Noticia -->
+                    <div class="modal fade" id="modalDetalles{{ noticia.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="modalDetallesLabel{{ noticia.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalDetallesLabel{{ noticia.id }}">Detalles de la
+                                        Noticia</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Autor:</strong> --{{ noticia.autor }}--</p>
+                                    <p><strong>Título:</strong> {{ noticia.titulo }}</p>
+                                    <p><strong>Fecha de Publicación:</strong> {{ noticia.fecha_publicacion }}</p>
+                                    <p><strong>Estado:</strong> {{ noticia.estado }}</p>
+                                    <p><strong>Contenido:</strong></p>
+                                    <p>{{ noticia.historia }}</p>
+                                    <p>{{ noticia.historia2 }}</p>
+                                    <p>{{ noticia.textoAgregado }}</p>
+                                    <p><strong>Ubicación:</strong> {{ noticia.ubicacion }}</p>
+                                    <p><strong>Categoría:</strong> {{ noticia.categoria }}</p>
+                                    <!-- Otros detalles que desees mostrar -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 {% endblock %}

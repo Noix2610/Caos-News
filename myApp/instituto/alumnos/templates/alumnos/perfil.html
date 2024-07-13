@@ -2,183 +2,131 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'recursosCss/stylesheet.css' %}">
+
+<link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
 
 <div class="wrapper">
     <div style="float: left; width: 50%; margin-left: 1%;">
-        {% if usuario_extra %}
+        {% if usuario %}
         <h2>Datos Personales</h2>
         <ul>
-            <li>Nombre completo: {{ usuario_extra.nombres }} {{ usuario_extra.apellidos }}</li>
-            <li>Teléfono: {{ usuario_extra.telefono }}</li>
-            <li>Correo electrónico: {{ usuario.email }}</li>
-            <li>Fecha de nacimiento: {{ usuario_extra.fecha_nacimiento|date:"d/M/Y" }}</li>
+            <li>Nombre de Usuario: {{ usuario.username }}</li>
+            <li>Correo Electrónico: {{ usuario.email }}</li>
             <!-- Agrega más campos según tu modelo Usuario -->
         </ul>
         {% endif %}
-        <a href="{% url 'logout' %}">Cerrar sesión</a>
     </div>
 
     <div style="float: right; width: 49%; background-color: #f0f0f0; padding: 10px;">
         <h3>Acciones</h3>
         <ul style="list-style-type: none; padding-left: 0;">
+            <!-- Agrega botones según los permisos del usuario -->
+            <li><a href="{% url 'usuarios_list' %}" style="text-decoration: none;">Lista de Usuarios</a></li>
+            <li><a href="{% url 'aprobar_noticias' %}" style="text-decoration: none;">Verificar Noticias</a></li>
             <li><a href="{% url 'agregar_noticia' %}" style="text-decoration: none;">Ingresar Noticia</a></li>
+            <li><a href="{% url 'registro' %}" style="text-decoration: none;">Registro</a></li>
+            <li><a href="{% url 'usuarios_findEdit' pk=user.pk%}" style="text-decoration: none;">Editar Datos</a></li>
         </ul>
     </div>
 
     <!-- Tabla de Noticias -->
     <div style="clear: both;">
-        <h2>Todas las Publicaciones</h2>
+        <h2>Mis Noticias</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Fecha de Publicación</th>
                     <th>Título</th>
-                    <th>Estado</th>
+                    <th>Fecha de Publicación</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for noticia in noticias %}
                 <tr>
-                    <td>{{ noticia.fecha_publicacion|date:"d/M/Y" }}</td>
                     <td>{{ noticia.titulo }}</td>
-                    <td>{{ noticia.estado }}</td>
+                    <td>{{ noticia.fecha_publicacion }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                        <!-- Botones de acciones -->
+                        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal"
+                            data-target="#modalAgregarImagen{{ noticia.id }}">Agregar Imagen</a>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                             data-target="#modalImagenes{{ noticia.id }}">
-                            Ver Imágenes
+                            Mostrar Imágenes
                         </button>
-                        <button type="button" class="btn btn-success" data-toggle="modal"
-                            data-target="#modalAgregarImagen{{ noticia.id }}">
-                            Agregar Imagen
-                        </button>
-                        <a href="{% url 'modificar_noticia' noticia_id=noticia.id %}"
-                            class="btn btn-success">Modificar</a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#modalEliminar{{ noticia.id }}">
-                            Eliminar
-                        </button>
-                    </td>
+                        <a href="{% url 'modificar_noticia' noticia.id %}" class="btn btn-info btn-sm">Modificar</a>
+                        <a href="{% url 'eliminar_noticia' noticia.id %}" class="btn btn-danger btn-sm">Eliminar</a>
 
-                    <!-- Modal de Imágenes -->
-                    <div class="modal fade" id="modalImagenes{{ noticia.id }}" tabindex="-1" role="dialog"
-                        aria-labelledby="modalImagenesLabel{{ noticia.id }}" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalImagenesLabel{{ noticia.id }}">Imágenes</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                        <!-- Modal para agregar imagen -->
+                        <div class="modal fade" id="modalAgregarImagen{{ noticia.id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="modalAgregarImagenLabel{{ noticia.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalAgregarImagenLabel{{ noticia.id }}">Agregar
+                                            Imagen a "{{ noticia.titulo }}"</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Formulario para agregar imagen -->
+                                        <form method="POST" enctype="multipart/form-data"
+                                            action="{% url 'agregar_imagen' noticia.id %}">
+                                            {% csrf_token %}
+                                            {{ foto_form.as_p }}
+                                            <button type="submit" class="btn btn-primary">Guardar Imagen</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    {% if noticia.fotos.all %}
-                                    <div class="row">
+                            </div>
+                        </div>
+
+                        <!-- Modal para mostrar imágenes asociadas a la noticia -->
+                        <div class="modal fade" id="modalImagenes{{ noticia.id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="modalImagenesLabel{{ noticia.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalImagenesLabel{{ noticia.id }}">Imágenes</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
                                         {% for foto in noticia.fotos.all %}
-                                        <div class="col-md-4">
-                                            <img src="{{ foto.imagen.url }}" class="img-thumbnail"
-                                                alt="Imagen de la noticia">
+                                        <div class="mb-3">
+                                            <img src="{{ foto.imagen.url }}" alt="Imagen" class="img-thumbnail">
+                                            <form action="{% url 'eliminar_imagen' foto.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm mt-2">Eliminar</button>
+                                            </form>
                                         </div>
+                                        {% empty %}
+                                        <p>No hay imágenes disponibles para esta noticia.</p>
                                         {% endfor %}
                                     </div>
-                                    {% else %}
-                                    <p>No hay imágenes para esta noticia.</p>
-                                    {% endif %}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Modal para Agregar Imagen -->
-                    <div class="modal fade" id="modalAgregarImagen{{ noticia.id }}" tabindex="-1" role="dialog"
-                        aria-labelledby="modalAgregarImagenLabel{{ noticia.id }}" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalAgregarImagenLabel{{ noticia.id }}">Agregar Imagen
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post" enctype="multipart/form-data"
-                                        action="{% url 'agregar_imagen' noticia_id=noticia.id %}">
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            <label for="id_imagen">Imagen:</label>
-                                            {{ foto_form.imagen }}
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Agregar Imagen</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal de Confirmación de Eliminación -->
-                    <div class="modal fade" id="modalEliminar{{ noticia.id }}" tabindex="-1" role="dialog"
-                        aria-labelledby="modalEliminarLabel{{ noticia.id }}" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalEliminarLabel{{ noticia.id }}">Confirmar
-                                        Eliminación
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>¿Estás seguro de que deseas eliminar la noticia "{{ noticia.titulo }}"?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Cancelar</button>
-                                    <form id="formEliminarNoticia{{ noticia.id }}"
-                                        action="{% url 'eliminar_noticia' noticia_id=noticia.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="noticia_id" value="{{ noticia.id }}">
-                                        <button type="button" class="btn btn-danger"
-                                            onclick="eliminarNoticia({ noticia,id })">Eliminar</button>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No tienes noticias publicadas.</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>
-            function eliminarNoticia(noticiaId) {
-                // Envía una solicitud POST para eliminar la noticia
-                $.ajax({
-                    url: $('#formEliminarNoticia' + noticiaId).attr('action'),
-                    type: 'POST',
-                    data: $('#formEliminarNoticia' + noticiaId).serialize(),
-                    success: function (response) {
-                        // Maneja la respuesta si es necesario
-                        location.reload(); // Recarga la página después de eliminar la noticia
-                    },
-                    error: function (xhr, status, error) {
-                        // Maneja los errores si es necesario
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
-        </script>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 {% endblock %}

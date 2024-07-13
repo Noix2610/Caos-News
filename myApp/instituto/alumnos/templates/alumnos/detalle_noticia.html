@@ -1,0 +1,95 @@
+{% extends "alumnos/base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
+
+<div class="wrapper">
+    {% if resultados %}
+    <h1 style="margin: 1% ;">Noticias encontradas</h1>
+    <div class="row ">
+        {% for noticia in resultados %}
+        
+        <div class="col-lg-3 col-md-12 col-sm-12 justify-content text-align  bordeado" style="font-size: 1.2rem; ">
+            <p class="card-img"><em>{{ noticia.historia }}</em></p>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12 bordeado" style="text-align: center;">
+            <h2>{{ noticia.titulo }}</h2>
+            <!-- Carrusel de Bootstrap -->
+            <div id="carouselExampleIndicators{{ forloop.counter }}" class="carousel slide img-fluid" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for foto in noticia.fotos.all %}
+                    <li data-target="#carouselExampleIndicators{{ forloop.parentloop.counter }}"
+                        data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" {% endif %}></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for foto in noticia.fotos.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <a href="#" class="imagen-modal" data-imagen="{{ foto.imagen.url }}">
+                            <img src="{{ foto.imagen.url }}" alt="Imagen de la noticia" class="img-fluid">
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div style="display: flex; justify-content: center; margin-top: 1%;">
+                    <em>
+                        <h5>{{ noticia.textoAgregado }} <br> Autor: {{ noticia.autor }}, Fecha de Publicación:
+                            {{ noticia.fecha_publicacion|date:"d/m/Y" }},
+                            Ubicación: {{ noticia.ubicacion }}</h5>
+                    </em>
+                </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleIndicators{{ forloop.counter }}" role="button"
+                    data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators{{ forloop.counter }}" role="button"
+                    data-slide="next">
+                    <span class="sr-only">Next</span>
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Modal para mostrar la imagen en grande -->
+        <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="imagenModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="" alt="Imagen en grande" id="imagenModalImg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-12 col-sm-12 bordeado">
+            <p class="card-img" style="font-size: 1.2rem;">
+                <em>{{ noticia.historia2 }}</em>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No se encontraron noticias para "{{ query }}".</p>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Script para controlar el modal -->
+<script>
+    $(document).ready(function () {
+        $('.imagen-modal').click(function (e) {
+            e.preventDefault();
+            var imagenUrl = $(this).data('imagen');
+            $('#imagenModalImg').attr('src', imagenUrl);
+            $('#imagenModal').modal('show');
+        });
+    });
+</script>
+{% endblock %}

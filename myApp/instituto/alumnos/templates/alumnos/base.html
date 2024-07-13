@@ -1,7 +1,7 @@
 {% load static %}
 {% load bootstrap5 %}
-{% bootstrap_css %}
 {% bootstrap_javascript %}
+{% bootstrap_css %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +9,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Base</title>
 
     <link rel="stylesheet" href="{% static 'recursosCss/header.css' %}">
     <link rel="stylesheet" href="{% static 'recursosCss/header2.css' %}">
     <link rel="stylesheet" href="{% static 'recursosCss/footer.css' %}">
-    
+
 </head>
 
 <body>
@@ -24,11 +24,13 @@
                 <div class="col">
                     <nav class="navbar navbar-expand-lg">
                         <div class="container-fluid">
-                            <a href="{% url 'index'%}"><img src="{% static 'resources/logoFlechas.png' %}"
-                                    alt="logo_caosNews" class="logo img-p">
+                            <a href="{% url 'index'%}">
+                                <img src="{% static 'resources/logoFlechas.png' %}" alt="logo_caosNews"
+                                    class="logo img-p">
                             </a>
-                            <h2 style="margin-left: 20px;"><a id="aTransition"
-                                    style="text-decoration:none; color: #1b1b1b;">Caos News</a></h2>
+                            <h2 style="margin-left: 20px;">
+                                <a id="aTransition" style="text-decoration:none; color: #1b1b1b;">Caos News</a>
+                            </h2>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +38,6 @@
                             </button>
 
                             <nav class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <!-- Inicio Menu -->
                                 <ul class="navbar-nav ms-auto">
                                     <li class="nav-item">
                                         <a href="{% url 'index'%}" class="nav-link active" aria-current="page"
@@ -44,19 +45,16 @@
                                     </li>
                                     <li><a class="nav-link" href="{% url 'suscripciones'%}" id="aTransition"
                                             style="text-decoration:none; color: #1b1b1b;">Suscripciones</a></li>
-                                    <!-- Boton dropdown -->
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" role="button"
                                             data-bs-toggle="dropdown" aria-expanded="false" id="aTransition"
                                             style="text-decoration:none; color: #1b1b1b;">
-                                            Noticias
+                                            Categorias
                                         </a>
-
                                         <ul class="dropdown-menu" style="background-color: #d1d0d0;">
                                             <li><a class="dropdown-item" href="{% url 'nacional' %}">Nacional</a></li>
                                             <li><a class="dropdown-item" href="{% url 'noticiaInternacional' %}"
-                                                    style="text-decoration:none; color: #1b1b1b;">Internacional</a>
-                                            </li>
+                                                    style="text-decoration:none; color: #1b1b1b;">Internacional</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
@@ -64,21 +62,16 @@
                                                     style="text-decoration:none; color: #1b1b1b;">Deportes</a></li>
                                         </ul>
                                     </li>
-
-                                    <!-- Fin boton dropdown -->
                                     <a class="nav-link active" aria-current="page" href="#"
                                         style="text-decoration:none; color: #1b1b1b;">Contacto</a>
                                 </ul>
-                                <!-- Fin Menu 1-->
-                                <!-- inicio search1 -->
-                                <form class="d-flex ms-auto" role="search">
-                                    <input class="form-control" type="search" placeholder="Búsqueda" aria-label="Search"
-                                        id="busqueda">
-                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                                </form>
-                                <!-- Fin search 2 -->
 
-                                <!-- Menu 2-->
+                                <form action="{% url 'buscar_noticias' %}" method="GET" class="d-flex">
+                                    <input class="form-control me-2" type="text" name="q"
+                                        placeholder="Buscar noticias..." aria-label="Buscar">
+                                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                                </form>
+
                                 <ul class="navbar-nav ms-auto">
                                     {% if user.is_authenticated %}
                                     <li class="nav-item dropdown">
@@ -99,7 +92,6 @@
                                             style="text-decoration:none; color: #1b1b1b;">Iniciar sesión</a>
                                     </li>
                                     {% endif %}
-
                                     <li class="nav-item">
                                         <a href="{% url 'registro' %}" class="nav-link" target="_blank"
                                             style="text-decoration:none; color: #1b1b1b;">Registrarse</a>
@@ -112,6 +104,39 @@
             </div>
         </div>
     </header>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Resultados de búsqueda</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="searchResults">
+                    <!-- Los resultados de búsqueda se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Resultados de búsqueda</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="searchResults">
+                    <!-- Los resultados de búsqueda se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     {% block content %}
     {% endblock %}
@@ -166,9 +191,47 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script src="{% static 'recursosJS/jquery2.js' %}"></script>
     <script src="{% static 'recursosJS/header.js' %}"></script>
     <script src="{% static 'recursosJS/jquery.js' %}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchForm = document.getElementById('searchForm');
+            const searchResults = document.getElementById('searchResults');
+            const searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
+
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const query = document.getElementById('busqueda').value;
+
+                fetch(`{% url 'buscar_noticias' %}?q=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        searchResults.innerHTML = '';
+
+                        if (data.length === 0) {
+                            searchResults.innerHTML = '<p>No se encontraron resultados.</p>';
+                        } else {
+                            const ul = document.createElement('ul');
+
+                            data.forEach(item => {
+                                const li = document.createElement('li');
+                                li.innerHTML = `<a href="${item.url}">${item.titulo}</a><p>${item.contenido}</p>`;
+                                ul.appendChild(li);
+                            });
+
+                            searchResults.appendChild(ul);
+                        }
+
+                        searchModal.show();
+                    });
+            });
+        });
+    </script>
 
 </body>
 

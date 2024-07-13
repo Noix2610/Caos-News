@@ -27,5 +27,38 @@ $(document).ready(function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const searchForm = document.getElementById('searchForm');
+    const searchResults = document.getElementById('searchResults');
+    const searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
+
+    searchForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const query = document.getElementById('busqueda').value;
+
+        fetch(`{% url 'buscar' %}?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                searchResults.innerHTML = '';
+
+                if (data.length === 0) {
+                    searchResults.innerHTML = '<p>No se encontraron resultados.</p>';
+                } else {
+                    const ul = document.createElement('ul');
+
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="${item.url}">${item.titulo}</a><p>${item.contenido}</p>`;
+                        ul.appendChild(li);
+                    });
+
+                    searchResults.appendChild(ul);
+                }
+
+                searchModal.show();
+            });
+    });
+});
+
 
 

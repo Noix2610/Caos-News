@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var formRegistro = document.getElementById("formRegistro");
+    var formRegistro = document.getElementById("registroForm");
 
     formRegistro.addEventListener("submit", function (event) {
         // Obtener valores de los campos
@@ -146,4 +146,10 @@ document.addEventListener("DOMContentLoaded", function () {
         div.style.color = "green";
         div.textContent = mensaje;
     }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
 });

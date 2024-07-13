@@ -1,8 +1,6 @@
 {% extends "alumnos/base.html" %}
 {% load static %}
-
 {% block content %}
-
 
 <link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
 <link rel="stylesheet" href="{% static 'recursosCss/style_carga.css' %}">
@@ -12,85 +10,42 @@
     <div class="txt">Cargando<br />espere...</div>
 </div>
 
-<div class="container">
-    <div style="text-align: center; " >
-        {% if mensaje %}
-        <div id="idMensajes" class="mensaje">{{ mensaje }}</div>
-        {% endif %}
-    </div>
-</div>
-
-<div class="registroCont">
+<div class="container registroCont">
     <h1>Formulario de Registro</h1>
-    <form action="usuarioAdd" method="POST" class="row g-3 needs-validation" id="registroForm">
+    <form action="registro" method="POST" class="row g-3 needs-validation" id="registroForm">
         {% csrf_token %}
+
         <div class="col-lg-md-4 registro">
-            <label for="validationCustom01" class="form-label">Nombres</label>
-            <button type="button" data-bs-toggle="popover" data-bs-trigger="hover"
-                data-bs-content="El campo debe contener entre 3 y 20 caracteres sin números."
-                style="border: none; background-color: transparent;" data-bs-placement="right">
-                <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
-            </button>
-            <input type="text" class="form-control" id="nombres" name="nombres" required>
-            <div class="valNombres"></div>
+            <label for="validationCustom04" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" required>
+            <div class="nom_usuario"></div>
         </div>
-        <div class="col-lg-md-4 registro">
-            <label for="validationCustom02" class="form-label">Apellidos</label>
-            <button class="buttonImg" type="button" data-bs-toggle="popover" data-bs-trigger="hover"
-                data-bs-content="El campo debe contener entre 3 y 20 caracteres sin números." data-bs-placement="right">
-                <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
-            </button>
-            <input type="text" class="form-control" id="apellidos" name="apellidos" required>
-            <div class="valApellidos"></div>
-        </div>
-        <div class="col-lg-md-4 registro">
-            <label for="validationCustomUsername" class="form-label">Nombre de Usuario</label>
-            <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
-                data-bs-content="El campo debe contener entre 4 y 15 caracteres." data-bs-placement="right">
-                <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
-            </button>
-            <div class="input-group has-validation">
-                <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" required>
-            </div>
-            <div class="valUsuario"></div>
-            <div id="nombreUsuarioError" class="text-danger"></div>
-        </div>
-        <div class="col-lg-md-4 registro">
-            <label for="validationCustom03" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" required>
-            <div class="valTelefono"></div>
-        </div>
+
         <div class="col-lg-md-4 registro">
             <label for="validationCustom04" class="form-label">Correo Electrónico</label>
-            <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
-                data-bs-content="Debe ser @gmail.com, @hotmail.com/es, @yahoo.es." data-bs-placement="right">
+            <button class="buttonImg" type="button" data-bs-toggle="popover" data-bs-trigger="hover"
+                data-bs-content="Debe ser @gmail.com, @hotmail.com/es, @yahoo.es, @duocuc.cl" data-bs-placement="right">
                 <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
             </button>
             <input type="email" class="form-control" id="correo" name="correo" required>
             <div class="valCorreo"></div>
         </div>
+
         <div class="col-lg-md-4 registro">
             <label for="validationCustom05" class="form-label">Contraseña</label>
-            <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
+            <button class="buttonImg" type="button" data-bs-toggle="popover" data-bs-trigger="hover"
                 data-bs-content="Debe contener al menos una letra, un número y al menos 8 caracteres."
                 data-bs-placement="right">
                 <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
             </button>
-            <input type="password" class="form-control" id="pass" name="password" required>
+            <input type="password" class="form-control" id="pass" name="pass" required>
             <div class="valPassword"></div>
         </div>
+
         <div class="col-lg-md-4 registro">
             <label for="validationCustom06" class="form-label">Repetir Contraseña</label>
-            <input type="password" class="form-control" id="pass2" required>
+            <input type="password" class="form-control" id="pass2" name="pass2" required>
             <div class="valPassword2"></div>
-        </div>
-        <div class="col-lg-md-4 registro">
-            <label for="validationCustom07" class="form-label">Fecha de Nacimiento</label>
-            <button class="buttonImg" type="button " data-bs-toggle="popover" data-bs-trigger="hover"
-                data-bs-content="Seleccionar una fecha válida." data-bs-placement="right">
-                <img src="{% static 'resources/exclamacion.png' %}" alt="exc" style="width: 8px;height:8px">
-            </button>
-            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
         </div>
 
         <div class="col-lg-md-4 registro">
@@ -103,36 +58,52 @@
         </div>
 
         <div class="col-lg-md-4 registro">
-            <label for="validationCustom09" class="form-label">Región</label>
-            <select class="form-select" id="region" name="region" required>
-                {% for region in regiones %}
-                <option value="{{ region.cod_region }}">{{ region.nombre_region }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-lg-md-4 registro">
             <label for="validationCustom10" class="form-label">Ciudad</label>
             <select class="form-select" id="ciudad" name="ciudad" required>
+                <option value="">Seleccionar ciudad</option>
                 {% for comuna in comunas %}
-                <option value="{{ comuna.cod_comuna }}" data-region-id="{{ comuna.region.cod_region }}">
-                    {{ comuna.nombre_comuna }}
-                </option>
+                <option value="{{ comuna.id }}">{{ comuna.nombre_comuna }}</option>
                 {% endfor %}
             </select>
         </div>
 
-        <div class="col-lg-md-4 registro">
-            <label for="validationCustom11" class="form-label">Código Postal</label>
-            <input type="number" class="form-control" id="cod_postal" name="cod_postal" required>
-        </div>
-        <div class="col-12 registro">
-            <button class="btn btn-primary" type="submit" name="opcion">Registrarse</button>
-        </div>
+        <button class="btn btn-primary" type="submit" name="opcion">Registrarse</button>
     </form>
 </div>
 
-
-<script src="{% static 'recursosJS/validaciones.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="{% static 'recursosJS/script_carga.js' %}"></script>
-<script src="{% static 'recursosJS/cargarComunasRegiones.js' %}"></script>
+<script src="{% static 'recursosJS/validaciones.js' %}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var mensajeDiv = document.getElementById('idMensajes');
+        if (mensajeDiv) {
+            mensajeDiv.style.position = 'fixed';
+            mensajeDiv.style.bottom = '20px';
+            mensajeDiv.style.left = '50%';
+            mensajeDiv.style.transform = 'translateX(-50%)';
+            mensajeDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            mensajeDiv.style.color = 'white';
+            mensajeDiv.style.padding = '10px 20px';
+            mensajeDiv.style.borderRadius = '8px';
+            mensajeDiv.style.zIndex = '9999';
+            mensajeDiv.style.opacity = '0';
+            mensajeDiv.style.transition = 'opacity 0.5s ease';
+
+            setTimeout(function () {
+                mensajeDiv.style.opacity = '1';
+            }, 100);
+
+            setTimeout(function () {
+                mensajeDiv.style.opacity = '0';
+                setTimeout(function () {
+                    mensajeDiv.remove();
+                }, 500);
+            }, 3000);
+        }
+    });
+</script>
+
 {% endblock %}

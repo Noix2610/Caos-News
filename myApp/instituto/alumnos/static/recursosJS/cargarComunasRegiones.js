@@ -9,16 +9,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Mostrar todas las opciones de ciudad
         Array.from(ciudadSelect.options).forEach(function (option) {
-            option.style.display = 'block';
-        });
-
-        // Ocultar las opciones que no corresponden a la región seleccionada
-        Array.from(ciudadSelect.options).forEach(function (option) {
-            var regionId = option.getAttribute('data-region-id');
-            if (regionId !== regionSeleccionada && regionSeleccionada !== '') {
+            var regionName = option.getAttribute('data-region-name');
+            if (regionName === regionSeleccionada || regionSeleccionada === '') {
+                option.style.display = 'block';
+                option.disabled = false; // Habilitar opción visible
+            } else {
                 option.style.display = 'none';
+                option.disabled = true; // Deshabilitar opción no visible
             }
         });
+
+        // Seleccionar la primera opción visible
+        var firstVisibleOption = Array.from(ciudadSelect.options).find(function (option) {
+            return option.style.display === 'block';
+        });
+
+        if (firstVisibleOption) {
+            firstVisibleOption.selected = true;
+        } else {
+            ciudadSelect.selectedIndex = -1; // Deseleccionar si no hay opciones visibles
+        }
     }
 
     // Llamar a la función al cargar y al cambiar la selección de región

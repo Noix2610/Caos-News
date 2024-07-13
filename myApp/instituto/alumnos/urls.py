@@ -8,22 +8,20 @@ urlpatterns =[
     path('deportes',views.deportes,name='deportes'),
     path('nacional/', views.nacional, name='nacional'),
     path('noticiaInternacional',views.noticiaInternacional,name='noticiaInternacional'),
-    path('suscripciones',views.suscripciones,name='suscripciones'),
     path('registro',views.registro,name='registro'),
-    path('listaSQL',views.listaSQL,name='listaSQL'),
     path('usuarios_add',views.usuarios_add,name='usuarios_add'),
     path('usuarios_del/<str:pk>', views.usuarios_del, name='usuarios_del'),
-    path('usuarios_findEdit/<str:pk>', views.usuarios_findEdit, name='usuarios_findEdit'),
+    path('usuarios_findEdit/<int:pk>/', views.usuarios_findEdit, name='usuarios_findEdit'),
     path('usuarios_edit',views.usuarios_edit,name='usuarios_edit'),
     path('usuarios_list',views.usuarios_list,name='usuarios_list'),
     path('usuarioAdd',views.usuarioAdd,name='usuarioAdd'),
     path('adminUsuarioAdd',views.adminUsuarioAdd,name='adminUsuarioAdd'),
-    path('crud',views.crud,name='crud'),
-    path('usuariosUpdate',views.usuariosUpdate,name='usuariosUpdate'),
+    path('usuarios_update',views.usuarios_update,name='usuarios_update'),
     path('usuarios/', views.usuarios_list, name='usuarios_list'),
     path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
     path('validar_nombre_usuario/', views.validar_nombre_usuario, name='validar_nombre_usuario'),
     path('agregar-imagen/<int:noticia_id>/', views.agregar_imagen, name='agregar_imagen'),
+    path('eliminar_imagen/<int:foto_id>/', views.eliminar_imagen, name='eliminar_imagen'),
     path('modificar/<int:noticia_id>/', views.modificar_noticia, name='modificar_noticia'),
     path('guardar_modificacion/<int:noticia_id>/', views.guardar_modificacion, name='guardar_modificacion'),
     path('noticia/<int:noticia_id>/', views.detalle_noticia, name='detalle_noticia'),
@@ -31,9 +29,15 @@ urlpatterns =[
     path('eliminar-noticia/<int:noticia_id>/', views.eliminar_noticia, name='eliminar_noticia'),
     path('aprobar_noticias/', views.aprobar_noticias, name='aprobar_noticias'),
     path('cambiar_estado/<int:noticia_id>/', views.cambiar_estado_noticia, name='cambiar_estado_noticia'),
-    path('checkout/', views.checkout, name='checkout'),
-    path('carrito',views.carrito,name='carrito'),
-    
+    path('suscripciones/', views.suscripciones, name='suscripciones'),
+    path('agregar_al_carrito/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('realizar-compra/', views.realizar_compra, name='realizar_compra'),  
+    path('buscar_noticias/', views.buscar_noticias, name='buscar_noticias'),
+    path('noticia/<int:noticia_id>/', views.detalle_noticia, name='detalle_noticia'),
+    path('api/regiones/', views.regiones_por_comuna, name='api_regiones'),
+ 
+
+
     
     
 ]

@@ -1,8 +1,10 @@
 <!-- templates/alumnos/agregar_noticia.html -->
 
 {% extends "alumnos/base.html" %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'recursosCss/styleSheet.css' %}">
 <div class="container">
     <h1>Agregar Noticia</h1>
     <form method="POST" enctype="multipart/form-data">
@@ -36,7 +38,6 @@
             <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
         </div>
 
-
         <div class="form-group">
             <label for="categoria">Categoría:</label>
             <select class="form-control" id="categoria" name="categoria" required>
@@ -45,6 +46,10 @@
                 {% endfor %}
             </select>
         </div>
+
+        <!-- Campo oculto para el estado -->
+        <input type="hidden" id="estado" name="estado" value="Ingresada">
+
         <button type="submit" class="btn btn-primary">Agregar Noticia</button>
     </form>
 </div>

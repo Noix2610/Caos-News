@@ -25,8 +25,9 @@ urlpatterns = [
     path('alumnos/', include('alumnos.urls')),
     path('no-autorizado/', views.no_autorizado, name='no_autorizado'),
     path('accounts/', include('django.contrib.auth.urls')),  # Configurar las URLs de autenticación de Django
-    path('perfil/', views.perfil, name='perfil'),
     path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
+
+
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
