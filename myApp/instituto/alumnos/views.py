@@ -9,6 +9,10 @@ from django.contrib import messages # type: ignore
 from django.contrib.auth import logout, authenticate, login   # type: ignore
 from django.db.models import Q
 
+def logout_view(request):
+    logout(request)
+    # Redirigir a una página o URL después del logout
+    return redirect('index')
 
 def login_view(request):
     if request.method == 'POST':
@@ -403,7 +407,7 @@ def aprobar_noticias(request):
     context = {'noticias': noticias}
     return render(request, 'alumnos/aprobar_noticias.html', context)
 
-
+@login_required
 def cambiar_estado_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, id=noticia_id)
 
@@ -550,8 +554,6 @@ def eliminar_imagen(request, foto_id):
     foto.delete()
     return redirect('perfil')
 
-def es_staff(user):
-    return True  # Temporalmente permitir acceso a todos los usuarios
 
 @user_passes_test(es_staff, login_url='/no-autorizado/')
 def listar_usuarios(request):
@@ -615,7 +617,6 @@ def usuarios_update(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         profesion_id = request.POST.get('profesion')
-        ciudad = request.POST.get('ciudad')
 
         try:
             usuario = Usuario.objects.get(user_id=user_id)
@@ -623,7 +624,6 @@ def usuarios_update(request):
             usuario.user.last_name = apellidos
             usuario.user.username = nom_usuario
             usuario.user.email = email
-            usuario.comuna = ciudad
 
             if password:
                 usuario.user.set_password(password)
@@ -669,6 +669,7 @@ def usuarios_edit(request):
 
     return render(request, 'alumnos/usuarios_edit.html', context)
 
+@user_passes_test(es_staff, login_url='/no-autorizado/')  
 def usuarios_list(request):
     usuarios = Usuario.objects.all()
     context = {'usuarios': usuarios}
@@ -693,60 +694,3 @@ def usuarios_del(request,pk):
         context={'usuarios':usuarios, 'mensaje':mensaje}
         return render(request, 'alumnos/usuarios_list.html',context)
     
-@user_passes_test(es_staff, login_url='/no-autorizado/')
-def adminUsuarioAdd(request):
-    if request.method == "POST":
-        # Obtener los datos del formulario
-        print(request.POST)
-        nombres = request.POST.get('nombres')
-        apellidos = request.POST.get('apellidos')
-        nom_usuario = request.POST.get('nom_usuario')
-        telefono = request.POST.get('telefono')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        fecha_nacimiento = request.POST.get('fecha_nacimiento')
-        id_profesion_id = request.POST.get('profesion')  # Obtener el ID del género del formulario
-        id_profesion = Profesion.objects.get(pk=id_profesion_id)
-        region = request.POST.get('region')
-        ciudad = request.POST.get('ciudad')
-        cod_postal = request.POST.get('cod_postal')
-
-        # Crear el usuario y guardarlo en la base de datos
-        nuevo_usuario =  User.objects.create_user(
-            nombres=nombres,
-            apellidos=apellidos,
-            username=nom_usuario,
-            telefono=telefono,
-            email=email,
-            password=password,
-            fecha_nacimiento=fecha_nacimiento,
-            id_profesion=id_profesion,  # Asignar el objeto Profesion
-            region = region,
-            ciudad = ciudad,
-            cod_postal = cod_postal
-            # Otros campos...
-        )
-
-        nuevo_usuario2 = Usuario(
-            nombres=nombres,
-            apellidos=apellidos,
-            nom_usuario=nom_usuario,
-            telefono=telefono,
-            email=email,
-            password=password,
-            fecha_nacimiento=fecha_nacimiento, 
-            id_profesion=id_profesion,
-            region = region,
-            ciudad = ciudad,
-            cod_postal = cod_postal)
-        
-        nuevo_usuario2.save()
-        nuevo_usuario.save()
-        context={'mensaje':'Usuario Registrado Correctamente'}
-        return render(request, 'alumnos/usuarios_add.html', context)
-    
-    else:
-        # Si la solicitud no es POST, renderizar el formulario
-        profesiones = Profesion.objects.all()
-        context = {'profesiones': profesiones}
-        return render(request, 'alumnos/usuarios_add.html', context)

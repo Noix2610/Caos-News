@@ -16,7 +16,6 @@ urlpatterns =[
     path('usuarios_edit',views.usuarios_edit,name='usuarios_edit'),
     path('usuarios_list',views.usuarios_list,name='usuarios_list'),
     path('usuarioAdd',views.usuarioAdd,name='usuarioAdd'),
-    path('adminUsuarioAdd',views.adminUsuarioAdd,name='adminUsuarioAdd'),
     path('usuarios_update',views.usuarios_update,name='usuarios_update'),
     path('usuarios/', views.usuarios_list, name='usuarios_list'),
     path('agregar-noticia/', views.agregar_noticia, name='agregar_noticia'),
@@ -36,6 +35,8 @@ urlpatterns =[
     path('buscar_noticias/', views.buscar_noticias, name='buscar_noticias'),
     path('noticia/<int:noticia_id>/', views.detalle_noticia, name='detalle_noticia'),
     path('api/regiones/', views.regiones_por_comuna, name='api_regiones'),
+    path('logout_view', views.logout_view, name='logout_view'),
+    
  
 
 

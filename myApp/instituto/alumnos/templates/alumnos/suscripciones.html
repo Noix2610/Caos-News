@@ -1,11 +1,9 @@
-<!-- suscripciones.html -->
-
 {% extends "alumnos/base.html" %}
 {% load static %}
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'recursosCss/styleCarrito.css' %}">
+
 <!-- Contenedor principal -->
 
 {% if messages %}
@@ -28,7 +26,7 @@
                 {% for producto in productos %}
                 <div class="col-md-4 ">
                     <div class="">
-                        <div class="opcion-suscripcion container-fluid " data-plan="{{ producto.nombre_producto }}">
+                        <div class="opcion-suscripcion container-fluid " style="background-color: rgb(241, 205, 188); border-radius: 10px;" data-plan="{{ producto.nombre_producto }}">
                             <h3>{{ producto.nombre_producto }}</h3>
                             <p>{{ producto.descripcion|linebreaksbr }}</p>
                             <p>Precio: ${{ producto.valor_producto }}</p>

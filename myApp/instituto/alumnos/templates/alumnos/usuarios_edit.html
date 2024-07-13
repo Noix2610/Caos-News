@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block content %}
-<h1>Editar Usuario</h1>
+<link rel="stylesheet" href="{% static 'recursosCss/editarUsuario.css' %}">
 
+<div style="text-align: center; font-size: 1.5rem; font-weight: 600;">
 {% if request.user.is_authenticated %}
 <p>Bienvenido, {{ request.user.username }}</p>
 {% endif %}
+</div>
 
 {% if mensaje %}
 <div class="alert alert-danger">{{ mensaje }}</div>
@@ -31,12 +33,7 @@
         </select>
     </div>
     
-    <select id="id_comuna" name="comuna" class="form-control">
-        <option value="">Seleccionar comuna</option>
-        {% for comuna in comunas %}
-        <option value="{{ comuna.id }}" {% if comuna.id == 1 %} selected {% endif %}>{{ comuna.nombre }}</option>
-        {% endfor %}
-    </select>
+    
     
     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 </form>

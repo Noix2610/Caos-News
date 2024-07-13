@@ -21,8 +21,10 @@
         <h3>Acciones</h3>
         <ul style="list-style-type: none; padding-left: 0;">
             <!-- Agrega botones según los permisos del usuario -->
+            {% if usuario.is_staff %}
             <li><a href="{% url 'usuarios_list' %}" style="text-decoration: none;">Lista de Usuarios</a></li>
             <li><a href="{% url 'aprobar_noticias' %}" style="text-decoration: none;">Verificar Noticias</a></li>
+            {% endif %}
             <li><a href="{% url 'agregar_noticia' %}" style="text-decoration: none;">Ingresar Noticia</a></li>
             <li><a href="{% url 'registro' %}" style="text-decoration: none;">Registro</a></li>
             <li><a href="{% url 'usuarios_findEdit' pk=user.pk%}" style="text-decoration: none;">Editar Datos</a></li>
@@ -78,7 +80,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cerrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +104,8 @@
                                             <img src="{{ foto.imagen.url }}" alt="Imagen" class="img-thumbnail">
                                             <form action="{% url 'eliminar_imagen' foto.id %}" method="post">
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger btn-sm mt-2">Eliminar</button>
+                                                <button type="submit"
+                                                    class="btn btn-danger btn-sm mt-2">Eliminar</button>
                                             </form>
                                         </div>
                                         {% empty %}
@@ -109,7 +113,8 @@
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cerrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -128,5 +133,4 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 {% endblock %}

@@ -1,0 +1,22 @@
+/* Estilos para el formulario */
+form {
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 0 auto; /* Centrar el formulario horizontalmente */
+    padding: 20px; /* Relleno interior */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #f0f0f0; /* Color de fondo */
+}
+
+/* Estilos para los campos y etiquetas */
+.form-group {
+    margin-bottom: 20px; /* Espacio entre grupos de campos */
+}
+
+label {
+    font-weight: bold; /* Negrita para las etiquetas */
+}
+
+/* Estilos para los botones */
+.btn-primary {
+    border-radius: 10px; /* Bordes redondeados para los botones */
+}
