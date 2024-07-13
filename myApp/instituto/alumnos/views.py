@@ -10,9 +10,6 @@ from django.contrib.auth import logout, authenticate, login   # type: ignore
 from django.db.models import Q
 
 
-# Create your views here.
-
-
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -223,8 +220,23 @@ def base(request):
     return render(request,'alumnos/base.html',context)
 
 def index(request):
-    context={}
-    return render(request,'alumnos/index.html',context)
+    # Obtener la categoría de deportes y el estado 'Publicada'
+    categoria_deportes = Categoria.objects.get(nombre='Deportes')
+    estado_publicada = EstadoNoticia.objects.get(id_estado=5)  # Ajusta el ID según tu configuración en la base de datos
+    noticias_carousel = Noticia.objects.filter(estado=estado_publicada)[:3]
+    # Filtrar las noticias de deportes por categoría y estado
+    noticias_deportes = Noticia.objects.filter(categoria=categoria_deportes, estado=estado_publicada)[:1]
+    
+    # Obtener otras noticias para mostrar en el carousel y en la columna de noticias internacionales
+    noticias_internacional = Noticia.objects.filter(categoria__nombre='Internacional', estado=estado_publicada)[:1]
+
+    context = {
+        'noticias_deportes': noticias_deportes,
+        'noticias_internacional': noticias_internacional,
+        'noticias_carousel': noticias_carousel,
+    }
+
+    return render(request, 'alumnos/index.html', context)
 
 @login_required
 def agregar_al_carrito(request, producto_id):

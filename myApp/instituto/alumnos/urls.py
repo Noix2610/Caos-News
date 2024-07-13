@@ -2,10 +2,11 @@ from django.urls import path # type: ignore
 
 from .import views
 
+
 urlpatterns =[
     path('index',views.index,name='index'),
     path('base',views.base,name='base'),
-    path('deportes',views.deportes,name='deportes'),
+    path('alumnos/deportes/', views.deportes, name='deportes'),
     path('nacional/', views.nacional, name='nacional'),
     path('noticiaInternacional',views.noticiaInternacional,name='noticiaInternacional'),
     path('registro',views.registro,name='registro'),
